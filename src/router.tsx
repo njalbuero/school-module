@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import Start from './pages/Start';
+import Home from './pages/Home';
+import About from './pages/About';
+import Modules from './pages/Modules';
 import SectionPlaceholder from './pages/SectionPlaceholder';
 import NotFound from './pages/NotFound';
 
@@ -9,7 +11,9 @@ export const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
-      { index: true, element: <Start /> },
+      { index: true, element: <Home /> },
+      { path: 'about', element: <About /> },
+      { path: 'modules', element: <Modules /> },
       {
         path: 'pre-assessment',
         element: <SectionPlaceholder sectionId="pre-assessment" />,

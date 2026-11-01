@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-import { MODULE, SECTIONS } from './content/module';
+import { MODULE, SECTIONS, SITE_PAGES } from './content/module';
 import { useProgress } from './context/ProgressContext';
-import { ProgressBar } from './components/layout/ProgressBar';
 
 export default function App() {
   const location = useLocation();
-  const { completedCount, totalSections, markVisited, resetAll } = useProgress();
+  const { markVisited, resetAll } = useProgress();
   const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
@@ -94,31 +93,22 @@ export default function App() {
           <nav
             id="site-nav"
             className="site-nav"
-            aria-label="Module sections"
+            aria-label="Main navigation"
             data-open={navOpen}
           >
             <ul className="nav-list">
-              {SECTIONS.map((section, index) => (
-                <li key={section.id}>
+              {SITE_PAGES.map((page) => (
+                <li key={page.path}>
                   <NavLink
-                    to={section.path}
-                    end={section.path === '/'}
+                    to={page.path}
+                    end={page.path === '/'}
                     className="nav-link"
                   >
-                    <span className="nav-number" aria-hidden="true">
-                      {section.id === 'pre-assessment'
-                        ? 'PRE'
-                        : String(index).padStart(2, '0')}
-                    </span>
-                    {section.label}
+                    {page.label}
                   </NavLink>
                 </li>
               ))}
             </ul>
-
-            <div className="nav-progress">
-              <ProgressBar completed={completedCount} total={totalSections} />
-            </div>
           </nav>
         </div>
       </header>

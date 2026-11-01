@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { MODULE, SECTIONS } from '../content/module';
 import type { SectionId } from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { SectionNav } from '../components/layout/SectionNav';
 
 /**
  * Temporary destination for sections built in the next stage. It is deliberately
@@ -22,7 +23,9 @@ export default function SectionPlaceholder({
   return (
     <div className="page">
       <header className="page-header">
-        <p className="eyebrow">{section?.label ?? MODULE.subject}</p>
+        <p className="eyebrow">
+          {section?.number} · {section?.label ?? MODULE.subject}
+        </p>
         <h1 className="page-title" tabIndex={-1} data-page-heading>
           {section?.title ?? 'Section'}
         </h1>
@@ -38,10 +41,15 @@ export default function SectionPlaceholder({
       </div>
 
       <div className="actions">
-        <Link className="button" to="/">
-          Back to Start Here
+        <Link className="button" to="/modules">
+          All sections
+        </Link>
+        <Link className="button button-secondary" to="/">
+          Back to Home
         </Link>
       </div>
+
+      <SectionNav current={sectionId} />
     </div>
   );
 }

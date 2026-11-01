@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useMemo } from 'react';
 import type { ReactNode } from 'react';
-import { SECTIONS } from '../content/module';
+import { PROGRESS_SECTIONS } from '../content/module';
 import type { SectionId } from '../content/module';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
@@ -129,7 +129,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     () => ({
       state,
       completedCount,
-      totalSections: SECTIONS.length,
+      totalSections: PROGRESS_SECTIONS.length,
       isComplete: (id) => state.completions[id] === true,
       wasVisited: (id) => Boolean(state.visits[id]),
       markVisited,

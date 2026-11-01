@@ -9,9 +9,15 @@ export type SectionId =
 export type ModuleSection = {
   id: SectionId;
   path: string;
+  number: string;
   label: string;
   title: string;
   description: string;
+};
+
+export type SitePage = {
+  path: string;
+  label: string;
 };
 
 export type LearningOutcome = {
@@ -41,6 +47,7 @@ export const SECTIONS: ModuleSection[] = [
   {
     id: 'start',
     path: '/',
+    number: '00',
     label: 'Start Here',
     title: 'Start Here',
     description:
@@ -49,6 +56,7 @@ export const SECTIONS: ModuleSection[] = [
   {
     id: 'pre-assessment',
     path: '/pre-assessment',
+    number: 'PRE',
     label: 'Pre-assessment',
     title: 'Pre-assessment',
     description:
@@ -57,6 +65,7 @@ export const SECTIONS: ModuleSection[] = [
   {
     id: 'lesson-1',
     path: '/lesson/1',
+    number: '01',
     label: 'Lesson 1',
     title: 'Lesson 1: Foundations',
     description:
@@ -65,6 +74,7 @@ export const SECTIONS: ModuleSection[] = [
   {
     id: 'lesson-2',
     path: '/lesson/2',
+    number: '02',
     label: 'Lesson 2',
     title: 'Lesson 2: Application',
     description:
@@ -73,7 +83,8 @@ export const SECTIONS: ModuleSection[] = [
   {
     id: 'lesson-3',
     path: '/lesson/3',
-    label: 'Lesson 3: Evaluation',
+    number: '03',
+    label: 'Lesson 3',
     title: 'Lesson 3: Evaluation',
     description:
       'Weigh evidence, compare perspectives, and complete the summative performance task.',
@@ -81,12 +92,28 @@ export const SECTIONS: ModuleSection[] = [
   {
     id: 'wrap-up',
     path: '/wrap-up',
+    number: '04',
     label: 'Wrap-Up',
     title: 'Wrap-Up',
     description:
       'Key takeaways, a self-assessment, and a short feedback survey for the module.',
   },
 ];
+
+/** Main site pages shown in the header. */
+export const SITE_PAGES: SitePage[] = [
+  { path: '/', label: 'Home' },
+  { path: '/about', label: 'About' },
+  { path: '/modules', label: 'Modules' },
+];
+
+/**
+ * Sections that count towards progress. The overview is navigation, not a
+ * learning task, so it is excluded.
+ */
+export const PROGRESS_SECTIONS: ModuleSection[] = SECTIONS.filter(
+  (section) => section.id !== 'start',
+);
 
 export const LEARNING_OUTCOMES: LearningOutcome[] = [
   {

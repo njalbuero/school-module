@@ -123,17 +123,6 @@
   text-underline-offset: 6px;
 }
 
-.nav-number {
-  font-size: 0.75rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink-muted);
-}
-
-.nav-progress {
-  padding: var(--s-3) var(--s-3) var(--s-2);
-}
-
 /* Main */
 
 .site-main {
@@ -225,15 +214,7 @@
     padding: 0;
   }
 
-  .nav-number {
-    display: none;
-  }
-
   .nav-link {
-    padding: 0 var(--s-3);
-  }
-
-  .nav-progress {
-    display: none;
+    padding: 0 var(--s-4);
   }
 }

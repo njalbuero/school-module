@@ -41,10 +41,23 @@ src/
   content/          Module metadata, outcomes, author details (no JSX)
   context/          Progress state, persisted in localStorage
   hooks/            localStorage, page titles
-  components/       Layout and reusable UI
-  pages/            Start, SectionPlaceholder, NotFound
+  components/       Layout, section navigation, reusable UI
+  pages/            Home, About, Modules, SectionPlaceholder, NotFound
   styles/           tokens.css, base.css, layout.css, components.css
 ```
+
+## Pages
+
+| Route | Page |
+| --- | --- |
+| `/` | Home — module introduction and start |
+| `/about` | About — module overview, outcomes, author, foreword |
+| `/modules` | Modules — all six sections with progress and status |
+| `/pre-assessment` … `/wrap-up` | The five learning sections |
+
+Only Home, About and Modules are in the header navigation. The six module
+sections live on the Modules page and are reachable from previous/next
+controls on each section page.
 
 ## Content status
 
@@ -76,8 +89,9 @@ Author photo, when supplied: place it in `public/`, set `AUTHOR.photo` and
 ## Progress and privacy
 
 Progress, scores, and drafts are stored in `localStorage` on the student's
-device only. Nothing is transmitted anywhere. A "Clear saved progress" control
-in the footer wipes it.
+device only. Nothing is transmitted anywhere. Progress covers the five learning
+sections (pre-assessment, three lessons, wrap-up); Home and About are not scored.
+A "Clear saved progress" control in the footer wipes it.
 
 ## Accessibility
 
