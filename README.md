@@ -48,17 +48,26 @@ src/
 
 ## Content status
 
-No official module PDF or source document was supplied. Everything currently on
-the Start page is either:
+Source documents are in `reqs/`:
+
+- `EDU0104 Module Content for SA1.pdf` — the assessment specification
+- `SA1 Contents.pdf` — the author's outline for this module
+- `Untitled document.pdf` — additional notes
+
+Those documents define structure and outcomes, but they **do not contain lesson
+readings**. Everything on the Start page is either:
 
 - **Supplied** — subject, module title, quarter, learning outcomes, educational
   background; or
 - **Clearly marked as a placeholder** — author name, author photo, biography,
   foreword.
 
-Nothing is invented on the author's behalf. When the source material arrives,
-edit `src/content/module.ts` and the placeholder component will disappear as
-fields are filled in.
+Lesson prose will be drafted from standard sociology-of-education concepts and
+labelled as draft until the official lesson content is supplied. Nothing is
+invented on the author's behalf.
+
+To fill a placeholder, edit `src/content/module.ts`; the placeholder
+disappears as fields are filled in.
 
 Author photo, when supplied: place it in `public/`, set `AUTHOR.photo` and
 `AUTHOR.photoAlt`, and render it with explicit `width`/`height`,
