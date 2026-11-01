@@ -1,13 +1,19 @@
-# Modules
+# Functions of Education in Society
 
-Barebones frontend for a masters school project. Three pages, shared layout, no
-backend.
+An online self-learning module for **Understanding Culture, Society and Politics**
+(Quarter 2), built as a lightweight, mobile-first web application.
 
-## Stack
+## Status
 
-- [Vite](https://vite.dev/) + React + TypeScript
-- [react-router-dom](https://reactrouter.com/) for routing
-- Plain CSS (`src/index.css`), no UI library
+| Stage | Scope | State |
+| --- | --- | --- |
+| 1 | Foundation: design system, layout, navigation, Start Here page | **Done** |
+| 2 | Pre-assessment, three lessons, activities, quizzes, discussion | Next |
+| 3 | Summative task, rubric, revision flow, wrap-up, survey | Pending |
+| 4 | Optimisation, offline cache, testing, documentation | Pending |
+
+Sections that are not built yet show an explicit "This section is being built"
+notice. No content is faked.
 
 ## Run it
 
@@ -16,8 +22,6 @@ npm install
 npm run dev
 ```
 
-Open the URL Vite prints (usually http://localhost:5173).
-
 ## Build
 
 ```bash
@@ -25,18 +29,57 @@ npm run build     # type-check, then bundle into dist/
 npm run preview   # serve the production build locally
 ```
 
-## Pages
+## Stack
 
-| Route      | File                      |
-| ---------- | ------------------------- |
-| `/`        | `src/pages/Landing.tsx`   |
-| `/about`   | `src/pages/About.tsx`     |
-| `/modules` | `src/pages/Modules.tsx`   |
-| anything   | `src/pages/NotFound.tsx`  |
+Vite 6, React 18, TypeScript, react-router-dom 6, plain CSS. No UI library, no
+fonts, no images, no analytics. Icons are inline SVG.
 
-## Where to edit
+## Structure
 
-- **Copy / content** — the files in `src/pages/`.
-- **Module list** — the `modules` array at the top of `src/pages/Modules.tsx`.
-- **Styling** — `src/index.css`; colours live in the `:root` variables.
-- **Navigation** — the `navItems` array in `src/App.tsx`.
+```
+src/
+  content/          Module metadata, outcomes, author details (no JSX)
+  context/          Progress state, persisted in localStorage
+  hooks/            localStorage, page titles
+  components/       Layout and reusable UI
+  pages/            Start, SectionPlaceholder, NotFound
+  styles/           tokens.css, base.css, layout.css, components.css
+```
+
+## Content status
+
+No official module PDF or source document was supplied. Everything currently on
+the Start page is either:
+
+- **Supplied** — subject, module title, quarter, learning outcomes, educational
+  background; or
+- **Clearly marked as a placeholder** — author name, author photo, biography,
+  foreword.
+
+Nothing is invented on the author's behalf. When the source material arrives,
+edit `src/content/module.ts` and the placeholder component will disappear as
+fields are filled in.
+
+Author photo, when supplied: place it in `public/`, set `AUTHOR.photo` and
+`AUTHOR.photoAlt`, and render it with explicit `width`/`height`,
+`loading="lazy"`, and `decoding="async"`. Target ≤40 KB.
+
+## Progress and privacy
+
+Progress, scores, and drafts are stored in `localStorage` on the student's
+device only. Nothing is transmitted anywhere. A "Clear saved progress" control
+in the footer wipes it.
+
+## Accessibility
+
+- WCAG 2.2 AA target; body text 17px, 1.65 line-height, 68ch measure
+- Contrast: body 15.2:1, secondary text 6.5:1, links/buttons 6.7:1
+- Skip link, per-page titles, focus moves to the page heading on navigation
+- 44px minimum touch targets, visible 3px focus rings
+- Progress bar exposes `role="progressbar"` with a text equivalent
+- Motion and transitions respect `prefers-reduced-motion`
+
+## Size
+
+Production build: 72.9 KB gzip JS, 2.6 KB gzip CSS, one HTML shell. No external
+requests. Budget for the finished module: ≤100 KB gzip on first load.

@@ -1,0 +1,367 @@
+/* Page headers */
+
+.page-header {
+  margin-bottom: var(--s-8);
+}
+
+.eyebrow {
+  margin: 0 0 var(--s-1);
+  font-size: var(--text-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.eyebrow-muted {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--ink-muted);
+}
+
+.page-title {
+  margin: 0 0 var(--s-3);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  letter-spacing: -0.02em;
+}
+
+.hero-title {
+  max-width: 20ch;
+  font-size: clamp(1.9rem, 6vw, 2.75rem);
+  margin-bottom: var(--s-4);
+}
+
+.hero-lead {
+  max-width: var(--measure);
+  margin: 0 0 var(--s-5);
+  font-size: 1.125rem;
+  color: var(--ink-muted);
+}
+
+.hero-note {
+  margin: var(--s-3) 0 0;
+  font-size: var(--text-small);
+  color: var(--ink-muted);
+}
+
+/* Sections */
+
+.section {
+  margin-top: var(--s-10);
+}
+
+.section-title {
+  margin: 0 0 var(--s-3);
+  font-size: 1.375rem;
+}
+
+.section-lead {
+  max-width: var(--measure);
+  margin: 0 0 var(--s-4);
+  color: var(--ink-muted);
+}
+
+/* Buttons */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-height: var(--tap);
+  padding: var(--s-2) var(--s-5);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-color: var(--brand);
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--brand-dark);
+}
+
+.button-secondary {
+  border-color: var(--line-strong);
+  background-color: var(--surface);
+  color: var(--ink);
+}
+
+.button-secondary:hover {
+  background-color: var(--surface-alt);
+}
+
+@media (max-width: 479px) {
+  .actions .button {
+    width: 100%;
+  }
+}
+
+/* Cards */
+
+.card {
+  padding: var(--s-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+}
+
+.card-quiet {
+  background-color: var(--surface-alt);
+  border-color: transparent;
+}
+
+.card-note {
+  margin: var(--s-3) 0 0;
+  font-size: var(--text-small);
+  color: var(--ink-muted);
+}
+
+/* Progress */
+
+.progress-track {
+  height: 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background-color: var(--surface-alt);
+  overflow: hidden;
+}
+
+.progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background-color: var(--brand);
+  transition: width 200ms ease;
+}
+
+.progress-label {
+  margin: var(--s-2) 0 0;
+  font-size: var(--text-small);
+  color: var(--ink-muted);
+}
+
+/* Prose */
+
+.prose {
+  max-width: var(--measure);
+}
+
+.prose > :last-child {
+  margin-bottom: 0;
+}
+
+.prose p,
+.prose li {
+  font-size: var(--text);
+}
+
+/* Lists */
+
+.outcome-list {
+  display: grid;
+  gap: var(--s-3);
+  max-width: var(--measure);
+  margin: 0;
+  padding-left: var(--s-6);
+}
+
+.outcome-list li {
+  padding-left: var(--s-1);
+}
+
+.section-list {
+  display: grid;
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.section-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  padding: var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 120ms ease;
+}
+
+.section-card:hover {
+  border-color: var(--brand);
+}
+
+.section-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.section-card-label {
+  font-size: var(--text-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.section-card-title {
+  font-size: var(--text);
+  font-weight: 600;
+}
+
+.section-card-description {
+  font-size: var(--text-small);
+  color: var(--ink-muted);
+}
+
+/* Chips */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem var(--s-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background-color: var(--surface);
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chip-done {
+  border-color: var(--green-line);
+  background-color: var(--green-soft);
+  color: var(--green);
+}
+
+.chip-progress {
+  border-color: #b9cbff;
+  background-color: var(--brand-soft);
+  color: var(--brand-dark);
+}
+
+/* Author */
+
+.author {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.author-photo {
+  margin: 0;
+  text-align: center;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  margin: 0 auto var(--s-2);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background-color: var(--brand-soft);
+  color: var(--brand-dark);
+}
+
+.author-photo figcaption {
+  font-size: var(--text-small);
+  color: var(--ink-muted);
+}
+
+.author-name {
+  margin: 0 0 var(--s-3);
+  font-size: 1.25rem;
+}
+
+.author-subheading {
+  margin: var(--s-5) 0 var(--s-2);
+  font-size: 1rem;
+}
+
+.education-list {
+  display: grid;
+  gap: var(--s-2);
+  margin: 0;
+  padding-left: var(--s-5);
+}
+
+.education-programme {
+  font-weight: 500;
+}
+
+.education-year {
+  color: var(--ink-muted);
+}
+
+.education-institution {
+  display: block;
+  font-size: var(--text-small);
+  color: var(--ink-muted);
+}
+
+@media (min-width: 640px) {
+  .author {
+    grid-template-columns: 140px 1fr;
+    align-items: start;
+  }
+}
+
+/* Placeholders */
+
+.placeholder {
+  padding: var(--s-4);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  background-color: var(--amber-soft);
+}
+
+.placeholder-label {
+  margin: 0 0 var(--s-2);
+  font-size: var(--text-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.placeholder-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* Callouts */
+
+.callout {
+  margin-bottom: var(--s-5);
+  padding: var(--s-4);
+  border-left: 4px solid var(--line-strong);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background-color: var(--surface);
+}
+
+.callout-info {
+  border-left-color: var(--brand);
+  background-color: var(--brand-soft);
+}
+
+.callout-title {
+  margin: 0 0 var(--s-1);
+  font-weight: 700;
+}

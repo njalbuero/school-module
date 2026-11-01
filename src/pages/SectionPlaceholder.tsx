@@ -1,0 +1,47 @@
+import { Link } from 'react-router-dom';
+import { MODULE, SECTIONS } from '../content/module';
+import type { SectionId } from '../content/module';
+import { usePageMeta } from '../hooks/usePageMeta';
+
+/**
+ * Temporary destination for sections built in the next stage. It is deliberately
+ * explicit that the section is not finished, rather than faking content.
+ */
+export default function SectionPlaceholder({
+  sectionId,
+}: {
+  sectionId: SectionId;
+}) {
+  const section = SECTIONS.find((item) => item.id === sectionId);
+
+  usePageMeta({
+    title: section?.title ?? 'Section',
+    description: section?.description,
+  });
+
+  return (
+    <div className="page">
+      <header className="page-header">
+        <p className="eyebrow">{section?.label ?? MODULE.subject}</p>
+        <h1 className="page-title" tabIndex={-1} data-page-heading>
+          {section?.title ?? 'Section'}
+        </h1>
+        <p className="section-lead">{section?.description}</p>
+      </header>
+
+      <div className="callout callout-info">
+        <p className="callout-title">This section is being built</p>
+        <p>
+          The pre-assessment, lessons, activities, and assessments are implemented
+          in the next stage of the build. No content is faked in the meantime.
+        </p>
+      </div>
+
+      <div className="actions">
+        <Link className="button" to="/">
+          Back to Start Here
+        </Link>
+      </div>
+    </div>
+  );
+}
