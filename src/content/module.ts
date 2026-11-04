@@ -135,12 +135,12 @@ export const LEARNING_OUTCOMES: LearningOutcome[] = [
 ];
 
 /**
- * Author details. `name`, `photo`, and `bio` are intentionally empty: the
- * supplied brief does not provide them, and inventing them would misrepresent
- * a real person. The site renders an explicit placeholder instead.
+ * Author details. `photo` and `bio` are intentionally empty: they were not
+ * supplied, and inventing them would misrepresent a real person. The site
+ * renders an explicit placeholder instead.
  */
 export const AUTHOR = {
-  name: null as string | null,
+  name: 'Andrea Gabrielle Tenorio',
   photo: null as string | null,
   photoAlt: null as string | null,
   bio: null as string | null,

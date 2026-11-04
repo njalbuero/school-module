@@ -68,12 +68,11 @@ Source documents are in `reqs/`:
 - `Untitled document.pdf` — additional notes
 
 Those documents define structure and outcomes, but they **do not contain lesson
-readings**. Everything on the Start page is either:
+readings**. Everything currently on the site is either:
 
-- **Supplied** — subject, module title, quarter, learning outcomes, educational
-  background; or
-- **Clearly marked as a placeholder** — author name, author photo, biography,
-  foreword.
+- **Supplied** — subject, module title, quarter, author name, learning outcomes,
+  educational background; or
+- **Clearly marked as a placeholder** — author photo, biography, foreword.
 
 Lesson prose will be drafted from standard sociology-of-education concepts and
 labelled as draft until the official lesson content is supplied. Nothing is

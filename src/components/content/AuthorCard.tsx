@@ -43,7 +43,7 @@ export function AuthorCard() {
         )}
 
         <h4 className="author-subheading">Educational background</h4>
-        <ol className="education-list">
+        <ul className="education-list">
           {AUTHOR.education.map((entry) => (
             <li key={entry.programme}>
               <span className="education-programme">{entry.programme}</span>
@@ -53,7 +53,7 @@ export function AuthorCard() {
               <span className="education-institution">{entry.institution}</span>
             </li>
           ))}
-        </ol>
+        </ul>
       </div>
     </div>
   );

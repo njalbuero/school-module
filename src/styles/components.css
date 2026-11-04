@@ -298,9 +298,10 @@
 
 .education-list {
   display: grid;
-  gap: var(--s-2);
+  gap: var(--s-3);
   margin: 0;
-  padding-left: var(--s-5);
+  padding-left: 0;
+  list-style: none;
 }
 
 .education-programme {
