@@ -31,6 +31,12 @@ export type EducationEntry = {
   year?: string;
 };
 
+export type LearningStage = {
+  step: number;
+  name: string;
+  description: string;
+};
+
 export const MODULE = {
   subject: 'Understanding Culture, Society and Politics',
   quarter: 'Quarter 2 · Self-Learning Module',
@@ -51,7 +57,7 @@ export const SECTIONS: ModuleSection[] = [
     label: 'Start Here',
     title: 'Start Here',
     description:
-      'Module overview, author, about this project, and the learning outcomes for the whole module.',
+      'Module overview, author, project background, learning sequence, and outcomes.',
   },
   {
     id: 'pre-assessment',
@@ -96,7 +102,7 @@ export const SECTIONS: ModuleSection[] = [
     label: 'Wrap-Up',
     title: 'Wrap-Up',
     description:
-      'Key takeaways, a self-assessment, and a short feedback survey for the module.',
+      'Key takeaways, a reflection, a self-assessment, and a short feedback survey for the module.',
   },
 ];
 
@@ -131,6 +137,31 @@ export const LEARNING_OUTCOMES: LearningOutcome[] = [
   {
     id: 'lo-4',
     text: 'Create an evidence-based reflection explaining how education can affect or address a particular social issue in Philippine society.',
+  },
+];
+
+export const LEARNING_SEQUENCE: LearningStage[] = [
+  {
+    step: 1,
+    name: 'What I Know',
+    description: 'Complete a short pre-assessment.',
+  },
+  {
+    step: 2,
+    name: 'Learn',
+    description:
+      'Read the lesson content and connect concepts to Philippine society.',
+  },
+  {
+    step: 3,
+    name: 'Discuss',
+    description:
+      'Analyze a news report and participate in the asynchronous thread.',
+  },
+  {
+    step: 4,
+    name: 'Reflect',
+    description: 'Review perspectives and reflect on your learning.',
   },
 ];
 

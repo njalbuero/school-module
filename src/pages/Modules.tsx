@@ -29,7 +29,7 @@ export default function Modules() {
 
       <section className="section" aria-labelledby="progress-heading">
         <h2 id="progress-heading" className="section-title">
-          Your progress
+          Your Progress
         </h2>
         <div className="card card-quiet">
           <ProgressBar completed={completedCount} total={totalSections} />
@@ -41,7 +41,7 @@ export default function Modules() {
 
       <section className="section" aria-labelledby="sections-heading">
         <h2 id="sections-heading" className="section-title">
-          All sections
+          All Sections
         </h2>
 
         <ol className="section-list">
@@ -88,7 +88,7 @@ export default function Modules() {
 
         <div className="actions">
           <Link className="button" to="/pre-assessment">
-            Start with the pre-assessment
+            Start with the Pre-assessment
           </Link>
         </div>
       </section>

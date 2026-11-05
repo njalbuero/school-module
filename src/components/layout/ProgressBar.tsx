@@ -12,12 +12,17 @@ export function ProgressBar({
       <div
         className="progress-track"
         role="progressbar"
+        aria-label="Module progress"
         aria-valuemin={0}
         aria-valuemax={total}
         aria-valuenow={completed}
         aria-valuetext={`${completed} of ${total} sections complete`}
       >
-        <span className="progress-fill" style={{ width: `${percent}%` }} />
+        <span
+          className="progress-fill"
+          style={{ width: `${percent}%` }}
+          aria-hidden="true"
+        />
       </div>
       <p className="progress-label">
         {completed} of {total} sections complete

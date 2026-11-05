@@ -8,6 +8,7 @@ import type { SectionId } from '../../content/module';
  */
 export function SectionNav({ current }: { current: SectionId }) {
   const index = PROGRESS_SECTIONS.findIndex((section) => section.id === current);
+  const currentSection = PROGRESS_SECTIONS[index];
   const previous = index > 0 ? PROGRESS_SECTIONS[index - 1] : null;
   const next =
     index >= 0 && index < PROGRESS_SECTIONS.length - 1
@@ -19,10 +20,12 @@ export function SectionNav({ current }: { current: SectionId }) {
       <div className="section-nav-head">
         <p className="section-nav-position">
           Section {index + 1} of {PROGRESS_SECTIONS.length}
+          {currentSection ? ` · ${currentSection.label}` : ''}
         </p>
-        <Link className="section-nav-contents" to="/modules">
-          Module contents
-        </Link>
+        <div className="section-nav-head-links">
+          <Link to="/">Home</Link>
+          <Link to="/modules">Module Contents</Link>
+        </div>
       </div>
 
       <div className="section-nav-links">

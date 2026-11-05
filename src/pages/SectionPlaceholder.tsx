@@ -32,21 +32,24 @@ export default function SectionPlaceholder({
         <p className="section-lead">{section?.description}</p>
       </header>
 
-      <div className="callout callout-info">
-        <p className="callout-title">This section is being built</p>
-        <p>
-          The pre-assessment, lessons, activities, and assessments are implemented
-          in the next stage of the build. No content is faked in the meantime.
-        </p>
-      </div>
+      <div className="section">
+        <div className="callout callout-info">
+          <p className="callout-title">This lesson is being built</p>
+          <p>
+            The lesson reading, learning activity, and formative check will be
+            added when the lesson content is supplied. No content is faked in the
+            meantime.
+          </p>
+        </div>
 
-      <div className="actions">
-        <Link className="button" to="/modules">
-          All sections
-        </Link>
-        <Link className="button button-secondary" to="/">
-          Back to Home
-        </Link>
+        <div className="actions">
+          <Link className="button" to="/modules">
+            View All Sections
+          </Link>
+          <Link className="button button-secondary" to="/">
+            Back to Home
+          </Link>
+        </div>
       </div>
 
       <SectionNav current={sectionId} />

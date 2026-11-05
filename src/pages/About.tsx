@@ -2,6 +2,7 @@ import { ABOUT_PROJECT, LEARNING_OUTCOMES, MODULE } from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { AuthorCard } from '../components/content/AuthorCard';
 import { Placeholder } from '../components/content/Placeholder';
+import { LearningSequence } from '../components/content/LearningSequence';
 
 export default function About() {
   usePageMeta({
@@ -47,6 +48,15 @@ export default function About() {
               <li key={outcome.id}>{outcome.text}</li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="sequence-heading">
+        <h2 id="sequence-heading" className="section-title">
+          Learning Sequence
+        </h2>
+        <div className="card">
+          <LearningSequence />
         </div>
       </section>
 

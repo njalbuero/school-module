@@ -3,6 +3,8 @@ import App from './App';
 import Home from './pages/Home';
 import About from './pages/About';
 import Modules from './pages/Modules';
+import PreAssessment from './pages/PreAssessment';
+import WrapUp from './pages/WrapUp';
 import SectionPlaceholder from './pages/SectionPlaceholder';
 import NotFound from './pages/NotFound';
 
@@ -14,10 +16,7 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'about', element: <About /> },
       { path: 'modules', element: <Modules /> },
-      {
-        path: 'pre-assessment',
-        element: <SectionPlaceholder sectionId="pre-assessment" />,
-      },
+      { path: 'pre-assessment', element: <PreAssessment /> },
       {
         path: 'lesson/1',
         element: <SectionPlaceholder sectionId="lesson-1" />,
@@ -30,10 +29,7 @@ export const router = createBrowserRouter([
         path: 'lesson/3',
         element: <SectionPlaceholder sectionId="lesson-3" />,
       },
-      {
-        path: 'wrap-up',
-        element: <SectionPlaceholder sectionId="wrap-up" />,
-      },
+      { path: 'wrap-up', element: <WrapUp /> },
       { path: '*', element: <NotFound /> },
     ],
   },

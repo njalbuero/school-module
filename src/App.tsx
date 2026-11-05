@@ -58,7 +58,11 @@ export default function App() {
 
       <header className="site-header">
         <div className="site-header-inner">
-          <Link className="brand" to="/">
+          <Link
+            className="brand"
+            to="/"
+            aria-label={`${MODULE.shortTitle} — return to Home`}
+          >
             <span className="brand-mark" aria-hidden="true">
               ED
             </span>
@@ -87,7 +91,7 @@ export default function App() {
             >
               <path d="M4 7h16M4 12h16M4 17h16" />
             </svg>
-            Menu
+            {navOpen ? 'Close' : 'Menu'}
           </button>
 
           <nav
