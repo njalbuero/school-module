@@ -5,7 +5,7 @@ import { Placeholder } from '../components/content/Placeholder';
 
 export default function About() {
   usePageMeta({
-    title: 'About this module',
+    title: 'About this Module',
     description: MODULE.about,
   });
 
@@ -14,7 +14,7 @@ export default function About() {
       <header className="page-header">
         <p className="eyebrow">About</p>
         <h1 className="page-title" tabIndex={-1} data-page-heading>
-          About this module
+          About this Module
         </h1>
         <p className="section-lead">
           {MODULE.subject} · {MODULE.quarter}
@@ -23,14 +23,16 @@ export default function About() {
 
       <section className="section" aria-labelledby="overview-heading">
         <h2 id="overview-heading" className="section-title">
-          Module overview
+          Module Overview
         </h2>
-        <div className="prose">
-          <p>{MODULE.about}</p>
-          <p>
-            Estimated workload is roughly three to six hours, depending on how
-            much time you spend on the activities and the summative task.
-          </p>
+        <div className="card">
+          <div className="prose">
+            <p>{MODULE.about}</p>
+            <p>
+              Estimated workload is roughly three to six hours, depending on how
+              much time you spend on the activities and the summative task.
+            </p>
+          </div>
         </div>
       </section>
 
