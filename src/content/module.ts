@@ -51,7 +51,7 @@ export const SECTIONS: ModuleSection[] = [
     label: 'Start Here',
     title: 'Start Here',
     description:
-      'Module overview, author, foreword, and the learning outcomes for the whole module.',
+      'Module overview, author, about this project, and the learning outcomes for the whole module.',
   },
   {
     id: 'pre-assessment',
@@ -169,4 +169,8 @@ export const AUTHOR = {
   ] satisfies EducationEntry[],
 };
 
-export const FOREWORD = null as string | null;
+export const ABOUT_PROJECT = `This online learning module was developed as a terminal course requirement for EDU0104 – Online and Student-Centered Teaching and Learning, a course offered under the Master of Arts in Education, major in Educational Technology and Online Learning (MAEd-ETOL) program at the Far Eastern University (FEU) Institute of Education – Graduate Studies and Transnational Education (GSTE) in Manila, Philippines.
+
+The course is facilitated by Dr. Romualdo A. Mabuan during the First Semester of Academic Year 2026–2027.
+
+This project demonstrates the application of instructional design principles, student-centered pedagogies, and educational technologies in developing an accessible, engaging, and meaningful online learning experience. It reflects the integration of the ADDIE instructional design framework, emphasizing systematic analysis, design, development, implementation, evaluation, revision, and reflection to support effective online teaching and learning.`;

@@ -51,7 +51,7 @@ src/
 | Route | Page |
 | --- | --- |
 | `/` | Home — module introduction and start |
-| `/about` | About — module overview, outcomes, author, foreword |
+| `/about` | About — module overview, outcomes, author, about this project |
 | `/modules` | Modules — all six sections with progress and status |
 | `/pre-assessment` … `/wrap-up` | The five learning sections |
 
@@ -71,8 +71,8 @@ Those documents define structure and outcomes, but they **do not contain lesson
 readings**. Everything currently on the site is either:
 
 - **Supplied** — subject, module title, quarter, author name, learning outcomes,
-  educational background; or
-- **Clearly marked as a placeholder** — author photo, biography, foreword.
+  educational background, project background; or
+- **Clearly marked as a placeholder** — author photo, biography.
 
 Lesson prose will be drafted from standard sociology-of-education concepts and
 labelled as draft until the official lesson content is supplied. Nothing is

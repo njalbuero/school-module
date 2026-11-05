@@ -127,6 +127,12 @@
   color: var(--ink-muted);
 }
 
+.card .prose,
+.card .section-lead,
+.card .outcome-list {
+  max-width: none;
+}
+
 /* Progress */
 
 .progress-track {
@@ -164,6 +170,11 @@
 .prose p,
 .prose li {
   font-size: var(--text);
+}
+
+.about-page .prose p {
+  text-align: justify;
+  hyphens: auto;
 }
 
 /* Lists */
