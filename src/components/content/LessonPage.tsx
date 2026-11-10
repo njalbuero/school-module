@@ -140,7 +140,7 @@ export function LessonPage({
               <>
                 <p className="section-lead">
                   Finish the reading and activities above. Mark this lesson
-                  complete when you are ready to unlock {nextSection.label}.
+                  complete when you are ready to continue to {nextSection.label}.
                 </p>
                 <div className="actions">
                   <button

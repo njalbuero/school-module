@@ -1,37 +1,45 @@
-import { LessonActivityCard } from '../components/content/LessonActivityCard';
 import { LessonPage } from '../components/content/LessonPage';
 import { LessonSection } from '../components/content/LessonSection';
+
+const PADLET_EMBED_URL = 'https://padlet.com/embed/s025bys62pbspa8reg2u';
+const PADLET_URL = 'https://padlet.com/s025bys62pbspa8reg2u';
 
 export default function Lesson3() {
   return (
     <LessonPage sectionId="lesson-3">
-      <LessonSection
-        id="assessment-and-reflection"
-        title="Assessment and Reflection Activities"
-      >
-        <LessonActivityCard
-          title="Activity 3: Education for All"
-          intro={['Write an essay responding to the following statement:']}
-          statement="Education for All"
-          body={[
-            'In your essay, explain what the statement means to you. Discuss why access to education is important and how education can contribute to a more equitable society.',
-          ]}
-          requirement="Your response should contain at least five sentences."
-        />
+      <LessonSection id="asynchronous-discussion" title="Asynchronous Discussion">
+        <div className="card">
+          <p className="section-lead">
+            Analyse a news report about a current social issue in Philippine
+            society, then share your analysis with the class.
+          </p>
+          <ul className="guidance-list">
+            <li>Post your analysis on the discussion board below.</li>
+            <li>
+              Explain which function or perspective on education helps you
+              understand the issue.
+            </li>
+            <li>Reply to at least two classmates' posts.</li>
+          </ul>
 
-        <LessonActivityCard
-          title="Activity 4: Personal Reflection"
-          intro={[
-            'Reflect on the functions and importance of education in society.',
-          ]}
-          questions={[
-            'How does education contribute to the development of individuals?',
-            'How does education help society become more productive?',
-            'In what ways does education help individuals discover and develop their potential?',
-            'Why should education be considered a fundamental human right?',
-            'How can you contribute to society through your education?',
-          ]}
-        />
+          <div className="embed embed-board">
+            <iframe
+              src={PADLET_EMBED_URL}
+              title="Lesson 3 asynchronous discussion board (Padlet)"
+              allow="camera;microphone;geolocation;display-capture;clipboard-write"
+              loading="lazy"
+              frameBorder={0}
+            />
+          </div>
+
+          <p className="field-help">
+            If the board does not load,{' '}
+            <a href={PADLET_URL} target="_blank" rel="noreferrer">
+              open the discussion board in a new tab
+            </a>
+            .
+          </p>
+        </div>
       </LessonSection>
     </LessonPage>
   );

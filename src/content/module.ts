@@ -87,7 +87,7 @@ export const SECTIONS: ModuleSection[] = [
     label: 'Lesson 3',
     title: 'Lesson 3: Evaluation',
     description:
-      'Evaluate the functions and importance of education through an essay and a personal reflection.',
+      'Weigh evidence and compare perspectives on the functions and importance of education in an asynchronous discussion.',
   },
   {
     id: 'wrap-up',
@@ -95,7 +95,7 @@ export const SECTIONS: ModuleSection[] = [
     label: 'Wrap-Up',
     title: 'Wrap-Up',
     description:
-      'Key takeaways, a reflection, a self-assessment, and a short feedback survey for the module.',
+      'Key takeaways, a reflection form, a self-assessment, and a short feedback survey for the module.',
   },
 ];
 

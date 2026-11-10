@@ -1,5 +1,4 @@
 export const REFLECTION = {
-  key: 'wrap-up-reflection',
   prompt:
     'Explain how education can affect or address a particular social issue in Philippine society. Use evidence from the module and your own analysis.',
   guidance: [
@@ -8,8 +7,6 @@ export const REFLECTION = {
     'Use at least one concrete example or piece of evidence from the module.',
     'Explain how education could affect or address the issue.',
   ],
-  targetWords: 200,
-  minWords: 100,
   rubric: [
     {
       criterion: 'Focus on a specific issue',

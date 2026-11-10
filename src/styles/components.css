@@ -201,9 +201,18 @@
   font-size: var(--text);
 }
 
-.about-page .prose p {
+/* Justify body copy so both edges of the text block line up. */
+.page p,
+.page li,
+.page dd,
+.page blockquote {
   text-align: justify;
-  hyphens: auto;
+  text-justify: inter-word;
+}
+
+/* Card labels stay left-aligned so links read normally. */
+.section-card {
+  text-align: left;
 }
 
 /* Lists */
@@ -270,26 +279,6 @@
   color: var(--ink-muted);
 }
 
-.section-card-locked {
-  background-color: var(--surface-alt);
-  color: var(--ink-muted);
-  cursor: default;
-}
-
-.section-card-locked:hover {
-  border-color: var(--line);
-}
-
-.section-card-locked .section-card-title {
-  color: var(--ink-muted);
-}
-
-.section-card-locked-note {
-  font-size: var(--text-small);
-  font-weight: 600;
-  color: var(--amber);
-}
-
 /* Chips */
 
 .chip {
@@ -315,12 +304,6 @@
   border-color: #b9cbff;
   background-color: var(--brand-soft);
   color: var(--brand-dark);
-}
-
-.chip-locked {
-  border-color: #e5c98f;
-  background-color: var(--amber-soft);
-  color: var(--amber);
 }
 
 /* Author */
@@ -558,33 +541,19 @@
 .section-nav-link {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2px;
   padding: var(--s-3) var(--s-4);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   background-color: var(--surface);
   color: var(--ink);
+  text-align: center;
   text-decoration: none;
 }
 
 .section-nav-link:hover {
   border-color: var(--brand);
-}
-
-.section-nav-locked {
-  background-color: var(--surface-alt);
-  border-color: var(--line);
-  color: var(--ink-muted);
-  cursor: not-allowed;
-}
-
-.section-nav-locked:hover {
-  border-color: var(--line);
-}
-
-.section-nav-next {
-  align-items: flex-end;
-  text-align: right;
 }
 
 .section-nav-direction {
@@ -992,42 +961,34 @@
   font-weight: 600;
 }
 
-.reflection-field {
-  display: grid;
-  gap: var(--s-2);
-}
-
-.reflection-field label {
-  font-weight: 600;
-}
-
-.textarea {
-  width: 100%;
-  min-height: 240px;
-  padding: var(--s-3);
-  border: 1px solid var(--line-strong);
+.embed {
+  margin: 0 0 var(--s-4);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
+  overflow: hidden;
   background-color: var(--surface);
-  color: var(--ink);
-  font: inherit;
-  line-height: 1.6;
-  resize: vertical;
 }
 
-.textarea:focus-visible {
-  outline: 3px solid var(--brand);
-  outline-offset: 2px;
+.embed iframe {
+  display: block;
+  width: 100%;
+  border: 0;
 }
 
-.field-help,
-.word-count {
+/* Google Forms does not report its height, so allow room and let it scroll. */
+.embed-form iframe {
+  min-height: 700px;
+}
+
+/* Padlet renders at a fixed 608px and scrolls internally. */
+.embed-board iframe {
+  height: 608px;
+}
+
+.field-help {
   margin: 0;
   font-size: var(--text-small);
   color: var(--ink-muted);
-}
-
-.word-count {
-  font-weight: 600;
 }
 
 .form-error {
@@ -1121,8 +1082,7 @@
 
 .feedback,
 .results-title,
-.submitted-panel,
-.textarea {
+.submitted-panel {
   scroll-margin-top: 5rem;
 }
 
@@ -1141,8 +1101,8 @@
     align-items: flex-start;
   }
 
-  .textarea {
-    min-height: 200px;
+  .embed-board iframe {
+    height: 480px;
   }
 }
 

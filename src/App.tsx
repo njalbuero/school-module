@@ -2,11 +2,10 @@ import { Suspense, useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { MODULE, SECTIONS, SITE_PAGES } from './content/module';
 import { useProgress } from './context/ProgressContext';
-import { isSectionUnlocked } from './features/progress/gating';
 
 export default function App() {
   const location = useLocation();
-  const { markVisited, resetAll, isComplete } = useProgress();
+  const { markVisited, resetAll } = useProgress();
   const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
@@ -49,10 +48,10 @@ export default function App() {
   useEffect(() => {
     const section = SECTIONS.find((item) => item.path === location.pathname);
 
-    if (section && isSectionUnlocked(section.id, isComplete)) {
+    if (section) {
       markVisited(section.id);
     }
-  }, [location.pathname, markVisited, isComplete]);
+  }, [location.pathname, markVisited]);
 
   useEffect(() => {
     if (!navOpen) {

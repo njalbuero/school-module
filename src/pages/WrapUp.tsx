@@ -31,11 +31,6 @@ function readDraft<T>(
   }
 }
 
-function countWords(text: string) {
-  const trimmed = text.trim();
-  return trimmed ? trimmed.split(/\s+/).length : 0;
-}
-
 export default function WrapUp() {
   const section = SECTIONS.find((item) => item.id === 'wrap-up');
   const { state, saveDraft, setComplete, isComplete } = useProgress();
@@ -45,58 +40,28 @@ export default function WrapUp() {
     description: section?.description,
   });
 
-  const [reflection, setReflection] = useState(
-    state.drafts[REFLECTION.key] ?? '',
-  );
   const [selfAssessment, setSelfAssessment] = useState<SelfAssessmentState>(
     () => readDraft(state.drafts, SELF_ASSESSMENT.key, {}),
   );
   const [survey, setSurvey] = useState<SurveyState>(() =>
     readDraft(state.drafts, FEEDBACK_SURVEY.key, {}),
   );
-  const [submitted, setSubmitted] = useState(() => isComplete('wrap-up'));
+  const [completed, setCompleted] = useState(() => isComplete('wrap-up'));
   const [selfSaved, setSelfSaved] = useState(false);
   const [surveySubmitted, setSurveySubmitted] = useState(false);
-  const [error, setError] = useState('');
   const [surveyError, setSurveyError] = useState('');
 
   const confirmationRef = useRef<HTMLDivElement>(null);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const wordCount = countWords(reflection);
-  const wordsShort = Math.max(REFLECTION.minWords - wordCount, 0);
-
-  const handleReflectionChange = (value: string) => {
-    setReflection(value);
-    saveDraft(REFLECTION.key, value);
-
-    if (error) {
-      setError('');
-    }
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (wordCount < REFLECTION.minWords) {
-      setError(
-        `Add at least ${wordsShort} more ${wordsShort === 1 ? 'word' : 'words'} before submitting.`,
-      );
-      textareaRef.current?.focus();
-      return;
-    }
-
-    saveDraft(REFLECTION.key, reflection);
+  const handleMarkComplete = () => {
     setComplete('wrap-up', true);
-    setSubmitted(true);
-    setError('');
+    setCompleted(true);
     window.requestAnimationFrame(() => confirmationRef.current?.focus());
   };
 
-  const handleEdit = () => {
-    setSubmitted(false);
+  const handleUndoComplete = () => {
     setComplete('wrap-up', false);
-    window.requestAnimationFrame(() => textareaRef.current?.focus());
+    setCompleted(false);
   };
 
   const toggleSelfAssessment = (key: string, value: boolean) => {
@@ -183,7 +148,20 @@ export default function WrapUp() {
             </ul>
           </details>
 
-          {submitted ? (
+          <div className="embed embed-form">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSdKypbErU49hx8oY3pMzRJdgAXpsrkANDFJcbmntw5Jt8Z6Hw/viewform?embedded=true"
+              title="Reflection form"
+              loading="lazy"
+              frameBorder={0}
+              marginHeight={0}
+              marginWidth={0}
+            >
+              Loading…
+            </iframe>
+          </div>
+
+          {completed ? (
             <div
               ref={confirmationRef}
               className="submitted-panel"
@@ -191,76 +169,27 @@ export default function WrapUp() {
               tabIndex={-1}
             >
               <p className="submitted-title">
-                <span aria-hidden="true">✓</span> Reflection submitted
+                <span aria-hidden="true">✓</span> Reflection section complete
               </p>
-              <p>
-                Your reflection is saved in this browser. You can edit it and
-                submit again if you want to improve it.
-              </p>
+              <p>Thanks — the Wrap-Up is now marked complete in this browser.</p>
               <button
                 type="button"
                 className="button button-secondary"
-                onClick={handleEdit}
+                onClick={handleUndoComplete}
               >
-                Edit Reflection
+                Undo
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} noValidate>
-              <div className="reflection-field">
-                <label htmlFor="reflection-response">
-                  Your reflection
-                </label>
-                <textarea
-                  ref={textareaRef}
-                  id="reflection-response"
-                  className="textarea"
-                  value={reflection}
-                  onChange={(event) =>
-                    handleReflectionChange(event.target.value)
-                  }
-                  rows={10}
-                  aria-describedby="reflection-help reflection-count"
-                  placeholder="Write your reflection here…"
-                />
-                <p id="reflection-help" className="field-help">
-                  Aim for about {REFLECTION.targetWords} words. Mention a
-                  specific Philippine social issue and use at least one idea
-                  from the module.
-                </p>
-                <p
-                  id="reflection-count"
-                  className="word-count"
-                >
-                  {wordCount} {wordCount === 1 ? 'word' : 'words'}
-                  {wordCount < REFLECTION.minWords
-                    ? ` · ${wordsShort} more to reach the minimum`
-                    : ' · ready to submit'}
-                </p>
-              </div>
-
-              {error ? (
-                <p className="form-error" role="alert">
-                  {error}
-                </p>
-              ) : null}
-
-              <div className="actions">
-                <button type="submit" className="button">
-                  Submit Reflection
-                </button>
-                <button
-                  type="button"
-                  className="button button-secondary"
-                  onClick={() => saveDraft(REFLECTION.key, reflection)}
-                >
-                  Save Draft
-                </button>
-              </div>
-              <p className="field-help">
-                Your draft saves automatically in this browser as you type.
-              </p>
-            </form>
+            <div className="actions">
+              <button
+                type="button"
+                className="button"
+                onClick={handleMarkComplete}
+              >
+                Mark Section Complete
+              </button>
+            </div>
           )}
         </div>
       </section>

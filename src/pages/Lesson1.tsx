@@ -9,6 +9,7 @@ const OBJECTIVES = [
 ];
 
 const CONTENTS = [
+  { id: 'question-to-ponder', title: 'Question to Ponder' },
   { id: 'introduction', title: 'Introduction' },
   { id: 'what-is-education', title: 'What Is Education?' },
   { id: 'education-in-the-philippines', title: 'Education in the Philippines' },
@@ -31,6 +32,15 @@ export default function Lesson1() {
       contents={CONTENTS}
       reading
     >
+      <LessonSection id="question-to-ponder" title="Question to Ponder">
+        <div className="prose">
+          <p>
+            How important is education in your life, and how do you think it
+            will influence your future?
+          </p>
+        </div>
+      </LessonSection>
+
       <LessonSection id="introduction" title="Introduction">
         <div className="prose">
           <p>

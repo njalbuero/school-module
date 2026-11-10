@@ -38,8 +38,8 @@ export default function Home() {
         <div className="card card-quiet">
           <ProgressBar completed={completedCount} total={totalSections} />
           <p className="card-note">
-            Module progress and drafts are saved in this browser. Sections
-            unlock in order as you complete them.{' '}
+            Module progress and drafts are saved in this browser. Every section
+            is open, so you can work through them in any order.{' '}
             <Link to="/modules">View All Sections</Link>
           </p>
         </div>
@@ -57,6 +57,23 @@ export default function Home() {
             </Link>
             .
           </p>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="ponder-heading">
+        <h2 id="ponder-heading" className="section-title">
+          Questions to Ponder
+        </h2>
+        <div className="card">
+          <p className="section-lead">
+            Keep these questions in mind before you begin Lesson 1. They will
+            guide your reading, discussion, and reflection.
+          </p>
+          <ol className="outcome-list">
+            <li>How does education contribute to the development of individuals?</li>
+            <li>Why should education be considered a fundamental human right?</li>
+            <li>How can you contribute to society through your education?</li>
+          </ol>
         </div>
       </section>
 
