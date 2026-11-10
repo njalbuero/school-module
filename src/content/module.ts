@@ -9,7 +9,6 @@ export type SectionId =
 export type ModuleSection = {
   id: SectionId;
   path: string;
-  number: string;
   label: string;
   title: string;
   description: string;
@@ -46,14 +45,13 @@ export const MODULE = {
   intro:
     'Education does more than fill classrooms with information. It passes on culture, prepares people for work and civic life, and shapes who gets ahead in society. This module looks closely at those functions — and asks what they mean for real social issues in the Philippines.',
   about:
-    'This self-learning module introduces the functions and significance of education in society, then asks you to apply and evaluate them. Across three lessons you will read short discussions, analyse Philippine scenarios, and build an evidence-based reflection. Every section states its objectives and ends with an activity or assessment, so you can check your own understanding as you go.',
+    'This self-learning module introduces the functions and significance of education in society, then asks you to apply and evaluate them. Across three lessons you will read, apply, and evaluate the concepts before building an evidence-based reflection. Every section states its objectives and ends with an activity or assessment, so you can check your own understanding as you go.',
 } as const;
 
 export const SECTIONS: ModuleSection[] = [
   {
     id: 'start',
     path: '/',
-    number: '00',
     label: 'Start Here',
     title: 'Start Here',
     description:
@@ -62,7 +60,6 @@ export const SECTIONS: ModuleSection[] = [
   {
     id: 'pre-assessment',
     path: '/pre-assessment',
-    number: 'PRE',
     label: 'Pre-assessment',
     title: 'Pre-assessment',
     description:
@@ -71,34 +68,30 @@ export const SECTIONS: ModuleSection[] = [
   {
     id: 'lesson-1',
     path: '/lesson/1',
-    number: '01',
     label: 'Lesson 1',
     title: 'Lesson 1: Foundations',
     description:
-      'What education does for individuals and for society: the concepts you will use all module.',
+      'Explore what education is, how the Philippine educational system developed, and the functions and importance of education in society.',
   },
   {
     id: 'lesson-2',
     path: '/lesson/2',
-    number: '02',
     label: 'Lesson 2',
     title: 'Lesson 2: Application',
     description:
-      'Use the concepts from Lesson 1 to analyse real Philippine scenarios and social issues.',
+      'Apply the concepts from Lesson 1 to a real person’s educational journey and to your own experience.',
   },
   {
     id: 'lesson-3',
     path: '/lesson/3',
-    number: '03',
     label: 'Lesson 3',
     title: 'Lesson 3: Evaluation',
     description:
-      'Weigh evidence, compare perspectives, and complete the summative performance task.',
+      'Evaluate the functions and importance of education through an essay and a personal reflection.',
   },
   {
     id: 'wrap-up',
     path: '/wrap-up',
-    number: '04',
     label: 'Wrap-Up',
     title: 'Wrap-Up',
     description:
@@ -154,27 +147,21 @@ export const LEARNING_SEQUENCE: LearningStage[] = [
   },
   {
     step: 3,
-    name: 'Discuss',
-    description:
-      'Analyze a news report and participate in the asynchronous thread.',
-  },
-  {
-    step: 4,
     name: 'Reflect',
-    description: 'Review perspectives and reflect on your learning.',
+    description:
+      'Review the lessons and complete the wrap-up reflection.',
   },
 ];
 
 /**
- * Author details. `photo` and `bio` are intentionally empty: they were not
- * supplied, and inventing them would misrepresent a real person. The site
- * renders an explicit placeholder instead.
+ * Author details. The photo is the author's supplied portrait, used with the
+ * biography she provided for this module.
  */
 export const AUTHOR = {
   name: 'Andrea Gabrielle Tenorio',
-  photo: null as string | null,
-  photoAlt: null as string | null,
-  bio: null as string | null,
+  photo: '/author-andrea-tenorio.jpg' as string | null,
+  photoAlt: 'Andrea Gabrielle Tenorio' as string | null,
+  bio: 'Hi! I am Andrea and I am a pre-service teacher. I am interested in developing learning modules. Right now, I am conducting a study on how educators use AI in their work.' as string | null,
   education: [
     {
       programme: 'Master of Arts in Educational Technology and Online Learning',

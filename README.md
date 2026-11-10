@@ -1,49 +1,58 @@
 # Functions of Education in Society
 
 An online self-learning module for **Understanding Culture, Society and Politics**
-(Quarter 2), built as a lightweight, mobile-first web application.
+(Quarter 2), built as a lightweight, mobile-first React application.
 
 ## Status
 
 | Stage | Scope | State |
 | --- | --- | --- |
 | 1 | Foundation: design system, layout, navigation, Start Here page | **Done** |
-| 2 | Pre-assessment; three lessons, activities, quizzes, discussion | **Pre-assessment done; lessons next** |
-| 3 | Summative task, rubric, revision flow, wrap-up, survey | **Reflection and wrap-up done; lesson summative pending** |
-| 4 | Optimisation, offline cache, testing, documentation | Pending |
-
-Sections that are not built yet show an explicit "This lesson is being built"
-notice. No lesson content is faked.
+| 2 | Pre-assessment; lesson readings and activities | **Lessons done; lesson quizzes next** |
+| 3 | Summative task, rubric, revision flow, wrap-up, survey | **Reflection and wrap-up done; summative rubric and revision flow pending** |
+| 4 | Optimisation, testing, documentation | In progress |
 
 ## Run it
+
+Requires **Node 20 or newer** for the Vite tooling.
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Build
+The app runs at `http://localhost:5173`.
+
+### Build
 
 ```bash
 npm run build     # type-check, then bundle into dist/
 npm run preview   # serve the production build locally
 ```
 
+The finished app is static. Deploy the `dist/` folder to any static host
+(GitHub Pages, Netlify, Vercel, or a school web server). There is no backend,
+database, environment file, or API.
+
 ## Stack
 
-Vite 6, React 18, TypeScript, react-router-dom 6, plain CSS. No UI library, no
-fonts, no images, no analytics. Icons are inline SVG.
+Vite 6, React 18, TypeScript, react-router-dom 6, and plain CSS. No UI library,
+no fonts, no external images, no analytics, and no server.
 
 ## Structure
 
 ```
 src/
-  content/          Module metadata, outcomes, author details, assessment, reflection
+  content/          Module metadata, lessons, assessment, reflection, author details
   context/          Progress state, persisted in localStorage
+  features/         Progress gating helpers
   hooks/            localStorage, page titles
   components/       Layout, section navigation, assessment, content, reusable UI
-  pages/            Home, About, Modules, PreAssessment, WrapUp, SectionPlaceholder, NotFound
-  styles/           tokens.css, base.css, layout.css, components.css
+  pages/            Home, About, Modules, PreAssessment, Lesson1–3, WrapUp, NotFound
+  styles/           tokens.css, base.css, layout.css, components.css, lesson.css
+public/
+  author-andrea-tenorio.jpg
+reqs/               Source documents
 ```
 
 ## Pages
@@ -52,52 +61,59 @@ src/
 | --- | --- |
 | `/` | Home — module introduction and start |
 | `/about` | About — overview, outcomes, learning sequence, author, project |
-| `/modules` | Modules — all six sections with progress and status |
+| `/modules` | Modules — all sections with progress and lock status |
 | `/pre-assessment` | Interactive 10-item pre-assessment with feedback |
-| `/lesson/1` … `/lesson/3` | Lesson shells; readings and activities pending |
+| `/lesson/1` … `/lesson/3` | Lesson readings and activities |
 | `/wrap-up` | Reflection, self-assessment, and module feedback |
 
-Only Home, About and Modules are in the header navigation. The six module
-sections live on the Modules page and are reachable from previous/next
-controls on each section page.
+Only Home, About and Modules are in the header navigation. Module sections live
+on the Modules page and unlock in order.
 
-## Content status
+## Lessons
 
-Source documents are in `reqs/`:
+The lesson content is split across the existing three-lesson structure:
 
-- `EDU0104 Module Content for SA1.pdf` — the assessment specification
-- `SA1 Contents.pdf` — the author's outline for this module
-- `Untitled document.pdf` — additional notes
+- **Lesson 1: Foundations** — the full reading on education, the Philippine
+  educational system, historical development, types of education, functions,
+  and education as a human right.
+- **Lesson 2: Application** — the class-discussion activities about a person
+  whose education contributed to success and the learner's own educational
+  journey.
+- **Lesson 3: Evaluation** — the “Education for All” essay and the personal
+  reflection on the functions and importance of education.
 
-Those documents define structure and outcomes, but they **do not contain lesson
-readings or actual assessment questions**. Everything currently on the site is
-either:
+Lesson 1 includes learning objectives, an in-page contents list, and reading
+content divided into aligned section cards with separated subsections. Lesson
+pages are code-split so reading content downloads only when opened.
 
-- **Supplied** — subject, module title, quarter, author name, learning outcomes,
-  educational background, project background; or
-- **Drafted for this build** — the 10 pre-assessment items, reflection prompt,
-  rubric, self-assessment statements, and feedback survey; or
-- **Clearly marked as a placeholder** — author photo, biography, lesson readings.
+## Prerequisites and progress
 
-Lesson prose will be drafted from standard sociology-of-education concepts and
-labelled as draft until the official lesson content is supplied. Nothing is
-invented on the author's behalf.
+The student path is linear:
 
-To fill a placeholder, edit `src/content/module.ts`; the placeholder
-disappears as fields are filled in.
+**Pre-assessment → Lesson 1 → Lesson 2 → Lesson 3 → Wrap-Up**
 
-Author photo, when supplied: place it in `public/`, set `AUTHOR.photo` and
-`AUTHOR.photoAlt`, and render it with explicit `width`/`height`,
-`loading="lazy"`, and `decoding="async"`. Target ≤40 KB.
+- The pre-assessment completes when the learner finishes it.
+- Lessons 1–3 have a **Mark Lesson Complete** control at the end.
+- Completed sections remain available so learners can go back and review.
+- Locked sections appear as non-clickable cards with the prerequisite they need.
+- Next-step links remain locked until the current section is complete.
+- Direct URLs to locked sections redirect to the first incomplete section.
+- Progress and completion state are saved in the browser, so revisiting an
+  earlier section does not reset progress.
 
 ## Progress and privacy
 
-Progress, scores, and drafts are stored in `localStorage` on the student's
-device only. Nothing is transmitted anywhere. Progress covers the five learning
-sections (pre-assessment, three lessons, wrap-up); Home and About are not scored.
-The pre-assessment saves a best score and attempt count. The wrap-up saves the
-reflection, self-assessment, and feedback drafts. A "Clear saved progress"
-control in the footer wipes it.
+Module progress, scores, and drafts are stored in `localStorage` on the
+student’s device. Nothing is transmitted to a server.
+
+A **Clear saved progress** control in the footer wipes the saved module state
+and drafts on that device.
+
+## Author
+
+The About page uses the author’s supplied portrait at
+`public/author-andrea-tenorio.jpg`, displayed in a square headshot frame, and the
+biography she provided for the module.
 
 ## Accessibility
 
@@ -105,12 +121,13 @@ control in the footer wipes it.
 - Contrast: body 15.2:1, secondary text 6.5:1, links/buttons 6.7:1
 - Skip link, per-page titles, focus moves to the page heading on navigation
 - 44px minimum touch targets, visible 3px focus rings
-- Progress bar exposes `role="progressbar"` with a text equivalent
-- Quiz uses fieldsets, native inputs, text + icon feedback, and focusable feedback
-- Learning-sequence table has column and row headers; it stacks on small screens
+- Forms use labels, fieldsets, text + icon feedback, and focusable error messages
+- Locked cards communicate status with text, not colour alone
+- Lesson reading chunks stack cleanly on small screens
 - Motion and transitions respect `prefers-reduced-motion`
 
 ## Size
 
-Production build: 79.4 KB gzip JS, 4.0 KB gzip CSS, one HTML shell. No external
-requests. Budget for the finished module: ≤100 KB gzip on first load.
+Current production build: approximately **80.4 KB gzip initial JS** and
+**4.6 KB gzip CSS**, with lesson content in small on-demand chunks (Lesson 1 is
+about 3.8 KB gzip; Lessons 2 and 3 are under 1 KB each).

@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
   FEEDBACK_SURVEY,
   REFLECTION,
@@ -8,6 +7,7 @@ import {
 import { LEARNING_OUTCOMES, SECTIONS } from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
+import { NextStepLink } from '../components/layout/NextStepLink';
 import { SectionNav } from '../components/layout/SectionNav';
 
 type SelfAssessmentState = Record<string, boolean>;
@@ -136,7 +136,7 @@ export default function WrapUp() {
   return (
     <div className="page">
       <header className="page-header">
-        <p className="eyebrow">{section?.number} · Wrap-Up</p>
+        <p className="eyebrow">{section?.label ?? 'Wrap-Up'}</p>
         <h1 className="page-title" tabIndex={-1} data-page-heading>
           {section?.title ?? 'Wrap-Up'}
         </h1>
@@ -348,11 +348,7 @@ export default function WrapUp() {
         </div>
       </section>
 
-      <div className="actions">
-        <Link className="button button-secondary" to="/modules">
-          View All Sections
-        </Link>
-      </div>
+      <NextStepLink to="/modules" label="Finish: Module Contents" />
 
       <SectionNav current="wrap-up" />
     </div>

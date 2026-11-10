@@ -69,7 +69,7 @@ export default function About() {
 
       <section className="section" aria-labelledby="about-project-heading">
         <h2 id="about-project-heading" className="section-title">
-          About This Project
+          About this Project
         </h2>
         {ABOUT_PROJECT ? (
           <div className="card">
@@ -80,7 +80,7 @@ export default function About() {
             </div>
           </div>
         ) : (
-          <Placeholder label="About This Project — placeholder">
+          <Placeholder label="About this Project — placeholder">
             <p>
               This space is reserved for the project background. It has not been
               supplied, so no official statement is shown here.

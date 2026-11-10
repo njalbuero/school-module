@@ -1,29 +1,58 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { MODULE, SECTIONS, SITE_PAGES } from './content/module';
 import { useProgress } from './context/ProgressContext';
+import { isSectionUnlocked } from './features/progress/gating';
 
 export default function App() {
   const location = useLocation();
-  const { markVisited, resetAll } = useProgress();
+  const { markVisited, resetAll, isComplete } = useProgress();
   const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     setNavOpen(false);
     window.scrollTo({ top: 0, behavior: 'auto' });
 
+    let cancelled = false;
+    let frame = 0;
+    let attempts = 0;
+
+    const focusHeading = () => {
+      if (cancelled) {
+        return;
+      }
+
+      const heading = document.querySelector<HTMLElement>(
+        '[data-page-heading]',
+      );
+
+      if (heading) {
+        heading.focus({ preventScroll: true });
+        return;
+      }
+
+      attempts += 1;
+
+      if (attempts < 300) {
+        frame = window.requestAnimationFrame(focusHeading);
+      }
+    };
+
+    frame = window.requestAnimationFrame(focusHeading);
+
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(frame);
+    };
+  }, [location.pathname]);
+
+  useEffect(() => {
     const section = SECTIONS.find((item) => item.path === location.pathname);
-    if (section) {
+
+    if (section && isSectionUnlocked(section.id, isComplete)) {
       markVisited(section.id);
     }
-
-    const frame = window.requestAnimationFrame(() => {
-      const heading = document.querySelector<HTMLElement>('[data-page-heading]');
-      heading?.focus({ preventScroll: true });
-    });
-
-    return () => window.cancelAnimationFrame(frame);
-  }, [location.pathname, markVisited]);
+  }, [location.pathname, markVisited, isComplete]);
 
   useEffect(() => {
     if (!navOpen) {
@@ -118,7 +147,17 @@ export default function App() {
       </header>
 
       <main id="main-content" className="site-main" tabIndex={-1}>
-        <Outlet />
+        <Suspense
+          fallback={
+            <div className="page">
+              <div className="card card-quiet" role="status">
+                <p>Loading lesson…</p>
+              </div>
+            </div>
+          }
+        >
+          <Outlet />
+        </Suspense>
       </main>
 
       <footer className="site-footer">
@@ -128,7 +167,7 @@ export default function App() {
             {MODULE.subject} · {MODULE.kind}
           </p>
           <p className="footer-note">
-            Progress and drafts are saved in this browser only.
+            Module progress and drafts are saved in this browser only.
           </p>
           <button type="button" className="link-button" onClick={handleReset}>
             Clear saved progress

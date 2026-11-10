@@ -38,7 +38,8 @@ export default function Home() {
         <div className="card card-quiet">
           <ProgressBar completed={completedCount} total={totalSections} />
           <p className="card-note">
-            Saved in this browser on this device. Nothing is sent to a server.{' '}
+            Module progress and drafts are saved in this browser. Sections
+            unlock in order as you complete them.{' '}
             <Link to="/modules">View All Sections</Link>
           </p>
         </div>

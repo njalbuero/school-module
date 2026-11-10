@@ -6,6 +6,7 @@ import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
 import { QuizProgress } from '../components/assessment/QuizProgress';
 import { FeedbackPanel } from '../components/assessment/FeedbackPanel';
+import { NextStepLink } from '../components/layout/NextStepLink';
 import { SectionNav } from '../components/layout/SectionNav';
 
 export default function PreAssessment() {
@@ -112,7 +113,7 @@ export default function PreAssessment() {
   return (
     <div className="page">
       <header className="page-header">
-        <p className="eyebrow">{section?.number} · Pre-assessment</p>
+        <p className="eyebrow">{section?.label ?? 'Pre-assessment'}</p>
         <h1
           ref={pageHeadingRef}
           className="page-title"
@@ -149,6 +150,8 @@ export default function PreAssessment() {
                 {bestScore.attempts}
               </p>
             ) : null}
+
+            <NextStepLink to="/lesson/1" label="Next: Lesson 1" />
 
             <h3 className="results-subheading">Review your answers</h3>
             <ol className="result-list">
@@ -194,7 +197,7 @@ export default function PreAssessment() {
             </ol>
 
             <div className="actions">
-              <Link className="button" to="/modules">
+              <Link className="button button-secondary" to="/modules">
                 View All Sections
               </Link>
               <button

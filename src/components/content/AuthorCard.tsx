@@ -1,22 +1,23 @@
 import { AUTHOR } from '../../content/module';
-import { Placeholder } from './Placeholder';
 
 function AuthorPhoto() {
+  const photo = AUTHOR.photo;
+
+  if (!photo) {
+    return null;
+  }
+
   return (
     <figure className="author-photo">
-      <div className="avatar" aria-hidden="true">
-        <svg viewBox="0 0 64 64" width="48" height="48" focusable="false">
-          <circle cx="32" cy="24" r="12" fill="currentColor" opacity="0.55" />
-          <path
-            d="M10 58c0-12 10-20 22-20s22 8 22 20"
-            fill="currentColor"
-            opacity="0.35"
-          />
-        </svg>
-      </div>
-      <figcaption>
-        {AUTHOR.photo ? AUTHOR.photoAlt ?? 'Author photo' : 'Photo not supplied'}
-      </figcaption>
+      <img
+        className="author-portrait"
+        src={photo}
+        alt={AUTHOR.photoAlt ?? AUTHOR.name}
+        width={271}
+        height={361}
+        loading="lazy"
+        decoding="async"
+      />
     </figure>
   );
 }
@@ -27,20 +28,9 @@ export function AuthorCard() {
       <AuthorPhoto />
 
       <div className="author-body">
-        <h3 className="author-name">
-          {AUTHOR.name ?? '[Author name — to be supplied]'}
-        </h3>
+        <h3 className="author-name">{AUTHOR.name}</h3>
 
-        {AUTHOR.bio ? (
-          <p>{AUTHOR.bio}</p>
-        ) : (
-          <Placeholder label="Biography — placeholder">
-            <p>
-              A short biography of the author belongs here. It has not been
-              supplied yet, and one is not written on the author&apos;s behalf.
-            </p>
-          </Placeholder>
-        )}
+        {AUTHOR.bio ? <p>{AUTHOR.bio}</p> : null}
 
         <h4 className="author-subheading">Educational background</h4>
         <ul className="education-list">

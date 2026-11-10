@@ -3,6 +3,10 @@ import { MODULE, SECTIONS } from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
 import { ProgressBar } from '../components/layout/ProgressBar';
+import {
+  isSectionUnlocked,
+  prerequisiteFor,
+} from '../features/progress/gating';
 
 export default function Modules() {
   usePageMeta({
@@ -11,7 +15,8 @@ export default function Modules() {
       'All sections of the module, with your progress and completion status.',
   });
 
-  const { completedCount, totalSections, isComplete, wasVisited } = useProgress();
+  const { completedCount, totalSections, isComplete, wasVisited } =
+    useProgress();
 
   return (
     <div className="page">
@@ -21,9 +26,11 @@ export default function Modules() {
           Modules
         </h1>
         <p className="section-lead">
-          One module, {SECTIONS.length} sections. Five of them count towards your
-          progress — Start Here is just the overview. Move through them in order
-          or jump straight to the part you need; nothing is locked.
+          One module, {SECTIONS.length} sections. {SECTIONS.length - 1} of them
+          count towards your progress — Start Here is just the overview.
+          Complete each section in order. Sections unlock as you finish the
+          previous one, and you can always return to a section you have already
+          completed.
         </p>
       </header>
 
@@ -34,7 +41,8 @@ export default function Modules() {
         <div className="card card-quiet">
           <ProgressBar completed={completedCount} total={totalSections} />
           <p className="card-note">
-            Saved in this browser on this device. Nothing is sent to a server.
+            Module progress and drafts are saved in this browser. Sections
+            unlock in order; completed sections stay available for review.
           </p>
         </div>
       </section>
@@ -49,38 +57,61 @@ export default function Modules() {
             const tracked = section.id !== 'start';
             const complete = tracked && isComplete(section.id);
             const visited = wasVisited(section.id);
+            const unlocked =
+              !tracked || isSectionUnlocked(section.id, isComplete);
+            const prerequisite = prerequisiteFor(section.id);
             const status = !tracked
               ? 'Overview'
-              : complete
-                ? 'Complete'
-                : visited
-                  ? 'In progress'
-                  : 'Not started';
+              : !unlocked
+                ? 'Locked'
+                : complete
+                  ? 'Complete'
+                  : visited
+                    ? 'In progress'
+                    : 'Not started';
+            const chipClass = !tracked
+              ? 'chip'
+              : !unlocked
+                ? 'chip chip-locked'
+                : complete
+                  ? 'chip chip-done'
+                  : visited
+                    ? 'chip chip-progress'
+                    : 'chip';
+
+            const cardContents = (
+              <>
+                <span className="section-card-head">
+                  <span className="section-card-label">{section.label}</span>
+                  <span className={chipClass}>{status}</span>
+                </span>
+                <span className="section-card-title">{section.title}</span>
+                <span className="section-card-description">
+                  {section.description}
+                </span>
+                {!unlocked ? (
+                  <span className="section-card-locked-note">
+                    Complete {prerequisite?.label ?? 'the previous section'}{' '}
+                    first.
+                  </span>
+                ) : null}
+              </>
+            );
 
             return (
               <li key={section.id}>
-                <Link className="section-card" to={section.path}>
-                  <span className="section-card-head">
-                    <span className="section-card-label">
-                      {section.number} · {section.label}
-                    </span>
-                    <span
-                      className={
-                        complete
-                          ? 'chip chip-done'
-                          : tracked && visited
-                            ? 'chip chip-progress'
-                            : 'chip'
-                      }
-                    >
-                      {status}
-                    </span>
-                  </span>
-                  <span className="section-card-title">{section.title}</span>
-                  <span className="section-card-description">
-                    {section.description}
-                  </span>
-                </Link>
+                {unlocked ? (
+                  <Link className="section-card" to={section.path}>
+                    {cardContents}
+                  </Link>
+                ) : (
+                  <div
+                    className="section-card section-card-locked"
+                    aria-disabled="true"
+                  >
+                    {cardContents}
+                  </div>
+                )}
               </li>
             );
           })}
@@ -88,7 +119,9 @@ export default function Modules() {
 
         <div className="actions">
           <Link className="button" to="/pre-assessment">
-            Start with the Pre-assessment
+            {isComplete('pre-assessment')
+              ? 'Review Pre-assessment'
+              : 'Start with the Pre-assessment'}
           </Link>
         </div>
       </section>
