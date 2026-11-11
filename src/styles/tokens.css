@@ -23,6 +23,7 @@
   /* Type */
   --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
     Arial, sans-serif;
+  --font-serif: 'Times New Roman', Times, Georgia, serif;
   --text: 1.0625rem;
   --text-small: 0.9375rem;
   --text-label: 0.8125rem;

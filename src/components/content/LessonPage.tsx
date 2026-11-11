@@ -26,6 +26,8 @@ export function LessonPage({
 }) {
   const { isComplete, setComplete } = useProgress();
   const section = SECTIONS.find((item) => item.id === sectionId);
+  const pageLabel = section?.label ?? 'Lesson';
+  const pageTitle = section?.title ?? 'Lesson';
   const index = PROGRESS_SECTIONS.findIndex((item) => item.id === sectionId);
   const nextSection =
     index >= 0 ? PROGRESS_SECTIONS[index + 1] ?? null : null;
@@ -70,14 +72,16 @@ export function LessonPage({
       className={`page lesson-page${reading ? ' lesson-page-reading' : ''}`}
     >
       <header className="page-header">
-        <p className="eyebrow">{section?.label ?? 'Lesson'}</p>
+        {pageLabel !== pageTitle ? (
+          <p className="eyebrow">{pageLabel}</p>
+        ) : null}
         <h1
           ref={headingRef}
           className="page-title"
           tabIndex={-1}
           data-page-heading
         >
-          {section?.title ?? 'Lesson'}
+          {pageTitle}
         </h1>
         <p className="section-lead">{section?.description}</p>
       </header>

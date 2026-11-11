@@ -89,14 +89,29 @@ export default function App() {
           <Link
             className="brand"
             to="/"
-            aria-label={`${MODULE.shortTitle} — return to Home`}
+            aria-label={`${MODULE.title} — return to Home`}
           >
             <span className="brand-mark" aria-hidden="true">
-              ED
+              <svg
+                className="brand-icon"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 1.5c-2.1 2.4-3.2 4.3-3.2 5.8 0 1.8 1.4 3.1 3.2 3.1s3.2-1.3 3.2-3.1c0-1.5-1.1-3.4-3.2-5.8Z" />
+                <path d="M12 4.4c-.9 1.1-1.4 1.9-1.4 2.7 0 .8.6 1.4 1.4 1.4s1.4-.6 1.4-1.4c0-.8-.5-1.6-1.4-2.7Z" />
+                <path d="M8 10.6h8l-1.2 3.4H9.2L8 10.6Z" />
+                <path d="M10.8 14h2.4l-.4 8h-1.6l-.4-8Z" />
+              </svg>
             </span>
             <span className="brand-text">
               <span className="brand-subject">{MODULE.subject}</span>
-              <span className="brand-title">{MODULE.shortTitle}</span>
+              <span className="brand-title">{MODULE.title}</span>
             </span>
           </Link>
 

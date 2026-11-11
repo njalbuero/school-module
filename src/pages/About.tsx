@@ -2,7 +2,6 @@ import { ABOUT_PROJECT, LEARNING_OUTCOMES, MODULE } from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { AuthorCard } from '../components/content/AuthorCard';
 import { Placeholder } from '../components/content/Placeholder';
-import { LearningSequence } from '../components/content/LearningSequence';
 
 export default function About() {
   usePageMeta({
@@ -13,7 +12,7 @@ export default function About() {
   return (
     <div className="page about-page">
       <header className="page-header">
-        <p className="eyebrow">About</p>
+        <p className="eyebrow">Module Overview</p>
         <h1 className="page-title" tabIndex={-1} data-page-heading>
           About this Module
         </h1>
@@ -29,10 +28,6 @@ export default function About() {
         <div className="card">
           <div className="prose">
             <p>{MODULE.about}</p>
-            <p>
-              Estimated workload is roughly three to six hours, depending on how
-              much time you spend on the activities and the summative task.
-            </p>
           </div>
         </div>
       </section>
@@ -48,15 +43,6 @@ export default function About() {
               <li key={outcome.id}>{outcome.text}</li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="sequence-heading">
-        <h2 id="sequence-heading" className="section-title">
-          Learning Sequence
-        </h2>
-        <div className="card">
-          <LearningSequence />
         </div>
       </section>
 

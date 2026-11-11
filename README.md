@@ -1,4 +1,4 @@
-# Functions of Education in Society
+# Functions and Importance of Education in the Society
 
 An online self-learning module for **Understanding Culture, Society and Politics**
 (Quarter 2), built as a lightweight, mobile-first React application.

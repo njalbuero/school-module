@@ -5,11 +5,11 @@
 }
 
 .lesson-page-reading .lesson-section {
-  margin-top: var(--s-6);
+  margin-top: var(--s-8);
 }
 
 .lesson-page-reading .lesson-section-inner {
-  padding: var(--s-5);
+  padding: var(--s-6);
   border: 1px solid var(--line);
   border-left: 4px solid var(--brand);
   border-radius: var(--radius);
@@ -21,9 +21,21 @@
 }
 
 .lesson-subsection {
-  margin-top: var(--s-5);
-  padding-top: var(--s-4);
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
   border-top: 1px solid var(--line);
+  scroll-margin-top: 5rem;
+}
+
+/* The first subsection sits directly under the section heading. */
+.lesson-subsection.lesson-subsection-first {
+  margin-top: var(--s-4);
+  padding-top: 0;
+  border-top: 0;
+}
+
+.lesson-section-inner > .callout:last-child {
+  margin-bottom: 0;
 }
 
 .lesson-subsection > .lesson-subheading:first-child,
@@ -50,9 +62,9 @@
 
 .lesson-contents ol {
   display: grid;
-  gap: var(--s-1);
+  gap: var(--s-2);
   margin: 0;
-  padding-left: var(--s-5);
+  padding-left: var(--s-6);
 }
 
 .lesson-contents li {
@@ -60,12 +72,12 @@
 }
 
 .lesson-subheading {
-  margin: var(--s-5) 0 var(--s-2);
+  margin: var(--s-6) 0 var(--s-3);
   font-size: 1.125rem;
 }
 
 .lesson-minor-heading {
-  margin: var(--s-4) 0 var(--s-2);
+  margin: var(--s-5) 0 var(--s-2);
   font-size: 1rem;
 }
 
@@ -74,7 +86,7 @@
   gap: var(--s-2);
   max-width: var(--measure);
   margin: 0 0 var(--s-4);
-  padding-left: var(--s-5);
+  padding-left: var(--s-6);
 }
 
 .lesson-list li {
@@ -83,7 +95,7 @@
 
 .lesson-definition-list {
   display: grid;
-  gap: var(--s-3);
+  gap: var(--s-4);
   max-width: var(--measure);
   margin: 0 0 var(--s-4);
 }

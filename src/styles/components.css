@@ -27,7 +27,7 @@
 }
 
 .hero-title {
-  max-width: 20ch;
+  max-width: 24ch;
   font-size: clamp(1.9rem, 6vw, 2.75rem);
   margin-bottom: var(--s-4);
   text-wrap: balance;
@@ -40,6 +40,42 @@
   color: var(--ink-muted);
 }
 
+/* Centered module title block used on the Home hero. */
+.hero-module-heading {
+  text-align: center;
+}
+
+.hero-module-heading .hero-kicker {
+  margin: 0 auto var(--s-2);
+  font-family: var(--font-serif);
+  font-size: clamp(1.125rem, 2.4vw, 1.5rem);
+  font-weight: 700;
+  color: var(--ink);
+  text-align: center;
+}
+
+.hero-module-heading .hero-title {
+  max-width: 28ch;
+  margin-right: auto;
+  margin-left: auto;
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 5.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-align: center;
+}
+
+.hero-module-heading .hero-lead {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.hero-module-heading .actions {
+  justify-content: center;
+}
+
 .hero-note {
   margin: var(--s-3) 0 0;
   font-size: var(--text-small);
@@ -49,17 +85,19 @@
 /* Sections */
 
 .section {
-  margin-top: var(--s-10);
+  margin-top: var(--s-12);
 }
 
 .section-title {
-  margin: 0 0 var(--s-3);
+  max-width: var(--measure);
+  margin: 0 0 var(--s-4);
   font-size: 1.375rem;
+  text-wrap: balance;
 }
 
 .section-lead {
   max-width: var(--measure);
-  margin: 0 0 var(--s-4);
+  margin: 0 0 var(--s-5);
   color: var(--ink-muted);
 }
 
@@ -135,10 +173,14 @@
 /* Cards */
 
 .card {
-  padding: var(--s-5);
+  padding: var(--s-6);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background-color: var(--surface);
+}
+
+.card + .card {
+  margin-top: var(--s-4);
 }
 
 .card-quiet {
@@ -154,12 +196,6 @@
 
 .card > :last-child {
   margin-bottom: 0;
-}
-
-.card .prose,
-.card .section-lead,
-.card .outcome-list {
-  max-width: none;
 }
 
 /* Progress */
@@ -201,6 +237,20 @@
   font-size: var(--text);
 }
 
+.prose p {
+  text-wrap: pretty;
+}
+
+.prose ul,
+.prose ol {
+  margin: var(--s-3) 0 var(--s-4);
+  padding-left: var(--s-6);
+}
+
+.prose li + li {
+  margin-top: var(--s-2);
+}
+
 /* Justify body copy so both edges of the text block line up. */
 .page p,
 .page li,
@@ -208,6 +258,17 @@
 .page blockquote {
   text-align: justify;
   text-justify: inter-word;
+}
+
+/* Keep references left-aligned so long URLs do not create large gaps. */
+.page .reference-item {
+  text-align: left;
+}
+
+/* Keep every paragraph on the same comfortable reading measure. */
+.page p,
+.page blockquote {
+  max-width: var(--measure);
 }
 
 /* Card labels stay left-aligned so links read normally. */
@@ -259,6 +320,10 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--s-3);
+}
+
+.section-card-status {
+  margin-left: auto;
 }
 
 .section-card-label {
@@ -414,6 +479,10 @@
   background-color: var(--surface);
 }
 
+.callout > :last-child {
+  margin-bottom: 0;
+}
+
 .callout-info {
   border-left-color: var(--brand);
   background-color: var(--brand-soft);
@@ -497,6 +566,47 @@
   .next-step-link {
     padding: var(--s-3) var(--s-4);
   }
+}
+
+/* Secondary prompt linking to the final References page. */
+.references-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  max-width: var(--measure);
+  margin-top: var(--s-5);
+  padding: var(--s-4) var(--s-5);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 120ms ease;
+}
+
+.references-prompt:hover {
+  border-color: var(--brand);
+}
+
+.references-prompt-body {
+  display: grid;
+  gap: 2px;
+}
+
+.references-prompt-title {
+  font-weight: 700;
+}
+
+.references-prompt-text {
+  font-size: var(--text-small);
+  color: var(--ink-muted);
+}
+
+.references-prompt-arrow {
+  flex: none;
+  font-size: 1.25rem;
+  color: var(--brand);
 }
 
 /* Section navigation */
@@ -929,19 +1039,25 @@
 }
 
 .guidance-list {
+  max-width: var(--measure);
   margin: 0 0 var(--s-4);
-  padding-left: var(--s-5);
+  padding-left: var(--s-6);
 }
 
 .guidance-list li + li {
-  margin-top: var(--s-1);
+  margin-top: var(--s-2);
 }
 
 .rubric {
+  max-width: var(--measure);
   margin: 0 0 var(--s-4);
   padding: var(--s-3) 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+}
+
+.rubric > :last-child {
+  margin-bottom: 0;
 }
 
 .rubric summary {
@@ -952,13 +1068,45 @@
 .rubric-list {
   display: grid;
   gap: var(--s-2);
+  max-width: var(--measure);
   margin: var(--s-3) 0 0;
-  padding-left: var(--s-5);
+  padding-left: var(--s-6);
 }
 
 .rubric-criterion {
   display: block;
   font-weight: 600;
+}
+
+.rubric-table-wrap {
+  margin-bottom: var(--s-5);
+}
+
+.rubric-table {
+  font-size: var(--text-small);
+}
+
+.rubric-table tbody th {
+  width: 22%;
+}
+
+.rubric-criterion-name {
+  display: block;
+  font-weight: 600;
+}
+
+.rubric-weight {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+@media (max-width: 560px) {
+  .rubric-table tbody th {
+    width: 100%;
+  }
 }
 
 .embed {
@@ -1084,6 +1232,56 @@
 .results-title,
 .submitted-panel {
   scroll-margin-top: 5rem;
+}
+
+/* References */
+
+.references-title {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.references-icon {
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--brand);
+}
+
+.references-group-title {
+  margin: var(--s-6) 0 var(--s-4);
+  font-size: 1.0625rem;
+}
+
+.references-group-title:first-child {
+  margin-top: 0;
+}
+
+.reference-list {
+  max-width: var(--measure);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reference-item {
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+  overflow-wrap: anywhere;
+}
+
+.reference-item + .reference-item {
+  margin-top: var(--s-4);
+}
+
+.reference-item em {
+  font-style: italic;
+}
+
+.reference-item a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 @media (max-width: 560px) {

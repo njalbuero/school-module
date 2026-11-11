@@ -4,7 +4,8 @@ export type SectionId =
   | 'lesson-1'
   | 'lesson-2'
   | 'lesson-3'
-  | 'wrap-up';
+  | 'wrap-up'
+  | 'references';
 
 export type ModuleSection = {
   id: SectionId;
@@ -12,6 +13,8 @@ export type ModuleSection = {
   label: string;
   title: string;
   description: string;
+  /** Whether the section counts towards the module progress bar. */
+  tracked?: boolean;
 };
 
 export type SitePage = {
@@ -37,10 +40,11 @@ export type LearningStage = {
 };
 
 export const MODULE = {
-  subject: 'Understanding Culture, Society and Politics',
+  subject: 'Understanding Culture, Society, and Politics',
   quarter: 'Quarter 2 · Self-Learning Module',
-  title: 'Functions of Education in Society',
-  shortTitle: 'Functions of Education',
+  moduleLabel: 'Quarter 2 – Module 8',
+  title: 'Functions and Importance of Education in the Society',
+  shortTitle: 'Functions and Importance of Education',
   kind: 'Online Self-Learning Module',
   intro:
     'Education does more than fill classrooms with information. It passes on culture, prepares people for work and civic life, and shapes who gets ahead in society. This module looks closely at those functions — and asks what they mean for real social issues in the Philippines.',
@@ -56,6 +60,7 @@ export const SECTIONS: ModuleSection[] = [
     title: 'Start Here',
     description:
       'Module overview, author, project background, learning sequence, and outcomes.',
+    tracked: false,
   },
   {
     id: 'pre-assessment',
@@ -69,25 +74,25 @@ export const SECTIONS: ModuleSection[] = [
     id: 'lesson-1',
     path: '/lesson/1',
     label: 'Lesson 1',
-    title: 'Lesson 1: Foundations',
+    title: 'Understanding Education and Its Functions',
     description:
-      'Explore what education is, how the Philippine educational system developed, and the functions and importance of education in society.',
+      'Foundations — what education is and how it functions in society.',
   },
   {
     id: 'lesson-2',
     path: '/lesson/2',
     label: 'Lesson 2',
-    title: 'Lesson 2: Application',
+    title: 'Education as a Human Right: Access and Inequality',
     description:
-      'Apply the concepts from Lesson 1 to a real person’s educational journey and to your own experience.',
+      'Application — education as a right and the barriers to equal access in Philippine society.',
   },
   {
     id: 'lesson-3',
     path: '/lesson/3',
     label: 'Lesson 3',
-    title: 'Lesson 3: Evaluation',
+    title: 'Forms of Education and Their Role in Society',
     description:
-      'Weigh evidence and compare perspectives on the functions and importance of education in an asynchronous discussion.',
+      'Evaluation — formal, non-formal, informal, and inclusive education in Philippine society.',
   },
   {
     id: 'wrap-up',
@@ -95,7 +100,16 @@ export const SECTIONS: ModuleSection[] = [
     label: 'Wrap-Up',
     title: 'Wrap-Up',
     description:
-      'Key takeaways, a reflection form, a self-assessment, and a short feedback survey for the module.',
+      'Review the key ideas, complete the final reflection and self-assessment, and finish the module.',
+  },
+  {
+    id: 'references',
+    path: '/references',
+    label: 'References',
+    title: 'References',
+    description:
+      'Sources and further reading used throughout the module.',
+    tracked: false,
   },
 ];
 
@@ -107,11 +121,12 @@ export const SITE_PAGES: SitePage[] = [
 ];
 
 /**
- * Sections that count towards progress. The overview is navigation, not a
- * learning task, so it is excluded.
+ * Sections that count towards progress. The overview and the closing
+ * references page are navigation/reading, not learning tasks, so they are
+ * excluded.
  */
 export const PROGRESS_SECTIONS: ModuleSection[] = SECTIONS.filter(
-  (section) => section.id !== 'start',
+  (section) => section.tracked !== false,
 );
 
 export const LEARNING_OUTCOMES: LearningOutcome[] = [
@@ -137,7 +152,8 @@ export const LEARNING_SEQUENCE: LearningStage[] = [
   {
     step: 1,
     name: 'What I Know',
-    description: 'Complete a short pre-assessment.',
+    description:
+      'Check what you already know about education and complete a short pre-assessment.',
   },
   {
     step: 2,
@@ -147,6 +163,12 @@ export const LEARNING_SEQUENCE: LearningStage[] = [
   },
   {
     step: 3,
+    name: 'Compare and Connect',
+    description:
+      'Compare different perspectives on education and connect them to a real social issue in Philippine society.',
+  },
+  {
+    step: 4,
     name: 'Reflect',
     description:
       'Review the lessons and complete the wrap-up reflection.',

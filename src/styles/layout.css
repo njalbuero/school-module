@@ -47,6 +47,11 @@
   letter-spacing: 0.02em;
 }
 
+.brand-icon {
+  width: 20px;
+  height: 20px;
+}
+
 .brand-text {
   display: block;
 }
@@ -64,6 +69,8 @@
   display: block;
   font-size: 1rem;
   font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
 }
 
 .nav-toggle {

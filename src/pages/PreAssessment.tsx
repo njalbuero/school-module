@@ -11,6 +11,8 @@ import { SectionNav } from '../components/layout/SectionNav';
 
 export default function PreAssessment() {
   const section = SECTIONS.find((item) => item.id === 'pre-assessment');
+  const pageLabel = section?.label ?? 'Pre-assessment';
+  const pageTitle = section?.title ?? 'Pre-assessment';
   const { saveScore, setComplete, state } = useProgress();
 
   usePageMeta({
@@ -113,14 +115,16 @@ export default function PreAssessment() {
   return (
     <div className="page">
       <header className="page-header">
-        <p className="eyebrow">{section?.label ?? 'Pre-assessment'}</p>
+        {pageLabel !== pageTitle ? (
+          <p className="eyebrow">{pageLabel}</p>
+        ) : null}
         <h1
           ref={pageHeadingRef}
           className="page-title"
           tabIndex={-1}
           data-page-heading
         >
-          {section?.title ?? 'Pre-assessment'}
+          {pageTitle}
         </h1>
         <p className="section-lead">{section?.description}</p>
       </header>

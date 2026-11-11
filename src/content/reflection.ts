@@ -1,6 +1,22 @@
-export const REFLECTION = {
+export type ReflectionRubricLevel = {
+  score: number;
+  label: string;
+  description: string;
+};
+
+export type ReflectionRubricCriterion = {
+  criterion: string;
+  weight: string;
+  levels: ReflectionRubricLevel[];
+};
+
+export const REFLECTION: {
+  prompt: string;
+  guidance: string[];
+  rubric: ReflectionRubricCriterion[];
+} = {
   prompt:
-    'Explain how education can affect or address a particular social issue in Philippine society. Use evidence from the module and your own analysis.',
+    'Now that you have completed the module, choose one social issue in Philippine society that education can help address. Explain why the issue matters, which ideas from the module shape your understanding of it, and what education can realistically do about it. Use at least one concrete example or piece of evidence.',
   guidance: [
     'Name a specific social issue, such as inequality, unemployment, or political participation.',
     'Explain which function or perspective on education helps you understand the issue.',
@@ -10,26 +26,122 @@ export const REFLECTION = {
   rubric: [
     {
       criterion: 'Focus on a specific issue',
-      description:
-        'Names a clear social issue in Philippine society and stays focused on it.',
+      weight: '25%',
+      levels: [
+        {
+          score: 4,
+          label: 'Exemplary',
+          description:
+            'Names a specific, relevant Philippine issue; clearly explains why it matters; stays focused.',
+        },
+        {
+          score: 3,
+          label: 'Proficient',
+          description:
+            'Names a specific issue and explains why it matters; minor digressions.',
+        },
+        {
+          score: 2,
+          label: 'Developing',
+          description: 'Issue is broad or unclear; focus wavers.',
+        },
+        {
+          score: 1,
+          label: 'Beginning',
+          description: 'No clear issue; response is off-topic or unfocused.',
+        },
+      ],
     },
     {
       criterion: 'Use of module concepts',
-      description:
-        'Explains relevant functions or perspectives on education accurately.',
+      weight: '25%',
+      levels: [
+        {
+          score: 4,
+          label: 'Exemplary',
+          description:
+            'Accurately integrates relevant module concepts and connects them insightfully.',
+        },
+        {
+          score: 3,
+          label: 'Proficient',
+          description:
+            'Uses relevant module concepts accurately and connects them to the issue.',
+        },
+        {
+          score: 2,
+          label: 'Developing',
+          description:
+            'Uses some concepts; connections are limited or partly inaccurate.',
+        },
+        {
+          score: 1,
+          label: 'Beginning',
+          description:
+            'Few or no concepts, or concepts are used inaccurately.',
+        },
+      ],
     },
     {
       criterion: 'Evidence and examples',
-      description:
-        'Uses at least one concrete example or piece of evidence to support the explanation.',
+      weight: '25%',
+      levels: [
+        {
+          score: 4,
+          label: 'Exemplary',
+          description:
+            'Strong, specific evidence; explains how it supports the argument.',
+        },
+        {
+          score: 3,
+          label: 'Proficient',
+          description:
+            'At least one concrete example or evidence connected to the argument.',
+        },
+        {
+          score: 2,
+          label: 'Developing',
+          description:
+            'Limited or vague evidence; weak connection to the argument.',
+        },
+        {
+          score: 1,
+          label: 'Beginning',
+          description: 'Little or no evidence; claims are unsupported.',
+        },
+      ],
     },
     {
       criterion: 'Organization and clarity',
-      description:
-        'Presents ideas in a logical order with clear sentences and correct mechanics.',
+      weight: '25%',
+      levels: [
+        {
+          score: 4,
+          label: 'Exemplary',
+          description:
+            'Logical, cohesive order; clear language; correct mechanics.',
+        },
+        {
+          score: 3,
+          label: 'Proficient',
+          description: 'Logical order; generally clear; minor errors.',
+        },
+        {
+          score: 2,
+          label: 'Developing',
+          description:
+            'Uneven organization; some unclear sentences or frequent errors.',
+        },
+        {
+          score: 1,
+          label: 'Beginning',
+          description:
+            'Unclear organization; difficult to follow; errors interfere with meaning.',
+        },
+      ],
     },
   ],
-} as const;
+};
 
 export const SELF_ASSESSMENT = {
   key: 'wrap-up-self-assessment',

@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound';
 const Lesson1 = lazy(() => import('./pages/Lesson1'));
 const Lesson2 = lazy(() => import('./pages/Lesson2'));
 const Lesson3 = lazy(() => import('./pages/Lesson3'));
+const References = lazy(() => import('./pages/References'));
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: 'lesson/2', element: <Lesson2 /> },
       { path: 'lesson/3', element: <Lesson3 /> },
       { path: 'wrap-up', element: <WrapUp /> },
+      { path: 'references', element: <References /> },
       { path: '*', element: <NotFound /> },
     ],
   },

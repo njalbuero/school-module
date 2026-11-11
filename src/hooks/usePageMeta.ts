@@ -5,7 +5,7 @@ type PageMeta = {
   description?: string;
 };
 
-const SITE_TITLE = 'Functions of Education in Society';
+const SITE_TITLE = 'Functions and Importance of Education in the Society';
 
 function setDescription(content: string) {
   let tag = document.querySelector('meta[name="description"]');

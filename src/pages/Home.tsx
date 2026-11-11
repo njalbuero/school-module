@@ -12,10 +12,8 @@ export default function Home() {
 
   return (
     <div className="page">
-      <header className="page-header hero">
-        <p className="eyebrow">
-          {MODULE.subject} · {MODULE.quarter}
-        </p>
+      <header className="page-header hero hero-module-heading">
+        <p className="hero-kicker">{MODULE.moduleLabel}:</p>
         <h1 className="page-title hero-title" tabIndex={-1} data-page-heading>
           {MODULE.title}
         </h1>
@@ -31,6 +29,36 @@ export default function Home() {
         </div>
       </header>
 
+      <section
+        className="section"
+        aria-labelledby="introductory-message-heading"
+      >
+        <h2 id="introductory-message-heading" className="section-title">
+          Introductory Message
+        </h2>
+        <div className="card">
+          <div className="prose">
+            <p>
+              This Self-Learning Module (SLM) is prepared so that you, our dear
+              learners, can continue your studies and learn at your own pace.
+              Work through each section in order and mark it complete when you
+              are ready—your progress is saved in this browser.
+            </p>
+            <p>
+              The module is designed to take roughly three to six hours,
+              depending on how much time you spend on the activities and
+              reflection. At the end, you will write a reflection, complete a
+              self-assessment, and answer a feedback survey. A References page
+              lists the sources used.
+            </p>
+            <p>
+              For more about the module, its author, and the learning outcomes,
+              visit the <Link to="/about">About page</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="section" aria-labelledby="progress-heading">
         <h2 id="progress-heading" className="section-title">
           Your Progress
@@ -41,21 +69,6 @@ export default function Home() {
             Module progress and drafts are saved in this browser. Every section
             is open, so you can work through them in any order.{' '}
             <Link to="/modules">View All Sections</Link>
-          </p>
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="about-heading">
-        <h2 id="about-heading" className="section-title">
-          About this Module
-        </h2>
-        <div className="prose">
-          <p>{MODULE.about}</p>
-          <p>
-            <Link to="/about">
-              Read more about the module, its author, and the learning outcomes
-            </Link>
-            .
           </p>
         </div>
       </section>
@@ -81,7 +94,12 @@ export default function Home() {
         <h2 id="how-heading" className="section-title">
           How the Module Works
         </h2>
-        <LearningSequence variant="list" />
+        <div className="card">
+          <p className="section-lead">
+            Follow these four steps as you work through the module.
+          </p>
+          <LearningSequence />
+        </div>
       </section>
     </div>
   );

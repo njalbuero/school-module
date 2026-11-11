@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MODULE, SECTIONS } from '../content/module';
+import { MODULE, PROGRESS_SECTIONS, SECTIONS } from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
 import { ProgressBar } from '../components/layout/ProgressBar';
@@ -22,9 +22,10 @@ export default function Modules() {
           Modules
         </h1>
         <p className="section-lead">
-          One module, {SECTIONS.length} sections. {SECTIONS.length - 1} of them
-          count towards your progress — Start Here is just the overview. You can
-          open any section at any time and return to it whenever you like.
+          One module, {SECTIONS.length} sections. {PROGRESS_SECTIONS.length} of
+          them count towards your progress — Start Here is the overview and
+          References is the final page. You can open any section at any time and
+          return to it whenever you like.
         </p>
       </header>
 
@@ -48,11 +49,14 @@ export default function Modules() {
 
         <ol className="section-list">
           {SECTIONS.map((section) => {
-            const tracked = section.id !== 'start';
+            const tracked = section.tracked !== false;
+            const showLabel = section.label !== section.title;
             const complete = tracked && isComplete(section.id);
             const visited = wasVisited(section.id);
             const status = !tracked
-              ? 'Overview'
+              ? section.id === 'start'
+                ? 'Overview'
+                : 'Final page'
               : complete
                 ? 'Complete'
                 : visited
@@ -70,10 +74,24 @@ export default function Modules() {
               <li key={section.id}>
                 <Link className="section-card" to={section.path}>
                   <span className="section-card-head">
-                    <span className="section-card-label">{section.label}</span>
-                    <span className={chipClass}>{status}</span>
+                    {showLabel ? (
+                      <span className="section-card-label">
+                        {section.label}
+                      </span>
+                    ) : (
+                      <span className="section-card-title">
+                        {section.title}
+                      </span>
+                    )}
+                    <span className={`${chipClass} section-card-status`}>
+                      {status}
+                    </span>
                   </span>
-                  <span className="section-card-title">{section.title}</span>
+                  {showLabel ? (
+                    <span className="section-card-title">
+                      {section.title}
+                    </span>
+                  ) : null}
                   <span className="section-card-description">
                     {section.description}
                   </span>

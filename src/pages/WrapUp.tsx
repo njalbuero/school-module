@@ -1,17 +1,12 @@
 import { useRef, useState } from 'react';
-import {
-  FEEDBACK_SURVEY,
-  REFLECTION,
-  SELF_ASSESSMENT,
-} from '../content/reflection';
+import { Link } from 'react-router-dom';
+import { REFLECTION, SELF_ASSESSMENT } from '../content/reflection';
 import { LEARNING_OUTCOMES, SECTIONS } from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
-import { NextStepLink } from '../components/layout/NextStepLink';
 import { SectionNav } from '../components/layout/SectionNav';
 
 type SelfAssessmentState = Record<string, boolean>;
-type SurveyState = Record<string, string>;
 
 function readDraft<T>(
   drafts: Record<string, string>,
@@ -33,6 +28,8 @@ function readDraft<T>(
 
 export default function WrapUp() {
   const section = SECTIONS.find((item) => item.id === 'wrap-up');
+  const pageLabel = section?.label ?? 'Wrap-Up';
+  const pageTitle = section?.title ?? 'Wrap-Up';
   const { state, saveDraft, setComplete, isComplete } = useProgress();
 
   usePageMeta({
@@ -43,13 +40,8 @@ export default function WrapUp() {
   const [selfAssessment, setSelfAssessment] = useState<SelfAssessmentState>(
     () => readDraft(state.drafts, SELF_ASSESSMENT.key, {}),
   );
-  const [survey, setSurvey] = useState<SurveyState>(() =>
-    readDraft(state.drafts, FEEDBACK_SURVEY.key, {}),
-  );
   const [completed, setCompleted] = useState(() => isComplete('wrap-up'));
   const [selfSaved, setSelfSaved] = useState(false);
-  const [surveySubmitted, setSurveySubmitted] = useState(false);
-  const [surveyError, setSurveyError] = useState('');
 
   const confirmationRef = useRef<HTMLDivElement>(null);
 
@@ -71,39 +63,14 @@ export default function WrapUp() {
     setSelfSaved(true);
   };
 
-  const handleSurveyChange = (key: string, value: string) => {
-    const next = { ...survey, [key]: value };
-    setSurvey(next);
-    saveDraft(FEEDBACK_SURVEY.key, JSON.stringify(next));
-
-    if (surveyError) {
-      setSurveyError('');
-    }
-  };
-
-  const handleSurveySubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const unanswered = FEEDBACK_SURVEY.questions.filter(
-      (question) => !survey[question.id],
-    );
-
-    if (unanswered.length > 0) {
-      setSurveyError('Please answer all three questions before submitting.');
-      return;
-    }
-
-    saveDraft(FEEDBACK_SURVEY.key, JSON.stringify(survey));
-    setSurveySubmitted(true);
-    setSurveyError('');
-  };
-
   return (
     <div className="page">
       <header className="page-header">
-        <p className="eyebrow">{section?.label ?? 'Wrap-Up'}</p>
+        {pageLabel !== pageTitle ? (
+          <p className="eyebrow">{pageLabel}</p>
+        ) : null}
         <h1 className="page-title" tabIndex={-1} data-page-heading>
-          {section?.title ?? 'Wrap-Up'}
+          {pageTitle}
         </h1>
         <p className="section-lead">{section?.description}</p>
       </header>
@@ -136,17 +103,44 @@ export default function WrapUp() {
             ))}
           </ul>
 
-          <details className="rubric">
-            <summary>How your reflection is assessed</summary>
-            <ul className="rubric-list">
-              {REFLECTION.rubric.map((item) => (
-                <li key={item.criterion}>
-                  <span className="rubric-criterion">{item.criterion}</span>
-                  {item.description}
-                </li>
-              ))}
-            </ul>
-          </details>
+          <h3 className="reflection-subheading">Reflection Rubric</h3>
+          <p className="section-lead">
+            Each criterion is scored from 1 to 4. The total is 16 points.
+          </p>
+          <div className="rubric-table-wrap">
+            <table className="sequence-table rubric-table">
+              <caption className="sr-only">Reflection rubric</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Criterion</th>
+                  <th scope="col">Exemplary (4)</th>
+                  <th scope="col">Proficient (3)</th>
+                  <th scope="col">Developing (2)</th>
+                  <th scope="col">Beginning (1)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {REFLECTION.rubric.map((item) => (
+                  <tr key={item.criterion}>
+                    <th scope="row">
+                      <span className="rubric-criterion-name">
+                        {item.criterion}
+                      </span>
+                      <span className="rubric-weight">{item.weight}</span>
+                    </th>
+                    {item.levels.map((level) => (
+                      <td
+                        key={level.score}
+                        data-label={`${level.label} (${level.score})`}
+                      >
+                        {level.description}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           <div className="embed embed-form">
             <iframe
@@ -224,60 +218,28 @@ export default function WrapUp() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="feedback-heading">
-        <h2 id="feedback-heading" className="section-title">
-          Module Feedback
+      <section className="section" aria-labelledby="done-heading">
+        <h2 id="done-heading" className="section-title">
+          You&apos;re Done!
         </h2>
-        <div className="card">
-          {surveySubmitted ? (
-            <div role="status">
-              <p className="submitted-title">
-                <span aria-hidden="true">✓</span> Thank you for your feedback
-              </p>
-              <p>Your responses are saved in this browser.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSurveySubmit} noValidate>
-              <p className="section-lead">
-                How much do you agree with each statement?
-              </p>
-              {FEEDBACK_SURVEY.questions.map((question) => (
-                <fieldset className="survey-question" key={question.id}>
-                  <legend>{question.label}</legend>
-                  <div className="survey-scale">
-                    {FEEDBACK_SURVEY.scale.map((option) => (
-                      <label className="survey-option" key={option.value}>
-                        <input
-                          type="radio"
-                          name={question.id}
-                          value={option.value}
-                          checked={survey[question.id] === option.value}
-                          onChange={() =>
-                            handleSurveyChange(question.id, option.value)
-                          }
-                        />
-                        <span>{option.label}</span>
-                      </label>
-                    ))}
-                  </div>
-                </fieldset>
-              ))}
-              {surveyError ? (
-                <p className="form-error" role="alert">
-                  {surveyError}
-                </p>
-              ) : null}
-              <div className="actions">
-                <button type="submit" className="button">
-                  Submit Feedback
-                </button>
-              </div>
-            </form>
-          )}
-        </div>
+        <p className="section-lead">
+          You have completed the Wrap-Up and finished the module. Thank you for
+          working through the lessons and activities.
+        </p>
+        <Link className="references-prompt" to="/references">
+          <span className="references-prompt-body">
+            <span className="references-prompt-title">
+              There&apos;s another page
+            </span>
+            <span className="references-prompt-text">
+              Open the References page to see the sources used in this module.
+            </span>
+          </span>
+          <span className="references-prompt-arrow" aria-hidden="true">
+            →
+          </span>
+        </Link>
       </section>
-
-      <NextStepLink to="/modules" label="Finish: Module Contents" />
 
       <SectionNav current="wrap-up" />
     </div>
