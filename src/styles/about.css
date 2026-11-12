@@ -26,7 +26,7 @@
   --accent-soft: var(--brand-soft);
   position: relative;
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
   gap: var(--s-3);
   padding: var(--card-padding);
   border: 1px solid var(--line);
@@ -116,32 +116,11 @@
 /* About this project */
 
 .project-card {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: var(--s-5);
   padding: var(--card-padding);
   border: 1px solid var(--line);
   border-radius: var(--card-radius);
   background-color: var(--surface);
   box-shadow: var(--card-shadow);
-}
-
-.project-icon {
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: var(--icon-chip-size);
-  height: var(--icon-chip-size);
-  border-radius: var(--icon-chip-radius);
-  background-color: var(--brand-soft);
-  color: var(--brand);
-}
-
-.project-lead {
-  font-size: 1.125rem;
-  font-weight: var(--weight-medium);
-  color: var(--ink);
 }
 
 /* Justify the project description for even text edges. */
@@ -154,8 +133,6 @@
 
 @media (max-width: 639px) {
   .project-card {
-    flex-direction: column;
-    gap: var(--s-4);
     padding: var(--s-5);
   }
 }

@@ -141,10 +141,6 @@ const CONTENTS = [
     id: 'education-and-inequality',
     title: 'Education and Inequality in Philippine Society',
   },
-  {
-    id: 'application-activity',
-    title: 'Application Activity: Analyzing a Philippine Educational Issue',
-  },
   { id: 'asynchronous-discussion', title: 'Asynchronous Discussion' },
   { id: 'discussion-prepare', title: 'Discussion: Prepare' },
   { id: 'peer-response-assignments', title: 'Peer Response Assignments' },
@@ -294,24 +290,6 @@ export default function Lesson2() {
       </LessonSection>
 
       <LessonSection
-        id="application-activity"
-        title="Application Activity: Analyzing a Philippine Educational Issue"
-      >
-        <div className="prose">
-          <p>
-            Examine a Philippine-based news article or situation involving
-            educational access. Then identify:
-          </p>
-        </div>
-        <ul className="lesson-list">
-          <li>The issue.</li>
-          <li>The people affected.</li>
-          <li>The factors contributing to the problem.</li>
-          <li>The possible role of education in addressing the issue.</li>
-        </ul>
-      </LessonSection>
-
-      <LessonSection
         id="asynchronous-discussion"
         title="Asynchronous Discussion"
       >
@@ -320,20 +298,15 @@ export default function Lesson2() {
             Comparison Activity: Education in Philippine Society
           </p>
           <p>
-            <strong>Discussion title:</strong> The Functions and Importance of
-            Education in Philippine Society
-          </p>
-          <p>
             <strong>Central question:</strong> How should Philippine society
             address the challenges in education, and what responsibilities
             should different stakeholders take in improving educational
             outcomes?
           </p>
           <p>
-            This activity has three parts: prepare, interact, and consolidate.
-            Use the discussion board at the end of this section to post your
-            initial response and reply to your assigned classmate (and any
-            optional reply).
+            Complete the three parts below—prepare, interact, and consolidate.
+            Post your initial response and reply to your assigned classmate on
+            the discussion board at the end of this section.
           </p>
         </div>
 
@@ -341,10 +314,8 @@ export default function Lesson2() {
           <h3 className="lesson-subheading">1. Prepare — Read and Analyze</h3>
           <div className="prose">
             <p>
-              Read the sources below carefully. You do not need to memorize
-              every statistic. Focus on the main issue, the function of
-              education it relates to, the factors behind it, and the
-              responsibilities of the people involved.
+              Read the news report below, then analyze the issue using the guide
+              questions.
             </p>
           </div>
 
@@ -416,14 +387,18 @@ export default function Lesson2() {
 
           <h4 className="lesson-minor-heading">Guide questions</h4>
           <ul className="lesson-list">
-            <li>What educational issue does the news report present?</li>
+            <li>
+              What educational issue does the report present, and who is
+              affected?
+            </li>
             <li>
               Which function of education is most affected by this issue? Why?
             </li>
-            <li>What factors might contribute to the problem?</li>
+            <li>What factors contribute to the problem?</li>
             <li>
               What responsibilities should teachers, schools, families,
-              communities, and the government consider?
+              communities, and the government consider, and how can education
+              help address the issue?
             </li>
             <li>What evidence from the article supports your interpretation?</li>
           </ul>

@@ -75,17 +75,9 @@ export default function About() {
         </h2>
         {ABOUT_PROJECT ? (
           <div className="project-card">
-            <span className="project-icon" aria-hidden="true">
-              <Icon name="info" />
-            </span>
             <div className="prose">
-              {ABOUT_PROJECT.split('\n\n').map((paragraph, index) => (
-                <p
-                  key={paragraph.slice(0, 24)}
-                  className={index === 0 ? 'project-lead' : undefined}
-                >
-                  {paragraph}
-                </p>
+              {ABOUT_PROJECT.split('\n\n').map((paragraph) => (
+                <p key={paragraph.slice(0, 24)}>{paragraph}</p>
               ))}
             </div>
           </div>
