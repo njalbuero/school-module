@@ -1,5 +1,4 @@
 export type SectionId =
-  | 'start'
   | 'pre-assessment'
   | 'lesson-1'
   | 'lesson-2'
@@ -47,15 +46,6 @@ export const MODULE = {
 } as const;
 
 export const SECTIONS: ModuleSection[] = [
-  {
-    id: 'start',
-    path: '/',
-    label: 'Start Here',
-    title: 'Start Here',
-    description:
-      'Module overview, author, project background, learning sequence, and outcomes.',
-    tracked: false,
-  },
   {
     id: 'pre-assessment',
     path: '/pre-assessment',
@@ -126,8 +116,8 @@ export const PONDER_QUESTIONS: string[] = [
 
 /** Main site pages shown in the header. */
 export const SITE_PAGES: SitePage[] = [
-  { path: '/about', label: 'About' },
   { path: '/', label: 'Home' },
+  { path: '/about', label: 'About' },
   { path: '/module', label: 'Module' },
 ];
 
@@ -165,7 +155,6 @@ export const LEARNING_OUTCOMES: LearningOutcome[] = [
  */
 export const AUTHOR = {
   name: 'Andrea Gabrielle Tenorio',
-  role: 'Pre-service Teacher',
   photo: '/author-andrea-tenorio.jpg' as string | null,
   photoAlt: 'Andrea Gabrielle Tenorio' as string | null,
   bio: 'Hi! I am Andrea and I am a pre-service teacher. I am interested in developing learning modules. Right now, I am conducting a study on how educators use AI in their work.' as string | null,

@@ -1,8 +1,26 @@
 import { Link } from 'react-router-dom';
-import { MODULE, PROGRESS_SECTIONS, SECTIONS } from '../content/module';
+import { PROGRESS_SECTIONS, SECTIONS } from '../content/module';
+import type { SectionId } from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
-import { ProgressBar } from '../components/layout/ProgressBar';
+import { ProgressCard } from '../components/layout/ProgressCard';
+import { Icon } from '../components/ui/Icon';
+import type { IconName } from '../components/ui/Icon';
+
+const SECTION_ICONS: Record<SectionId, IconName> = {
+  'pre-assessment': 'clipboard',
+  'lesson-1': 'book',
+  'lesson-2': 'book',
+  'lesson-3': 'book',
+  'wrap-up': 'sparkle',
+  references: 'info',
+};
+
+const GROUPS: { title: string; ids: SectionId[] }[] = [
+  { title: 'Getting started', ids: ['pre-assessment'] },
+  { title: 'Lessons', ids: ['lesson-1', 'lesson-2', 'lesson-3'] },
+  { title: 'Wrap-up', ids: ['wrap-up', 'references'] },
+];
 
 export default function Module() {
   usePageMeta({
@@ -11,21 +29,22 @@ export default function Module() {
       'All sections of the module, with your progress and completion status.',
   });
 
-  const { completedCount, totalSections, isComplete, wasVisited } =
-    useProgress();
+  const { isComplete, wasVisited } = useProgress();
 
   return (
-    <div className="page">
-      <header className="page-header">
-        <p className="eyebrow">{MODULE.subject}</p>
-        <h1 className="page-title" tabIndex={-1} data-page-heading>
+    <div className="page module">
+      <header className="page-hero">
+        <p className="eyebrow">Module Contents</p>
+        <h1 className="page-hero-title" tabIndex={-1} data-page-heading>
           Module
         </h1>
-        <p className="section-lead">
-          One module, {SECTIONS.length} sections. {PROGRESS_SECTIONS.length} of
-          them count towards your progress — Start Here is the overview and
-          References is the final page. You can open any section at any time and
-          return to it whenever you like.
+        <p className="page-hero-meta">
+          {SECTIONS.length} sections · {PROGRESS_SECTIONS.length} count toward
+          your progress
+        </p>
+        <p className="page-hero-lead">
+          Every section is open, so you can work through them in any order. Your
+          progress and drafts are saved in this browser.
         </p>
       </header>
 
@@ -33,13 +52,7 @@ export default function Module() {
         <h2 id="progress-heading" className="section-title">
           Your Progress
         </h2>
-        <div className="card card-quiet">
-          <ProgressBar completed={completedCount} total={totalSections} />
-          <p className="card-note">
-            Module progress and drafts are saved in this browser. Every section
-            is available, so you can work through them in any order.
-          </p>
-        </div>
+        <ProgressCard />
       </section>
 
       <section className="section" aria-labelledby="sections-heading">
@@ -47,59 +60,73 @@ export default function Module() {
           All Sections
         </h2>
 
-        <ol className="section-list">
-          {SECTIONS.map((section) => {
-            const tracked = section.tracked !== false;
-            const showLabel = section.label !== section.title;
-            const complete = tracked && isComplete(section.id);
-            const visited = wasVisited(section.id);
-            const status = !tracked
-              ? section.id === 'start'
-                ? 'Overview'
-                : 'Final page'
-              : complete
-                ? 'Complete'
-                : visited
-                  ? 'In progress'
-                  : 'Not started';
-            const chipClass = !tracked
-              ? 'chip'
-              : complete
-                ? 'chip chip-done'
-                : visited
-                  ? 'chip chip-progress'
-                  : 'chip';
+        {GROUPS.map((group) => {
+          const sections = SECTIONS.filter((section) =>
+            group.ids.includes(section.id),
+          );
 
-            return (
-              <li key={section.id}>
-                <Link className="section-card" to={section.path}>
-                  <span className="section-card-head">
-                    {showLabel ? (
-                      <span className="section-card-label">
-                        {section.label}
-                      </span>
-                    ) : (
-                      <span className="section-card-title">
-                        {section.title}
-                      </span>
-                    )}
-                    <span className={`${chipClass} section-card-status`}>
-                      {status}
-                    </span>
-                  </span>
-                  {showLabel ? (
-                    <span className="section-card-title">
-                      {section.title}
-                    </span>
-                  ) : null}
-                  <span className="section-card-description">
-                    {section.description}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ol>
+          return (
+            <div className="module-group" key={group.title}>
+              <h3 className="module-group-title">{group.title}</h3>
+              <ul className="module-sections">
+                {sections.map((section) => {
+                  const tracked = section.tracked !== false;
+                  const complete = tracked && isComplete(section.id);
+                  const visited = wasVisited(section.id);
+                  const showLabel = section.label !== section.title;
+                  const statusKey = !tracked
+                    ? 'final'
+                    : complete
+                      ? 'done'
+                      : visited
+                        ? 'progress'
+                        : 'idle';
+                  const statusLabel = !tracked
+                    ? 'Final page'
+                    : complete
+                      ? 'Complete'
+                      : visited
+                        ? 'In progress'
+                        : 'Not started';
+
+                  return (
+                    <li key={section.id}>
+                      <Link className="module-section" to={section.path}>
+                        <span className="module-section-icon" aria-hidden="true">
+                          <Icon name={SECTION_ICONS[section.id]} />
+                        </span>
+                        <span className="module-section-body">
+                          {showLabel ? (
+                            <span className="module-section-label">
+                              {section.label}
+                            </span>
+                          ) : null}
+                          <span className="module-section-title">
+                            {section.title}
+                          </span>
+                          <span className="module-section-desc">
+                            {section.description}
+                          </span>
+                        </span>
+                        <span className="module-section-end">
+                          <span className="status-chip" data-status={statusKey}>
+                            {statusLabel}
+                          </span>
+                          <span
+                            className="module-section-chevron"
+                            aria-hidden="true"
+                          >
+                            <Icon name="arrow-right" size={18} />
+                          </span>
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        })}
 
         <div className="actions">
           <Link className="button" to="/pre-assessment">

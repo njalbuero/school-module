@@ -31,8 +31,6 @@ export function AuthorCard() {
       <div className="author-body">
         <h3 className="author-name">{AUTHOR.name}</h3>
 
-        {AUTHOR.role ? <p className="author-role">{AUTHOR.role}</p> : null}
-
         {AUTHOR.bio ? <p className="author-bio">{AUTHOR.bio}</p> : null}
 
         <h4 className="author-subheading">Educational background</h4>
@@ -40,7 +38,7 @@ export function AuthorCard() {
           {AUTHOR.education.map((entry) => (
             <li key={entry.programme} className="education-item">
               <span className="education-icon" aria-hidden="true">
-                <Icon name="graduation-cap" />
+                <Icon name="graduation-cap" size={18} />
               </span>
               <div className="education-body">
                 <span className="education-programme">{entry.programme}</span>

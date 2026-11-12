@@ -31,27 +31,16 @@ export default function About() {
 
   return (
     <div className="page about">
-      <header className="about-hero">
+      <header className="page-hero">
         <p className="eyebrow">Module Overview</p>
-        <h1 className="about-title" tabIndex={-1} data-page-heading>
+        <h1 className="page-hero-title" tabIndex={-1} data-page-heading>
           About this Module
         </h1>
-        <p className="about-meta">
+        <p className="page-hero-meta">
           {MODULE.subject} · {MODULE.quarter}
         </p>
+        <p className="page-hero-lead">{MODULE.about}</p>
       </header>
-
-      <section className="section" aria-labelledby="overview-heading">
-        <h2 id="overview-heading" className="section-title">
-          Module Overview
-        </h2>
-        <div className="overview-card">
-          <span className="overview-icon" aria-hidden="true">
-            <Icon name="compass" />
-          </span>
-          <p className="overview-lead">{MODULE.about}</p>
-        </div>
-      </section>
 
       <section className="section" aria-labelledby="outcomes-heading">
         <h2 id="outcomes-heading" className="section-title">
@@ -61,7 +50,7 @@ export default function About() {
           By the end of this module, you should be able to:
         </p>
         <ol className="outcome-grid">
-          {LEARNING_OUTCOMES.map((outcome, index) => (
+          {LEARNING_OUTCOMES.map((outcome) => (
             <li
               key={outcome.id}
               className="outcome-card"
@@ -69,9 +58,6 @@ export default function About() {
             >
               <span className="outcome-icon" aria-hidden="true">
                 <Icon name={OUTCOME_ICONS[outcome.id] ?? 'target'} />
-              </span>
-              <span className="outcome-number" aria-hidden="true">
-                {index + 1}
               </span>
               <span className="outcome-text">{outcome.text}</span>
             </li>

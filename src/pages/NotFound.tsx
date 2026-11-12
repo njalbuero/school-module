@@ -20,7 +20,7 @@ export default function NotFound() {
 
       <div className="actions">
         <Link className="button" to="/">
-          Back to Start Here
+          Back to Home
         </Link>
       </div>
     </div>

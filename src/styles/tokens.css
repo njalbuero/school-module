@@ -69,4 +69,12 @@
     var(--brand-dark) 58%,
     #16224d 100%
   );
+
+  /* Component patterns */
+  --card-radius: var(--radius-lg);
+  --card-padding: var(--s-6);
+  --card-shadow: var(--shadow-sm);
+  --icon-chip-size: 44px;
+  --icon-chip-radius: 12px;
+  --accent-bar: 4px;
 }
