@@ -43,6 +43,13 @@ export const REFERENCES: {
   eResources: [
     {
       title:
+        '1.3 million Grade 11 students have poor reading comprehension — EDCOM.',
+      site: 'GMA News Online.',
+      date: 'May 29, 2026.',
+      url: 'https://www.gmanetwork.com/news/topstories/nation/989385/1-3-million-grade-11-students-poor-reading-comprehension-edcom/story/',
+    },
+    {
+      title:
         'Functions of School: Socialization, Cultural Transmission, Integration & Latent Functions.',
       site: 'Study.com.',
       date: 'March 6, 2013.',
@@ -64,11 +71,6 @@ export const REFERENCES: {
       site: 'University of Minnesota.',
       date: 'July 24, 2020.',
       url: 'https://open.lib.umn.edu/sociology/chapter/16-2-sociological-perspectives-on-education/',
-    },
-    {
-      title: 'The Constitution of the Republic of the Philippines.',
-      date: 'July 24, 2020.',
-      url: 'https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xiv/',
     },
   ],
 };
