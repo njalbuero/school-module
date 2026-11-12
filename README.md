@@ -47,7 +47,7 @@ src/
   context/          Progress state, persisted in localStorage
   hooks/            localStorage, page titles
   components/       Layout, section navigation, assessment, content, reusable UI
-  pages/            Home, About, Modules, PreAssessment, Lesson1–3, WrapUp, NotFound
+  pages/            Home, About, Module, PreAssessment, Lesson1–3, WrapUp, NotFound
   styles/           tokens.css, base.css, layout.css, components.css, lesson.css
 public/
   author-andrea-tenorio.jpg
@@ -60,13 +60,13 @@ reqs/               Source documents
 | --- | --- |
 | `/` | Home — module introduction, questions to ponder, and start |
 | `/about` | About — overview, outcomes, learning sequence, author, project |
-| `/modules` | Modules — all sections with progress status |
+| `/module` | Module — all sections with progress status |
 | `/pre-assessment` | Interactive 10-item pre-assessment with feedback |
 | `/lesson/1` … `/lesson/3` | Lesson readings and activities |
 | `/wrap-up` | Reflection, self-assessment, and module feedback |
 
-Only Home, About and Modules are in the header navigation. Module sections live
-on the Modules page, and every section can be opened at any time.
+Only Home, About and Module are in the header navigation. Module sections live
+on the Module page, and every section can be opened at any time.
 
 ## Lessons
 

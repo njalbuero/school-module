@@ -117,7 +117,7 @@ export const SECTIONS: ModuleSection[] = [
 export const SITE_PAGES: SitePage[] = [
   { path: '/about', label: 'About' },
   { path: '/', label: 'Home' },
-  { path: '/modules', label: 'Modules' },
+  { path: '/module', label: 'Module' },
 ];
 
 /**

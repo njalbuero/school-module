@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import Home from './pages/Home';
 import About from './pages/About';
-import Modules from './pages/Modules';
+import Module from './pages/Module';
 import PreAssessment from './pages/PreAssessment';
 import WrapUp from './pages/WrapUp';
 import NotFound from './pages/NotFound';
@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'about', element: <About /> },
-      { path: 'modules', element: <Modules /> },
+      { path: 'module', element: <Module /> },
       { path: 'pre-assessment', element: <PreAssessment /> },
       { path: 'lesson/1', element: <Lesson1 /> },
       { path: 'lesson/2', element: <Lesson2 /> },

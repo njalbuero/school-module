@@ -25,7 +25,7 @@ export function SectionNav({ current }: { current: SectionId }) {
         </p>
         <div className="section-nav-head-links">
           <Link to="/">Home</Link>
-          <Link to="/modules">Module Contents</Link>
+          <Link to="/module">Module Contents</Link>
         </div>
       </div>
 

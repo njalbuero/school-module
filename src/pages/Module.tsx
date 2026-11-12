@@ -4,9 +4,9 @@ import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
 import { ProgressBar } from '../components/layout/ProgressBar';
 
-export default function Modules() {
+export default function Module() {
   usePageMeta({
-    title: 'Modules',
+    title: 'Module',
     description:
       'All sections of the module, with your progress and completion status.',
   });
@@ -19,7 +19,7 @@ export default function Modules() {
       <header className="page-header">
         <p className="eyebrow">{MODULE.subject}</p>
         <h1 className="page-title" tabIndex={-1} data-page-heading>
-          Modules
+          Module
         </h1>
         <p className="section-lead">
           One module, {SECTIONS.length} sections. {PROGRESS_SECTIONS.length} of

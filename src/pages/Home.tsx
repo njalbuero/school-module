@@ -23,7 +23,7 @@ export default function Home() {
           <Link className="button" to="/pre-assessment">
             Start Learning
           </Link>
-          <Link className="button button-secondary" to="/modules">
+          <Link className="button button-secondary" to="/module">
             View All Sections
           </Link>
         </div>
@@ -68,7 +68,7 @@ export default function Home() {
           <p className="card-note">
             Module progress and drafts are saved in this browser. Every section
             is open, so you can work through them in any order.{' '}
-            <Link to="/modules">View All Sections</Link>
+            <Link to="/module">View All Sections</Link>
           </p>
         </div>
       </section>

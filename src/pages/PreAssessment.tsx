@@ -201,7 +201,7 @@ export default function PreAssessment() {
             </ol>
 
             <div className="actions">
-              <Link className="button button-secondary" to="/modules">
+              <Link className="button button-secondary" to="/module">
                 View All Sections
               </Link>
               <button
