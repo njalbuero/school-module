@@ -1,9 +1,11 @@
 export function ProgressBar({
   completed,
   total,
+  showLabel = true,
 }: {
   completed: number;
   total: number;
+  showLabel?: boolean;
 }) {
   const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
 
@@ -24,9 +26,11 @@ export function ProgressBar({
           aria-hidden="true"
         />
       </div>
-      <p className="progress-label">
-        {completed} of {total} sections complete
-      </p>
+      {showLabel ? (
+        <p className="progress-label">
+          {completed} of {total} sections complete
+        </p>
+      ) : null}
     </div>
   );
 }

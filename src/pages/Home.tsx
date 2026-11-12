@@ -1,9 +1,28 @@
 import { Link } from 'react-router-dom';
-import { MODULE } from '../content/module';
+import { MODULE, MODULE_FACTS, PONDER_QUESTIONS } from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
 import { ProgressBar } from '../components/layout/ProgressBar';
-import { LearningSequence } from '../components/content/LearningSequence';
+import { StatStrip } from '../components/home/StatStrip';
+import { HowItWorks } from '../components/home/HowItWorks';
+import { SectionPreview } from '../components/home/SectionPreview';
+import { Icon } from '../components/ui/Icon';
+
+function progressMessage(completed: number, total: number) {
+  if (total === 0) {
+    return 'Your module is ready when you are.';
+  }
+  if (completed >= total) {
+    return 'You did it — the module is complete. 🎉';
+  }
+  if (completed === 0) {
+    return "You're just getting started. Jump in below.";
+  }
+  if (completed / total < 0.5) {
+    return 'Nice progress — keep the momentum going.';
+  }
+  return 'Almost there — just a few sections to go.';
+}
 
 export default function Home() {
   usePageMeta({ title: 'Home', description: MODULE.about });
@@ -11,65 +30,68 @@ export default function Home() {
   const { completedCount, totalSections } = useProgress();
 
   return (
-    <div className="page">
-      <header className="page-header hero hero-module-heading">
-        <p className="hero-kicker">{MODULE.moduleLabel}:</p>
-        <h1 className="page-title hero-title" tabIndex={-1} data-page-heading>
-          {MODULE.title}
-        </h1>
-        <p className="hero-lead">{MODULE.intro}</p>
+    <div className="page home">
+      <header className="home-hero">
+        <div className="home-hero-inner">
+          <p className="hero-badge">
+            <span className="hero-badge-dot" aria-hidden="true" />
+            {MODULE.moduleLabel}
+          </p>
+          <h1
+            className="home-hero-title"
+            tabIndex={-1}
+            data-page-heading
+          >
+            {MODULE.title}
+          </h1>
+          <p className="home-hero-lead">{MODULE.intro}</p>
 
-        <div className="actions">
-          <Link className="button" to="/pre-assessment">
-            Start Learning
-          </Link>
-          <Link className="button button-secondary" to="/module">
-            View All Sections
-          </Link>
+          <div className="hero-actions">
+            <Link className="hero-button hero-button-primary" to="/pre-assessment">
+              <Icon name="play" size={20} />
+              Start Learning
+            </Link>
+            <Link className="hero-button hero-button-secondary" to="/module">
+              Browse the module
+              <Icon name="arrow-right" size={18} />
+            </Link>
+          </div>
+
+          <ul className="hero-meta">
+            {MODULE_FACTS.map((fact) => (
+              <li key={fact.id} className="hero-chip">
+                {fact.value}
+              </li>
+            ))}
+          </ul>
         </div>
       </header>
 
-      <section
-        className="section"
-        aria-labelledby="introductory-message-heading"
-      >
-        <h2 id="introductory-message-heading" className="section-title">
-          Introductory Message
-        </h2>
-        <div className="card">
-          <div className="prose">
-            <p>
-              This Self-Learning Module (SLM) is prepared so that you, our dear
-              learners, can continue your studies and learn at your own pace.
-              Work through each section in order and mark it complete when you
-              are ready—your progress is saved in this browser.
-            </p>
-            <p>
-              The module is designed to take roughly three to six hours,
-              depending on how much time you spend on the activities and
-              reflection. At the end, you will write a reflection, complete a
-              self-assessment, and answer a feedback survey. A References page
-              lists the sources used.
-            </p>
-            <p>
-              For more about the module, its author, and the learning outcomes,
-              visit the <Link to="/about">About page</Link>.
-            </p>
-          </div>
-        </div>
-      </section>
+      <StatStrip />
 
       <section className="section" aria-labelledby="progress-heading">
         <h2 id="progress-heading" className="section-title">
           Your Progress
         </h2>
-        <div className="card card-quiet">
-          <ProgressBar completed={completedCount} total={totalSections} />
-          <p className="card-note">
-            Module progress and drafts are saved in this browser. Every section
-            is open, so you can work through them in any order.{' '}
-            <Link to="/module">View All Sections</Link>
-          </p>
+        <div className="progress-panel">
+          <div className="progress-count">
+            <strong>{completedCount}</strong>
+            <span>of {totalSections} sections</span>
+          </div>
+          <div className="progress-detail">
+            <ProgressBar
+              completed={completedCount}
+              total={totalSections}
+              showLabel={false}
+            />
+            <p className="progress-message">
+              {progressMessage(completedCount, totalSections)}
+            </p>
+            <Link className="progress-link" to="/module">
+              View all sections
+              <Icon name="arrow-right" size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -77,15 +99,25 @@ export default function Home() {
         <h2 id="ponder-heading" className="section-title">
           Questions to Ponder
         </h2>
-        <div className="card">
-          <p className="section-lead">
-            Keep these questions in mind before you begin Lesson 1. They will
-            guide your reading, discussion, and reflection.
-          </p>
-          <ol className="outcome-list">
-            <li>How does education contribute to the development of individuals?</li>
-            <li>Why should education be considered a fundamental human right?</li>
-            <li>How can you contribute to society through your education?</li>
+        <div className="ponder-panel">
+          <div className="ponder-head">
+            <span className="ponder-icon" aria-hidden="true">
+              <Icon name="lightbulb" />
+            </span>
+            <p className="ponder-lead">
+              Keep these in mind before you begin — they will guide your reading,
+              discussion, and reflection.
+            </p>
+          </div>
+          <ol className="ponder-list">
+            {PONDER_QUESTIONS.map((question, index) => (
+              <li key={question}>
+                <span className="ponder-number" aria-hidden="true">
+                  {index + 1}
+                </span>
+                <span>{question}</span>
+              </li>
+            ))}
           </ol>
         </div>
       </section>
@@ -94,12 +126,20 @@ export default function Home() {
         <h2 id="how-heading" className="section-title">
           How the Module Works
         </h2>
-        <div className="card">
-          <p className="section-lead">
-            Follow these four steps as you work through the module.
-          </p>
-          <LearningSequence />
-        </div>
+        <p className="section-lead">
+          Four steps take you from a quick check to your final reflection.
+        </p>
+        <HowItWorks />
+      </section>
+
+      <section className="section" aria-labelledby="sections-heading">
+        <h2 id="sections-heading" className="section-title">
+          Explore the Sections
+        </h2>
+        <p className="section-lead">
+          Jump straight into any part of the module — they are all open.
+        </p>
+        <SectionPreview />
       </section>
     </div>
   );

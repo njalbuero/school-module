@@ -113,6 +113,27 @@ export const SECTIONS: ModuleSection[] = [
   },
 ];
 
+export type ModuleFact = {
+  id: 'time' | 'lessons' | 'sections' | 'pace';
+  label: string;
+  value: string;
+};
+
+/** Quick facts shown on the Home hero and stat strip. */
+export const MODULE_FACTS: ModuleFact[] = [
+  { id: 'time', label: 'Time to finish', value: '3–6 hours' },
+  { id: 'lessons', label: 'Lessons', value: '3' },
+  { id: 'sections', label: 'Sections', value: String(SECTIONS.length) },
+  { id: 'pace', label: 'Pace', value: 'Self-paced' },
+];
+
+/** Reflection prompts shown on the Home page. */
+export const PONDER_QUESTIONS: string[] = [
+  'How does education contribute to the development of individuals?',
+  'Why should education be considered a fundamental human right?',
+  'How can you contribute to society through your education?',
+];
+
 /** Main site pages shown in the header. */
 export const SITE_PAGES: SitePage[] = [
   { path: '/about', label: 'About' },
