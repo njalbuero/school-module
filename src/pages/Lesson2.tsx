@@ -638,41 +638,7 @@ export default function Lesson2() {
             Total: 16 points (4 criteria × 4 points each)
           </p>
 
-          <div className="rubric-table-wrap rubric-desktop">
-            <table className="sequence-table rubric-table">
-              <caption className="sr-only">Reflection rubric</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Criterion</th>
-                  <th scope="col">Exemplary (4)</th>
-                  <th scope="col">Proficient (3)</th>
-                  <th scope="col">Developing (2)</th>
-                  <th scope="col">Beginning (1)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {REFLECTION_RUBRIC.map((item, index) => (
-                  <tr key={item.criterion}>
-                    <th scope="row">
-                      <span className="rubric-criterion-name">
-                        {index + 1}. {item.criterion}
-                      </span>
-                    </th>
-                    {item.levels.map((level) => (
-                      <td
-                        key={level.score}
-                        data-label={`${level.label} (${level.score})`}
-                      >
-                        {level.description}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="rubric-accordion rubric-mobile">
+          <div className="rubric-accordion">
             {REFLECTION_RUBRIC.map((item, index) => {
               const open = openRubric === index;
               const panelId = `rubric-panel-${index}`;

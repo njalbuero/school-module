@@ -109,6 +109,8 @@
 
 .lesson-contents li {
   padding-left: var(--s-1);
+  text-align: left;
+  text-wrap: pretty;
 }
 
 .lesson-subheading {
@@ -296,8 +298,9 @@
   }
 }
 
-/* Reflection rubric: accordion on mobile, table on desktop */
+/* Rubric accordion and responsive comparison table */
 
+.rubric-accordion,
 .rubric-mobile {
   display: grid;
   gap: var(--s-2);

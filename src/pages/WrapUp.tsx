@@ -108,42 +108,7 @@ export default function WrapUp() {
           <p className="section-lead">
             Each criterion is scored from 1 to 4. The total is 16 points.
           </p>
-          <div className="rubric-table-wrap rubric-desktop">
-            <table className="sequence-table rubric-table">
-              <caption className="sr-only">Social issue response rubric</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Criterion</th>
-                  <th scope="col">Exemplary (4)</th>
-                  <th scope="col">Proficient (3)</th>
-                  <th scope="col">Developing (2)</th>
-                  <th scope="col">Beginning (1)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {REFLECTION.rubric.map((item) => (
-                  <tr key={item.criterion}>
-                    <th scope="row">
-                      <span className="rubric-criterion-name">
-                        {item.criterion}
-                      </span>
-                      <span className="rubric-weight">{item.weight}</span>
-                    </th>
-                    {item.levels.map((level) => (
-                      <td
-                        key={level.score}
-                        data-label={`${level.label} (${level.score})`}
-                      >
-                        {level.description}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="rubric-accordion rubric-mobile">
+          <div className="rubric-accordion">
             {REFLECTION.rubric.map((item, index) => {
               const open = openRubric === index;
               const panelId = `wrap-up-rubric-panel-${index}`;
