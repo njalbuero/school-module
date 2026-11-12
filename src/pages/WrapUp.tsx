@@ -6,6 +6,7 @@ import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
 import { SectionNav } from '../components/layout/SectionNav';
 import { PageHero } from '../components/layout/PageHero';
+import { Icon } from '../components/ui/Icon';
 
 type SelfAssessmentState = Record<string, boolean>;
 
@@ -43,6 +44,7 @@ export default function WrapUp() {
   );
   const [completed, setCompleted] = useState(() => isComplete('wrap-up'));
   const [selfSaved, setSelfSaved] = useState(false);
+  const [openRubric, setOpenRubric] = useState<number | null>(0);
 
   const confirmationRef = useRef<HTMLDivElement>(null);
 
@@ -100,13 +102,15 @@ export default function WrapUp() {
             ))}
           </ul>
 
-          <h3 className="reflection-subheading">Reflection Rubric</h3>
+          <h3 className="reflection-subheading">
+            Social Issue Response Rubric
+          </h3>
           <p className="section-lead">
             Each criterion is scored from 1 to 4. The total is 16 points.
           </p>
-          <div className="rubric-table-wrap">
+          <div className="rubric-table-wrap rubric-desktop">
             <table className="sequence-table rubric-table">
-              <caption className="sr-only">Reflection rubric</caption>
+              <caption className="sr-only">Social issue response rubric</caption>
               <thead>
                 <tr>
                   <th scope="col">Criterion</th>
@@ -137,6 +141,64 @@ export default function WrapUp() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          <div className="rubric-accordion rubric-mobile">
+            {REFLECTION.rubric.map((item, index) => {
+              const open = openRubric === index;
+              const panelId = `wrap-up-rubric-panel-${index}`;
+              const triggerId = `wrap-up-rubric-trigger-${index}`;
+
+              return (
+                <div
+                  className={`rubric-acc-item${open ? ' is-open' : ''}`}
+                  key={item.criterion}
+                >
+                  <button
+                    type="button"
+                    id={triggerId}
+                    className="rubric-acc-trigger"
+                    aria-expanded={open}
+                    aria-controls={panelId}
+                    onClick={() => setOpenRubric(open ? null : index)}
+                  >
+                    <span className="rubric-acc-heading">
+                      <span className="rubric-acc-number">{index + 1}</span>
+                      <span className="rubric-acc-title">{item.criterion}</span>
+                    </span>
+                    <span className="rubric-acc-meta">
+                      <span className="rubric-acc-points">4 pts</span>
+                      <span className="rubric-acc-chevron" aria-hidden="true">
+                        <Icon name="chevron-down" size={18} />
+                      </span>
+                    </span>
+                  </button>
+                  <div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={triggerId}
+                    className="rubric-acc-panel"
+                    hidden={!open}
+                  >
+                    <ul className="rubric-acc-levels">
+                      {item.levels.map((level) => (
+                        <li className="rubric-acc-level" key={level.score}>
+                          <span className="rubric-acc-score">{level.score}</span>
+                          <span className="rubric-acc-level-body">
+                            <span className="rubric-acc-level-label">
+                              {level.label}
+                            </span>
+                            <span className="rubric-acc-level-desc">
+                              {level.description}
+                            </span>
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           <div className="embed embed-form">
