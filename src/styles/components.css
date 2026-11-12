@@ -610,6 +610,35 @@
   color: var(--brand);
 }
 
+/* Completion celebration */
+.celebration-card {
+  --card-accent: var(--accent);
+  --card-accent-soft: var(--accent-soft);
+}
+
+.celebration-art {
+  display: block;
+  width: min(15rem, 100%);
+  height: auto;
+  margin-bottom: var(--s-2);
+}
+
+.confetti-brand {
+  fill: var(--brand);
+}
+
+.confetti-gold {
+  fill: var(--accent);
+}
+
+.confetti-green {
+  fill: var(--green);
+}
+
+.confetti-violet {
+  fill: var(--violet);
+}
+
 /* Section navigation */
 
 .section-nav {

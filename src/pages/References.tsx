@@ -106,98 +106,98 @@ export default function References() {
       </section>
 
       <div className="references-columns">
-      <section className="section" aria-labelledby="references-heading">
-        <div className="feature-card references">
-          <h2 className="references-group-title">Book</h2>
-          <ul className="reference-list">
-            {REFERENCES.books.map((reference) => (
-              <li
-                className="reference-item"
-                key={`${reference.title}${reference.publication}`}
-              >
-                {reference.authors} <em>{reference.title}</em>{' '}
-                {reference.publication}
-              </li>
-            ))}
-          </ul>
-
-          <h2 className="references-group-title">E-resources</h2>
-          <ul className="reference-list">
-            {REFERENCES.eResources.map((reference) => (
-              <li className="reference-item" key={reference.title}>
-                “{reference.title}”{' '}
-                {reference.site ? `${reference.site} ` : ''}
-                {reference.date}
-                {reference.url ? (
-                  <>
-                    {' '}
-                    <a
-                      href={reference.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {reference.url}
-                    </a>
-                  </>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="feedback-heading">
-        <h2 id="feedback-heading" className="section-title">
-          Module Feedback
-        </h2>
-        <div className="feature-card">
-          {surveySubmitted ? (
-            <div role="status">
-              <p className="submitted-title">
-                <span aria-hidden="true">✓</span> Thank you for your feedback
-              </p>
-              <p>Your responses are saved in this browser.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSurveySubmit} noValidate>
-              <p className="section-lead">
-                How much do you agree with each statement?
-              </p>
-              {FEEDBACK_SURVEY.questions.map((question) => (
-                <fieldset className="survey-question" key={question.id}>
-                  <legend>{question.label}</legend>
-                  <div className="survey-scale">
-                    {FEEDBACK_SURVEY.scale.map((option) => (
-                      <label className="survey-option" key={option.value}>
-                        <input
-                          type="radio"
-                          name={question.id}
-                          value={option.value}
-                          checked={survey[question.id] === option.value}
-                          onChange={() =>
-                            handleSurveyChange(question.id, option.value)
-                          }
-                        />
-                        <span>{option.label}</span>
-                      </label>
-                    ))}
-                  </div>
-                </fieldset>
-              ))}
-              {surveyError ? (
-                <p className="form-error" role="alert">
-                  {surveyError}
+        <section className="section" aria-labelledby="feedback-heading">
+          <h2 id="feedback-heading" className="section-title">
+            Module Feedback
+          </h2>
+          <div className="feature-card">
+            {surveySubmitted ? (
+              <div role="status">
+                <p className="submitted-title">
+                  <span aria-hidden="true">✓</span> Thank you for your feedback
                 </p>
-              ) : null}
-              <div className="actions">
-                <button type="submit" className="button">
-                  Submit Feedback
-                </button>
+                <p>Your responses are saved in this browser.</p>
               </div>
-            </form>
-          )}
-        </div>
-      </section>
+            ) : (
+              <form onSubmit={handleSurveySubmit} noValidate>
+                <p className="section-lead">
+                  How much do you agree with each statement?
+                </p>
+                {FEEDBACK_SURVEY.questions.map((question) => (
+                  <fieldset className="survey-question" key={question.id}>
+                    <legend>{question.label}</legend>
+                    <div className="survey-scale">
+                      {FEEDBACK_SURVEY.scale.map((option) => (
+                        <label className="survey-option" key={option.value}>
+                          <input
+                            type="radio"
+                            name={question.id}
+                            value={option.value}
+                            checked={survey[question.id] === option.value}
+                            onChange={() =>
+                              handleSurveyChange(question.id, option.value)
+                            }
+                          />
+                          <span>{option.label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                ))}
+                {surveyError ? (
+                  <p className="form-error" role="alert">
+                    {surveyError}
+                  </p>
+                ) : null}
+                <div className="actions">
+                  <button type="submit" className="button">
+                    Submit Feedback
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </section>
+
+        <section className="section" aria-labelledby="references-heading">
+          <div className="feature-card references">
+            <h2 className="references-group-title">Book</h2>
+            <ul className="reference-list">
+              {REFERENCES.books.map((reference) => (
+                <li
+                  className="reference-item"
+                  key={`${reference.title}${reference.publication}`}
+                >
+                  {reference.authors} <em>{reference.title}</em>{' '}
+                  {reference.publication}
+                </li>
+              ))}
+            </ul>
+
+            <h2 className="references-group-title">E-resources</h2>
+            <ul className="reference-list">
+              {REFERENCES.eResources.map((reference) => (
+                <li className="reference-item" key={reference.title}>
+                  “{reference.title}”{' '}
+                  {reference.site ? `${reference.site} ` : ''}
+                  {reference.date}
+                  {reference.url ? (
+                    <>
+                      {' '}
+                      <a
+                        href={reference.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {reference.url}
+                      </a>
+                    </>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
       </div>
 
       <nav className="section-nav" aria-label="Section navigation">

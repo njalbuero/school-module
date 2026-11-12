@@ -243,26 +243,90 @@ export default function WrapUp() {
       </section>
 
       <section className="section" aria-labelledby="done-heading">
-        <h2 id="done-heading" className="section-title">
-          You&apos;re Done!
-        </h2>
-        <p className="section-lead">
-          You have completed the Wrap-Up and finished the module. Thank you for
-          working through the lessons and activities.
-        </p>
-        <Link className="references-prompt" to="/references">
-          <span className="references-prompt-body">
-            <span className="references-prompt-title">
-              There&apos;s another page
+        <div className="feature-card celebration-card">
+          <svg
+            className="celebration-art"
+            viewBox="0 0 240 56"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <rect
+              className="confetti-brand"
+              x="8"
+              y="20"
+              width="12"
+              height="4"
+              rx="2"
+              transform="rotate(-24 14 22)"
+            />
+            <circle className="confetti-gold" cx="42" cy="12" r="4" />
+            <path className="confetti-violet" d="M70 34l7-16 7 16z" />
+            <rect
+              className="confetti-green"
+              x="100"
+              y="10"
+              width="12"
+              height="4"
+              rx="2"
+              transform="rotate(22 106 12)"
+            />
+            <circle className="confetti-brand" cx="134" cy="34" r="3.5" />
+            <path className="confetti-gold" d="M156 12l8 4-8 4z" />
+            <rect
+              className="confetti-violet"
+              x="186"
+              y="28"
+              width="12"
+              height="4"
+              rx="2"
+              transform="rotate(-20 192 30)"
+            />
+            <circle className="confetti-green" cx="222" cy="14" r="4" />
+            <path className="confetti-brand" d="M24 46l6-5 6 5-6 5z" />
+            <circle className="confetti-gold" cx="80" cy="46" r="3" />
+            <rect
+              className="confetti-green"
+              x="112"
+              y="42"
+              width="10"
+              height="4"
+              rx="2"
+              transform="rotate(-16 117 44)"
+            />
+            <path className="confetti-violet" d="M150 46l5-10 5 10z" />
+            <circle className="confetti-brand" cx="198" cy="46" r="3.5" />
+            <rect
+              className="confetti-gold"
+              x="226"
+              y="38"
+              width="10"
+              height="4"
+              rx="2"
+              transform="rotate(18 231 40)"
+            />
+          </svg>
+          <h2 id="done-heading" className="section-title">
+            Congratulations!
+          </h2>
+          <p className="section-lead">
+            You have completed the Wrap-Up and finished the module. Thank you
+            for working through the lessons and activities.
+          </p>
+          <Link className="references-prompt" to="/references">
+            <span className="references-prompt-body">
+              <span className="references-prompt-title">
+                There&apos;s another page
+              </span>
+              <span className="references-prompt-text">
+                Rate the module through Module Feedback, and review the
+                references used throughout the module.
+              </span>
             </span>
-            <span className="references-prompt-text">
-              Open the References page to see the sources used in this module.
+            <span className="references-prompt-arrow" aria-hidden="true">
+              →
             </span>
-          </span>
-          <span className="references-prompt-arrow" aria-hidden="true">
-            →
-          </span>
-        </Link>
+          </Link>
+        </div>
       </section>
 
       <SectionNav current="wrap-up" />
