@@ -202,6 +202,7 @@ export const LEARNING_SEQUENCE: LearningStage[] = [
  */
 export const AUTHOR = {
   name: 'Andrea Gabrielle Tenorio',
+  role: 'Pre-service Teacher',
   photo: '/author-andrea-tenorio.jpg' as string | null,
   photoAlt: 'Andrea Gabrielle Tenorio' as string | null,
   bio: 'Hi! I am Andrea and I am a pre-service teacher. I am interested in developing learning modules. Right now, I am conducting a study on how educators use AI in their work.' as string | null,

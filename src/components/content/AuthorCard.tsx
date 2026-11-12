@@ -1,4 +1,5 @@
 import { AUTHOR } from '../../content/module';
+import { Icon } from '../ui/Icon';
 
 function AuthorPhoto() {
   const photo = AUTHOR.photo;
@@ -24,23 +25,30 @@ function AuthorPhoto() {
 
 export function AuthorCard() {
   return (
-    <div className="card author">
+    <div className="card author author-card">
       <AuthorPhoto />
 
       <div className="author-body">
         <h3 className="author-name">{AUTHOR.name}</h3>
 
-        {AUTHOR.bio ? <p>{AUTHOR.bio}</p> : null}
+        {AUTHOR.role ? <p className="author-role">{AUTHOR.role}</p> : null}
+
+        {AUTHOR.bio ? <p className="author-bio">{AUTHOR.bio}</p> : null}
 
         <h4 className="author-subheading">Educational background</h4>
         <ul className="education-list">
           {AUTHOR.education.map((entry) => (
-            <li key={entry.programme}>
-              <span className="education-programme">{entry.programme}</span>
-              {entry.year ? (
-                <span className="education-year"> · {entry.year}</span>
-              ) : null}
-              <span className="education-institution">{entry.institution}</span>
+            <li key={entry.programme} className="education-item">
+              <span className="education-icon" aria-hidden="true">
+                <Icon name="graduation-cap" />
+              </span>
+              <div className="education-body">
+                <span className="education-programme">{entry.programme}</span>
+                <span className="education-institution">
+                  {entry.institution}
+                  {entry.year ? ` · ${entry.year}` : ''}
+                </span>
+              </div>
             </li>
           ))}
         </ul>

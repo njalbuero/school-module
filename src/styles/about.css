@@ -1,0 +1,250 @@
+/* About page */
+
+.about {
+  max-width: 72rem;
+}
+
+/* Keep About content left-aligned and scannable. */
+.about p,
+.about li {
+  text-align: left;
+}
+
+/* Hero (lighter secondary treatment) */
+
+.about-hero {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--s-6);
+  padding: var(--s-8) var(--s-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(
+      120% 140% at 100% 0%,
+      rgba(245, 158, 11, 0.16) 0%,
+      rgba(245, 158, 11, 0) 50%
+    ),
+    linear-gradient(135deg, var(--brand-soft) 0%, #eef3ff 55%, #fdf3e0 100%);
+  box-shadow: var(--shadow-sm);
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--brand));
+}
+
+.about-hero .eyebrow {
+  color: var(--brand);
+}
+
+.about-title {
+  margin: 0 0 var(--s-2);
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.about-meta {
+  margin: 0;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+/* Module overview */
+
+.overview-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-5);
+  padding: var(--s-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.overview-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+  color: #ffffff;
+}
+
+.overview-lead {
+  margin: 0;
+  font-size: 1.125rem;
+  color: var(--ink);
+}
+
+/* Learning outcomes */
+
+.outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outcome-card {
+  --accent: var(--brand);
+  --accent-soft: var(--brand-soft);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.outcome-card[data-tone='green'] {
+  --accent: var(--green);
+  --accent-soft: var(--green-soft);
+}
+
+.outcome-card[data-tone='amber'] {
+  --accent: var(--amber);
+  --accent-soft: var(--amber-soft);
+}
+
+.outcome-card[data-tone='violet'] {
+  --accent: var(--violet);
+  --accent-soft: var(--violet-soft);
+}
+
+.outcome-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.outcome-number {
+  position: absolute;
+  top: var(--s-4);
+  right: var(--s-4);
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent-soft);
+  user-select: none;
+}
+
+.outcome-text {
+  padding-right: var(--s-4);
+  font-weight: 500;
+}
+
+/* Author card */
+
+.author-card {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.author-role {
+  display: inline-flex;
+  margin: 0 0 var(--s-3);
+  padding: var(--s-1) var(--s-3);
+  border-radius: 999px;
+  background-color: var(--accent-soft);
+  color: var(--accent-ink);
+  font-size: var(--text-label);
+  font-weight: 700;
+}
+
+.author-bio {
+  margin-bottom: var(--s-5);
+}
+
+.education-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  padding: var(--s-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--surface-alt);
+}
+
+.education-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background-color: var(--brand-soft);
+  color: var(--brand);
+}
+
+.education-body {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+/* About this project */
+
+.project-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--s-5);
+  padding: var(--s-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.project-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--violet-soft);
+  color: var(--violet);
+}
+
+.project-lead {
+  font-size: 1.0625rem;
+  color: var(--ink);
+}
+
+/* Responsive */
+
+@media (max-width: 639px) {
+  .about-hero {
+    padding: var(--s-6) var(--s-5);
+  }
+
+  .overview-card,
+  .project-card {
+    flex-direction: column;
+    gap: var(--s-4);
+    padding: var(--s-5);
+  }
+}

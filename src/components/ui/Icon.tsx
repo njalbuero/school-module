@@ -11,7 +11,11 @@ export type IconName =
   | 'clipboard'
   | 'chat'
   | 'sparkle'
-  | 'compass';
+  | 'compass'
+  | 'target'
+  | 'graduation-cap'
+  | 'info'
+  | 'calendar';
 
 type IconProps = {
   name: IconName;
@@ -88,6 +92,34 @@ const PATHS: Record<IconName, ReactNode> = {
     <>
       <circle cx="12" cy="12" r="9" />
       <path d="M15.5 8.5l-2 5-5 2 2-5 5-2Z" />
+    </>
+  ),
+  target: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+    </>
+  ),
+  'graduation-cap': (
+    <>
+      <path d="M2 10l10-5 10 5-10 5-10-5Z" />
+      <path d="M6 12.5V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-3.5" />
+      <path d="M22 10v5" />
+    </>
+  ),
+  info: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 16v-4" />
+      <path d="M12 8h.01" />
+    </>
+  ),
+  calendar: (
+    <>
+      <path d="M8 2v4M16 2v4" />
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <path d="M3 10h18" />
     </>
   ),
 };
