@@ -7,15 +7,6 @@ import { usePageMeta } from '../hooks/usePageMeta';
 import { AuthorCard } from '../components/content/AuthorCard';
 import { Placeholder } from '../components/content/Placeholder';
 import { PageHero } from '../components/layout/PageHero';
-import { Icon } from '../components/ui/Icon';
-import type { IconName } from '../components/ui/Icon';
-
-const OUTCOME_ICONS: Record<string, IconName> = {
-  'lo-1': 'book',
-  'lo-2': 'target',
-  'lo-3': 'chat',
-  'lo-4': 'sparkle',
-};
 
 const OUTCOME_TONES: Record<string, string> = {
   'lo-1': 'blue',
@@ -53,9 +44,6 @@ export default function About() {
               className="outcome-card"
               data-tone={OUTCOME_TONES[outcome.id]}
             >
-              <span className="outcome-icon" aria-hidden="true">
-                <Icon name={OUTCOME_ICONS[outcome.id] ?? 'target'} size={36} />
-              </span>
               <span className="outcome-text">{outcome.text}</span>
             </li>
           ))}
