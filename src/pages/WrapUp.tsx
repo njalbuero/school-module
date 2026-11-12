@@ -312,27 +312,20 @@ export default function WrapUp() {
             You have completed the Wrap-Up and finished the module. Thank you
             for working through the lessons and activities.
           </p>
-          {completed ? (
-            <Link className="references-prompt" to="/references">
-              <span className="references-prompt-body">
-                <span className="references-prompt-title">
-                  There&apos;s another page
-                </span>
-                <span className="references-prompt-text">
-                  Rate the module through Module Feedback, and review the
-                  references used throughout the module.
-                </span>
+          <Link className="references-prompt" to="/references">
+            <span className="references-prompt-body">
+              <span className="references-prompt-title">
+                There&apos;s another page
               </span>
-              <span className="references-prompt-arrow" aria-hidden="true">
-                →
+              <span className="references-prompt-text">
+                Rate the module through Module Feedback, and review the
+                references used throughout the module.
               </span>
-            </Link>
-          ) : (
-            <p className="field-help">
-              Mark the Wrap-Up section complete above to unlock Module Feedback
-              and References.
-            </p>
-          )}
+            </span>
+            <span className="references-prompt-arrow" aria-hidden="true">
+              →
+            </span>
+          </Link>
         </div>
       </section>
 
