@@ -557,14 +557,34 @@ export default function Lesson2() {
               below.
             </p>
           </div>
-          <div className="embed embed-board">
-            <iframe
-              src={PADLET_EMBED_URL}
-              title="Asynchronous discussion board (Padlet)"
-              allow="camera;microphone;geolocation;display-capture;clipboard-write"
-              loading="lazy"
-              frameBorder={0}
-            />
+          <div
+            className="padlet-embed"
+            style={{
+              border: '1px solid rgba(0, 0, 0, 0.1)',
+              borderRadius: '2px',
+              boxSizing: 'border-box',
+              overflow: 'hidden',
+              position: 'relative',
+              width: '100%',
+              background: '#F4F4F4',
+              marginBottom: 'var(--s-4)',
+            }}
+          >
+            <p style={{ padding: 0, margin: 0 }}>
+              <iframe
+                src={PADLET_EMBED_URL}
+                title="Asynchronous discussion board (Padlet)"
+                frameBorder={0}
+                allow="camera;microphone;geolocation;display-capture;clipboard-write"
+                style={{
+                  width: '100%',
+                  height: '608px',
+                  display: 'block',
+                  padding: 0,
+                  margin: 0,
+                }}
+              />
+            </p>
           </div>
           <p className="field-help">
             If the board does not load,{' '}

@@ -54,7 +54,7 @@ export default function About() {
               data-tone={OUTCOME_TONES[outcome.id]}
             >
               <span className="outcome-icon" aria-hidden="true">
-                <Icon name={OUTCOME_ICONS[outcome.id] ?? 'target'} />
+                <Icon name={OUTCOME_ICONS[outcome.id] ?? 'target'} size={36} />
               </span>
               <span className="outcome-text">{outcome.text}</span>
             </li>

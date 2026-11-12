@@ -89,10 +89,10 @@ export const SECTIONS: ModuleSection[] = [
   {
     id: 'references',
     path: '/references',
-    label: 'References',
-    title: 'References',
+    label: 'Module Feedback and References',
+    title: 'Module Feedback and References',
     description:
-      'Sources and further reading used throughout the module.',
+      'Rate the module and review the sources used throughout.',
     tracked: false,
   },
 ];

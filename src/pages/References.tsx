@@ -29,8 +29,8 @@ function readDraft<T>(
 
 export default function References() {
   usePageMeta({
-    title: 'References',
-    description: 'Sources and further reading used throughout the module.',
+    title: 'Module Feedback and References',
+    description: 'Rate the module and review the sources used throughout.',
   });
 
   const { state, completedCount, totalSections, saveDraft } = useProgress();
@@ -73,10 +73,10 @@ export default function References() {
     <div className="page section-page references-page">
       <PageHero
         eyebrow="Final Page"
-        title="References"
+        title="Module Feedback and References"
         icon="book"
         headingId="references-heading"
-        lead="Sources and further reading used throughout this module."
+        lead="Rate the module and review the sources used throughout."
       />
 
       <section className="section" aria-labelledby="completion-heading">
@@ -202,7 +202,9 @@ export default function References() {
 
       <nav className="section-nav" aria-label="Section navigation">
         <div className="section-nav-head">
-          <p className="section-nav-position">Final page · References</p>
+          <p className="section-nav-position">
+            Final page · Module Feedback and References
+          </p>
           <div className="section-nav-head-links">
             <Link to="/">Home</Link>
             <Link to="/module">Module Contents</Link>
