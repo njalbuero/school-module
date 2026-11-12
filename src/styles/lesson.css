@@ -69,6 +69,11 @@
   border-top: 0;
 }
 
+/* When a section has no heading, start its content at the card padding. */
+.lesson-page-reading .lesson-section-inner > .lesson-subsection-first:first-child {
+  margin-top: 0;
+}
+
 .lesson-section-inner > .callout:last-child {
   margin-bottom: 0;
 }

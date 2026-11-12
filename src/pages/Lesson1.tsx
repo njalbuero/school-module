@@ -19,10 +19,9 @@ const CONTENTS = [
     id: 'self-actualization',
     title: 'Education and Self-Actualization',
   },
-  { id: 'guided-activity', title: 'Guided Activity: Think About It' },
   {
     id: 'application-activity',
-    title: 'Application: Education in My Life',
+    title: 'Education in My Life',
   },
 ];
 
@@ -47,7 +46,7 @@ export default function Lesson1() {
         </div>
       </LessonSection>
 
-      <LessonSection id="main-lesson-content" title="Main Lesson Content">
+      <LessonSection id="main-lesson-content">
         <div
           className="lesson-subsection lesson-subsection-first"
           id="understanding-education"
@@ -154,26 +153,8 @@ export default function Lesson1() {
       </LessonSection>
 
       <LessonSection
-        id="guided-activity"
-        title="Guided Activity: Think About It"
-      >
-        <div className="prose">
-          <p>
-            Think of a short situation involving a Filipino student who uses
-            their education to contribute to their family or community.
-          </p>
-        </div>
-        <h3 className="lesson-subheading">Answer the following questions</h3>
-        <ul className="lesson-list">
-          <li>What knowledge or skills did the student develop?</li>
-          <li>How does this demonstrate the functions of education?</li>
-          <li>How might education influence the student&apos;s future?</li>
-        </ul>
-      </LessonSection>
-
-      <LessonSection
         id="application-activity"
-        title="Application: Education in My Life"
+        title="Education in My Life"
       >
         <div className="callout callout-info">
           <p className="callout-title">

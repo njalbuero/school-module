@@ -6,15 +6,20 @@ export function LessonSection({
   children,
 }: {
   id: string;
-  title: string;
+  title?: string;
   children: ReactNode;
 }) {
   return (
-    <section className="section lesson-section" aria-labelledby={id}>
+    <section
+      className="section lesson-section"
+      aria-labelledby={title ? id : undefined}
+    >
       <div className="lesson-section-inner">
-        <h2 id={id} className="section-title">
-          {title}
-        </h2>
+        {title ? (
+          <h2 id={id} className="section-title">
+            {title}
+          </h2>
+        ) : null}
         {children}
       </div>
     </section>

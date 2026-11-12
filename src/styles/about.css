@@ -144,6 +144,12 @@
   color: var(--ink);
 }
 
+/* Justify the project description for even text edges. */
+.project-card .prose p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 /* Responsive */
 
 @media (max-width: 639px) {
