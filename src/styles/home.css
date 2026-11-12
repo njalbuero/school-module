@@ -148,22 +148,6 @@
   color: rgba(255, 255, 255, 0.92);
 }
 
-/* Cards */
-
-.home-card {
-  --card-accent: var(--brand);
-  --card-accent-soft: var(--brand-soft);
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-3);
-  padding: var(--card-padding);
-  border: 1px solid var(--line);
-  border-top: var(--accent-bar) solid var(--card-accent);
-  border-radius: var(--card-radius);
-  background-color: var(--surface);
-  box-shadow: var(--card-shadow);
-}
-
 /* Questions to ponder */
 
 .ponder-panel {

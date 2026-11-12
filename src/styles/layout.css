@@ -150,6 +150,11 @@
   max-width: 48rem;
 }
 
+/* Full-width layout for the learning section pages. */
+.section-page {
+  max-width: 72rem;
+}
+
 /* Footer */
 
 .site-footer {

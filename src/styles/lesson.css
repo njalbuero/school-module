@@ -1,5 +1,39 @@
 /* Lesson reading and activities */
 
+/* Wide lesson layout: main content + sticky "In this lesson" aside */
+.lesson-layout {
+  display: grid;
+  gap: var(--s-6);
+}
+
+.lesson-main {
+  min-width: 0;
+}
+
+.lesson-aside {
+  order: -1;
+  min-width: 0;
+  margin-top: var(--s-12);
+}
+
+.lesson-aside .lesson-contents {
+  margin-top: 0;
+}
+
+@media (min-width: 900px) {
+  .lesson-layout {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: var(--s-8);
+    align-items: start;
+  }
+
+  .lesson-aside {
+    order: 0;
+    position: sticky;
+    top: 5rem;
+  }
+}
+
 .lesson-page .section-title {
   scroll-margin-top: 5rem;
 }
@@ -9,11 +43,12 @@
 }
 
 .lesson-page-reading .lesson-section-inner {
-  padding: var(--s-6);
+  padding: var(--card-padding);
   border: 1px solid var(--line);
-  border-left: 4px solid var(--brand);
-  border-radius: var(--radius);
+  border-left: var(--accent-bar) solid var(--brand);
+  border-radius: var(--card-radius);
   background-color: var(--surface);
+  box-shadow: var(--card-shadow);
 }
 
 .lesson-page-reading .lesson-section-inner > .section-title:first-child {
@@ -117,7 +152,9 @@
 }
 
 .lesson-activity {
-  border-left: 4px solid var(--brand);
+  border-left: var(--accent-bar) solid var(--brand);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
 }
 
 .lesson-activity + .lesson-activity {
@@ -136,11 +173,11 @@
 .lesson-statement {
   margin: var(--s-4) 0;
   padding: var(--s-4);
-  border-left: 4px solid var(--brand);
+  border-left: var(--accent-bar) solid var(--brand);
   border-radius: 0 var(--radius) var(--radius) 0;
   background-color: var(--brand-soft);
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: var(--weight-bold);
 }
 
 .lesson-requirement {

@@ -6,6 +6,7 @@ import {
 import { usePageMeta } from '../hooks/usePageMeta';
 import { AuthorCard } from '../components/content/AuthorCard';
 import { Placeholder } from '../components/content/Placeholder';
+import { PageHero } from '../components/layout/PageHero';
 import { Icon } from '../components/ui/Icon';
 import type { IconName } from '../components/ui/Icon';
 
@@ -31,16 +32,12 @@ export default function About() {
 
   return (
     <div className="page about">
-      <header className="page-hero">
-        <p className="eyebrow">Module Overview</p>
-        <h1 className="page-hero-title" tabIndex={-1} data-page-heading>
-          About this Module
-        </h1>
-        <p className="page-hero-meta">
-          {MODULE.subject} · {MODULE.quarter}
-        </p>
-        <p className="page-hero-lead">{MODULE.about}</p>
-      </header>
+      <PageHero
+        eyebrow="Module Overview"
+        title="About this Module"
+        meta={`${MODULE.subject} · ${MODULE.quarter}`}
+        lead={MODULE.about}
+      />
 
       <section className="section" aria-labelledby="outcomes-heading">
         <h2 id="outcomes-heading" className="section-title">

@@ -8,6 +8,7 @@ import { QuizProgress } from '../components/assessment/QuizProgress';
 import { FeedbackPanel } from '../components/assessment/FeedbackPanel';
 import { NextStepLink } from '../components/layout/NextStepLink';
 import { SectionNav } from '../components/layout/SectionNav';
+import { PageHero } from '../components/layout/PageHero';
 
 export default function PreAssessment() {
   const section = SECTIONS.find((item) => item.id === 'pre-assessment');
@@ -113,25 +114,17 @@ export default function PreAssessment() {
   };
 
   return (
-    <div className="page">
-      <header className="page-header">
-        {pageLabel !== pageTitle ? (
-          <p className="eyebrow">{pageLabel}</p>
-        ) : null}
-        <h1
-          ref={pageHeadingRef}
-          className="page-title"
-          tabIndex={-1}
-          data-page-heading
-        >
-          {pageTitle}
-        </h1>
-        <p className="section-lead">{section?.description}</p>
-      </header>
+    <div className="page section-page">
+      <PageHero
+        eyebrow={pageLabel !== pageTitle ? pageLabel : undefined}
+        title={pageTitle}
+        lead={section?.description}
+        headingRef={pageHeadingRef}
+      />
 
       {finished ? (
         <section className="section" aria-labelledby="results-heading">
-          <div className="card results-card">
+          <div className="feature-card results-card">
             <h2
               ref={resultsHeadingRef}
               id="results-heading"
@@ -232,7 +225,7 @@ export default function PreAssessment() {
             total={PRE_ASSESSMENT_QUESTIONS.length}
           />
 
-          <div className="card question-card">
+          <div className="feature-card question-card">
             <form
               onSubmit={(event) => {
                 event.preventDefault();

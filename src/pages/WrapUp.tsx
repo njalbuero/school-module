@@ -5,6 +5,7 @@ import { LEARNING_OUTCOMES, SECTIONS } from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
 import { SectionNav } from '../components/layout/SectionNav';
+import { PageHero } from '../components/layout/PageHero';
 
 type SelfAssessmentState = Record<string, boolean>;
 
@@ -64,22 +65,18 @@ export default function WrapUp() {
   };
 
   return (
-    <div className="page">
-      <header className="page-header">
-        {pageLabel !== pageTitle ? (
-          <p className="eyebrow">{pageLabel}</p>
-        ) : null}
-        <h1 className="page-title" tabIndex={-1} data-page-heading>
-          {pageTitle}
-        </h1>
-        <p className="section-lead">{section?.description}</p>
-      </header>
+    <div className="page section-page">
+      <PageHero
+        eyebrow={pageLabel !== pageTitle ? pageLabel : undefined}
+        title={pageTitle}
+        lead={section?.description}
+      />
 
       <section className="section" aria-labelledby="takeaways-heading">
         <h2 id="takeaways-heading" className="section-title">
           Key Takeaways
         </h2>
-        <div className="card">
+        <div className="feature-card">
           <p className="section-lead">By the end of this module, you should be able to:</p>
           <ol className="outcome-list">
             {LEARNING_OUTCOMES.map((outcome) => (
@@ -93,7 +90,7 @@ export default function WrapUp() {
         <h2 id="reflection-heading" className="section-title">
           Reflection
         </h2>
-        <div className="card">
+        <div className="feature-card">
           <p className="reflection-prompt">{REFLECTION.prompt}</p>
 
           <h3 className="reflection-subheading">Before you write</h3>
@@ -192,7 +189,7 @@ export default function WrapUp() {
         <h2 id="self-assessment-heading" className="section-title">
           Self-Assessment
         </h2>
-        <div className="card">
+        <div className="feature-card">
           <p className="section-lead">
             Check the statements you feel confident about. This is for your own
             review and is not graded.

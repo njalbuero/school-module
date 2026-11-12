@@ -80,6 +80,13 @@
   color: var(--ink);
 }
 
+.page-hero-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-right: var(--s-2);
+  color: var(--brand);
+}
+
 .page-hero-meta {
   margin: 0;
   font-weight: var(--weight-medium);
@@ -265,18 +272,22 @@
 
 /* Progress card (used on Home and Module) */
 
+.feature-card,
 .progress-card {
   --card-accent: var(--brand);
   --card-accent-soft: var(--brand-soft);
   display: flex;
   flex-direction: column;
-  gap: var(--s-3);
   padding: var(--card-padding);
   border: 1px solid var(--line);
   border-top: var(--accent-bar) solid var(--card-accent);
   border-radius: var(--card-radius);
   background-color: var(--surface);
   box-shadow: var(--card-shadow);
+}
+
+.progress-card {
+  gap: var(--s-3);
 }
 
 .progress-count {
@@ -1346,5 +1357,23 @@
 
   .option {
     padding: var(--s-3);
+  }
+}
+
+/* Full-width section layouts */
+
+.references-columns {
+  display: grid;
+  gap: var(--s-8);
+}
+
+@media (min-width: 900px) {
+  .references-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .section-page .option-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

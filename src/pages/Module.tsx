@@ -4,6 +4,7 @@ import type { SectionId } from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
 import { ProgressCard } from '../components/layout/ProgressCard';
+import { PageHero } from '../components/layout/PageHero';
 import { Icon } from '../components/ui/Icon';
 import type { IconName } from '../components/ui/Icon';
 
@@ -33,20 +34,12 @@ export default function Module() {
 
   return (
     <div className="page module">
-      <header className="page-hero">
-        <p className="eyebrow">Module Contents</p>
-        <h1 className="page-hero-title" tabIndex={-1} data-page-heading>
-          Module
-        </h1>
-        <p className="page-hero-meta">
-          {SECTIONS.length} sections · {PROGRESS_SECTIONS.length} count toward
-          your progress
-        </p>
-        <p className="page-hero-lead">
-          Every section is open, so you can work through them in any order. Your
-          progress and drafts are saved in this browser.
-        </p>
-      </header>
+      <PageHero
+        eyebrow="Module Contents"
+        title="Module"
+        meta={`${SECTIONS.length} sections · ${PROGRESS_SECTIONS.length} count toward your progress`}
+        lead="Every section is open, so you can work through them in any order. Your progress and drafts are saved in this browser."
+      />
 
       <section className="section" aria-labelledby="progress-heading">
         <h2 id="progress-heading" className="section-title">

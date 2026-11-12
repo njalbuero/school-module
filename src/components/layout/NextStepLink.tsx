@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Icon } from '../ui/Icon';
 
 /**
  * Prominent, compact call to action used for module next steps.
@@ -16,9 +17,7 @@ export function NextStepLink({
     <div className="next-step">
       <Link className="next-step-link" to={to}>
         <span>{label}</span>
-        <span className="next-step-arrow" aria-hidden="true">
-          →
-        </span>
+        <Icon name="arrow-right" size={20} />
       </Link>
     </div>
   );

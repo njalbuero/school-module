@@ -5,6 +5,7 @@ import { REFERENCES } from '../content/references';
 import { FEEDBACK_SURVEY } from '../content/reflection';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
+import { PageHero } from '../components/layout/PageHero';
 
 type SurveyState = Record<string, string>;
 
@@ -24,26 +25,6 @@ function readDraft<T>(
   } catch {
     return fallback;
   }
-}
-
-function ReferencesIcon() {
-  return (
-    <svg
-      className="references-icon"
-      aria-hidden="true"
-      width="40"
-      height="40"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M12 6.5C10.5 5.2 8.6 4.5 6.5 4.5H4v14h2.5c2.1 0 4 .7 5.5 2 1.5-1.3 3.4-2 5.5-2H20v-14h-2.5c-2.1 0-4 .7-5.5 2Z" />
-      <path d="M12 6.5v14" />
-    </svg>
-  );
 }
 
 export default function References() {
@@ -89,22 +70,14 @@ export default function References() {
   };
 
   return (
-    <div className="page references-page">
-      <header className="page-header">
-        <p className="eyebrow">Final Page</p>
-        <h1
-          id="references-heading"
-          className="page-title references-title"
-          tabIndex={-1}
-          data-page-heading
-        >
-          <ReferencesIcon />
-          References
-        </h1>
-        <p className="section-lead">
-          Sources and further reading used throughout this module.
-        </p>
-      </header>
+    <div className="page section-page references-page">
+      <PageHero
+        eyebrow="Final Page"
+        title="References"
+        icon="book"
+        headingId="references-heading"
+        lead="Sources and further reading used throughout this module."
+      />
 
       <section className="section" aria-labelledby="completion-heading">
         <h2 id="completion-heading" className="section-title">
@@ -132,8 +105,9 @@ export default function References() {
         )}
       </section>
 
+      <div className="references-columns">
       <section className="section" aria-labelledby="references-heading">
-        <div className="card references">
+        <div className="feature-card references">
           <h2 className="references-group-title">Book</h2>
           <ul className="reference-list">
             {REFERENCES.books.map((reference) => (
@@ -176,7 +150,7 @@ export default function References() {
         <h2 id="feedback-heading" className="section-title">
           Module Feedback
         </h2>
-        <div className="card">
+        <div className="feature-card">
           {surveySubmitted ? (
             <div role="status">
               <p className="submitted-title">
@@ -224,6 +198,7 @@ export default function References() {
           )}
         </div>
       </section>
+      </div>
 
       <nav className="section-nav" aria-label="Section navigation">
         <div className="section-nav-head">

@@ -53,6 +53,7 @@ Soft variants are for tinted backgrounds; strong variants for text/icons on them
 ## 4. Component patterns
 
 ### Feature card (default for content blocks)
+- Implemented as `.feature-card` (general) / `.progress-card` (progress).
 - Surface `--surface`, `1px solid var(--line)` border, `--card-radius`,
   `--card-padding`, `--card-shadow`.
 - Optional **accent top bar**: `var(--accent-bar)` solid `var(--card-accent)`,
@@ -98,7 +99,8 @@ Soft variants are for tinted backgrounds; strong variants for text/icons on them
   text, gold primary CTA, translucent chips.
 - **Secondary pages (light)**: shared `.page-hero` — tinted gradient band,
   `--line` border, `--radius-lg`, gradient accent bar (`--accent` → `--brand`),
-  ink text. Used on About and Module.
+  ink text. Used on About, Module, and all section pages via the `PageHero`
+  component.
 
 ## 5. Conventions
 
@@ -120,3 +122,4 @@ Soft variants are for tinted backgrounds; strong variants for text/icons on them
 - `src/styles/home.css` / `about.css` / `module.css` — page-specific composition.
 - `src/components/ui/Icon.tsx` — inline icon set.
 - `src/components/layout/ProgressCard.tsx` — shared progress panel.
+- `src/components/layout/PageHero.tsx` — shared light page hero.

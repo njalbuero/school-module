@@ -55,7 +55,7 @@ export default function Home() {
         <h2 id="ponder-heading" className="section-title">
           Questions to Ponder
         </h2>
-        <div className="home-card ponder-panel">
+        <div className="feature-card ponder-panel">
           <div className="card-head">
             <span className="card-icon" aria-hidden="true">
               <Icon name="lightbulb" />
