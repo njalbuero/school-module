@@ -157,7 +157,7 @@ export const AUTHOR = {
   name: 'Andrea Gabrielle Tenorio',
   photo: '/author-andrea-tenorio.jpg' as string | null,
   photoAlt: 'Andrea Gabrielle Tenorio' as string | null,
-  bio: 'Hi! I am Andrea and I am a pre-service teacher. I am interested in developing learning modules. Right now, I am conducting a study on how educators use AI in their work.' as string | null,
+  bio: "Hi! I'm Andrea. I enjoy traveling, exploring new places, and experiencing different cultures. I'm also interested in learning more about education, technology, and how these can create meaningful learning experiences." as string | null,
   education: [
     {
       programme: 'Master of Arts in Educational Technology and Online Learning',

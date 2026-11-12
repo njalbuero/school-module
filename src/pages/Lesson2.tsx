@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { LessonPage } from '../components/content/LessonPage';
 import { LessonSection } from '../components/content/LessonSection';
+import { PEER_RESPONSE_GROUPS } from '../content/peerResponses';
+import { Icon } from '../components/ui/Icon';
 
 const PADLET_EMBED_URL = 'https://padlet.com/embed/s025bys62pbspa8reg2u';
 const PADLET_URL = 'https://padlet.com/s025bys62pbspa8reg2u';
@@ -9,6 +12,122 @@ const OBJECTIVES = [
   'Identify factors that contribute to unequal access to education.',
   'Analyze educational inequalities in the Philippine context.',
   'Explain how education can contribute to a more equitable society.',
+];
+
+const REFLECTION_RUBRIC = [
+  {
+    criterion: 'Initial Perspective and Reflection',
+    levels: [
+      {
+        score: 4,
+        label: 'Exemplary',
+        description:
+          'Clearly explains their initial perspective and what they learned or reconsidered.',
+      },
+      {
+        score: 3,
+        label: 'Proficient',
+        description: 'Explains their initial perspective and what they learned.',
+      },
+      {
+        score: 2,
+        label: 'Developing',
+        description:
+          'Provides a limited explanation of their initial perspective or learning.',
+      },
+      {
+        score: 1,
+        label: 'Beginning',
+        description:
+          'Does not clearly explain their initial perspective or learning.',
+      },
+    ],
+  },
+  {
+    criterion: "Engagement with Classmates' Perspectives",
+    levels: [
+      {
+        score: 4,
+        label: 'Exemplary',
+        description:
+          "Discusses a specific classmate's idea and explains how it influenced their thinking.",
+      },
+      {
+        score: 3,
+        label: 'Proficient',
+        description: "Discusses a classmate's idea and explains its influence.",
+      },
+      {
+        score: 2,
+        label: 'Developing',
+        description:
+          "Mentions a classmate's idea but provides little explanation.",
+      },
+      {
+        score: 1,
+        label: 'Beginning',
+        description:
+          "Does not meaningfully refer to a classmate's perspective.",
+      },
+    ],
+  },
+  {
+    criterion: 'Connection to Lesson Concepts',
+    levels: [
+      {
+        score: 4,
+        label: 'Exemplary',
+        description:
+          'Clearly connects the reflection to the functions and importance of education.',
+      },
+      {
+        score: 3,
+        label: 'Proficient',
+        description:
+          'Connects the reflection to relevant ideas about education.',
+      },
+      {
+        score: 2,
+        label: 'Developing',
+        description:
+          'Mentions ideas about education without clearly explaining the connection.',
+      },
+      {
+        score: 1,
+        label: 'Beginning',
+        description: 'Does not connect the reflection to lesson concepts.',
+      },
+    ],
+  },
+  {
+    criterion: 'Organization and Completeness',
+    levels: [
+      {
+        score: 4,
+        label: 'Exemplary',
+        description:
+          'Well-organized, clear, and addresses all guide questions within the word limit.',
+      },
+      {
+        score: 3,
+        label: 'Proficient',
+        description:
+          'Generally clear and organized; addresses most guide questions.',
+      },
+      {
+        score: 2,
+        label: 'Developing',
+        description:
+          'Some ideas are unclear or several guide questions are not addressed.',
+      },
+      {
+        score: 1,
+        label: 'Beginning',
+        description:
+          'Difficult to understand and addresses few guide questions.',
+      },
+    ],
+  },
 ];
 
 const CONTENTS = [
@@ -28,11 +147,14 @@ const CONTENTS = [
   },
   { id: 'asynchronous-discussion', title: 'Asynchronous Discussion' },
   { id: 'discussion-prepare', title: 'Discussion: Prepare' },
+  { id: 'peer-response-assignments', title: 'Peer Response Assignments' },
   { id: 'discussion-interact', title: 'Discussion: Interact' },
   { id: 'discussion-consolidate', title: 'Discussion: Consolidate' },
 ];
 
 export default function Lesson2() {
+  const [openRubric, setOpenRubric] = useState<number | null>(0);
+
   return (
     <LessonPage
       sectionId="lesson-2"
@@ -317,6 +439,53 @@ export default function Lesson2() {
           </div>
         </div>
 
+        <div className="lesson-subsection" id="peer-response-assignments">
+          <h3 className="lesson-subheading">Peer Response Assignments</h3>
+          <div className="prose">
+            <p>
+              Find your student number in the groups below. Open your group to
+              see the classmate paired with you. The group number only helps you
+              locate your name and assignment — it does not change the activity.
+            </p>
+          </div>
+
+          <div className="callout callout-info">
+            <p className="callout-title">Name your Padlet post</p>
+            <p>
+              Use your full name as the author and include your student number,
+              in this format: <strong>SN1_Abad, Jose</strong>. This helps your
+              assigned partner and your teacher find your post.
+            </p>
+          </div>
+
+          <div className="peer-groups">
+            {PEER_RESPONSE_GROUPS.map((group) => (
+              <details className="peer-group" key={group.group}>
+                <summary>
+                  Group {group.group} · {group.range}
+                </summary>
+                <ul className="peer-pairs">
+                  {group.pairs.map((pair) => (
+                    <li className="peer-pair" key={pair.a.sn}>
+                      <span className="peer-student">
+                        <span className="peer-sn">SN{pair.a.sn}</span>
+                        {pair.a.name}
+                      </span>
+                      <span className="peer-arrow" aria-hidden="true">
+                        <Icon name="swap" size={18} />
+                      </span>
+                      <span className="peer-student">
+                        <span className="peer-sn">SN{pair.b.sn}</span>
+                        {pair.b.name}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ))}
+          </div>
+        </div>
+
         <div className="lesson-subsection" id="discussion-interact">
           <h3 className="lesson-subheading">
             2. Interact — Compare Perspectives
@@ -324,12 +493,14 @@ export default function Lesson2() {
           <div className="prose">
             <p>
               After posting your initial response, respond to the classmate
-              assigned by your teacher. This is required.
+              paired with you in the Peer Response Assignments section. This is
+              required.
             </p>
           </div>
           <ul className="lesson-list">
             <li>
-              <strong>Required:</strong> one classmate assigned by your teacher.
+              <strong>Required:</strong> the classmate paired with you in Peer
+              Response Assignments.
             </li>
             <li>
               <strong>Optional:</strong> one more classmate of your choice.
@@ -433,29 +604,149 @@ export default function Lesson2() {
           <h3 className="lesson-subheading">3. Consolidate — Reflect</h3>
           <div className="prose">
             <p>
-              After completing your required response (and any optional
-              response), revisit your original perspective. Write a 150–200-word
-              reflection that answers:
+              After completing your required peer responses, revisit your
+              original perspective on the social issue you discussed. Write a
+              150–200-word reflection explaining how your understanding
+              developed after reading and engaging with your classmates&apos;
+              perspectives.
             </p>
           </div>
+
+          <h4 className="lesson-minor-heading">Guide questions</h4>
           <ul className="lesson-list">
-            <li>What was your initial perspective on the issue?</li>
+            <li>What was your initial perspective on the social issue you chose?</li>
             <li>
-              Which classmate&apos;s perspective helped you reconsider, extend,
-              or clarify your thinking? Why?
+              Which classmate&apos;s perspective helped you reconsider, expand, or
+              clarify your understanding? Explain why.
             </li>
-            <li>What similarities and differences did you notice?</li>
             <li>
-              How has your understanding of the functions and importance of
-              education changed or become clearer?
+              What similarities and differences did you notice between your
+              perspective and those of your classmates?
             </li>
-            <li>What question about the issue do you still have?</li>
+            <li>
+              How did the discussion deepen your understanding of the functions
+              and importance of education in addressing social issues?
+            </li>
+            <li>
+              What question or concern about the issue would you still like to
+              explore?
+            </li>
           </ul>
-          <div className="prose">
-            <p>
-              Your reflection should show how engaging with different
-              perspectives contributed to your understanding.
-            </p>
+
+          <h4 className="lesson-minor-heading">Reflection Rubric</h4>
+          <p className="section-lead">
+            Total: 16 points (4 criteria × 4 points each)
+          </p>
+
+          <div className="rubric-table-wrap rubric-desktop">
+            <table className="sequence-table rubric-table">
+              <caption className="sr-only">Reflection rubric</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Criterion</th>
+                  <th scope="col">Exemplary (4)</th>
+                  <th scope="col">Proficient (3)</th>
+                  <th scope="col">Developing (2)</th>
+                  <th scope="col">Beginning (1)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {REFLECTION_RUBRIC.map((item, index) => (
+                  <tr key={item.criterion}>
+                    <th scope="row">
+                      <span className="rubric-criterion-name">
+                        {index + 1}. {item.criterion}
+                      </span>
+                    </th>
+                    {item.levels.map((level) => (
+                      <td
+                        key={level.score}
+                        data-label={`${level.label} (${level.score})`}
+                      >
+                        {level.description}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="rubric-accordion rubric-mobile">
+            {REFLECTION_RUBRIC.map((item, index) => {
+              const open = openRubric === index;
+              const panelId = `rubric-panel-${index}`;
+              const triggerId = `rubric-trigger-${index}`;
+
+              return (
+                <div
+                  className={`rubric-acc-item${open ? ' is-open' : ''}`}
+                  key={item.criterion}
+                >
+                  <button
+                    type="button"
+                    id={triggerId}
+                    className="rubric-acc-trigger"
+                    aria-expanded={open}
+                    aria-controls={panelId}
+                    onClick={() => setOpenRubric(open ? null : index)}
+                  >
+                    <span className="rubric-acc-heading">
+                      <span className="rubric-acc-number">{index + 1}</span>
+                      <span className="rubric-acc-title">{item.criterion}</span>
+                    </span>
+                    <span className="rubric-acc-meta">
+                      <span className="rubric-acc-points">4 pts</span>
+                      <span className="rubric-acc-chevron" aria-hidden="true">
+                        <Icon name="chevron-down" size={18} />
+                      </span>
+                    </span>
+                  </button>
+                  <div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={triggerId}
+                    className="rubric-acc-panel"
+                    hidden={!open}
+                  >
+                    <ul className="rubric-acc-levels">
+                      {item.levels.map((level) => (
+                        <li className="rubric-acc-level" key={level.score}>
+                          <span className="rubric-acc-score">{level.score}</span>
+                          <span className="rubric-acc-level-body">
+                            <span className="rubric-acc-level-label">
+                              {level.label}
+                            </span>
+                            <span className="rubric-acc-level-desc">
+                              {level.description}
+                            </span>
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <p className="field-help">
+            Reminder: Your perspective does not have to change completely. A
+            meaningful reflection may also show how the discussion strengthened,
+            clarified, or expanded your original understanding.
+          </p>
+
+          <h4 className="lesson-minor-heading">Submit your reflection</h4>
+          <div className="embed embed-form">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLScKKdoE1vQUu7XePJXpWqfyMhgjC5ri7S3MRSmQwrC-J6iSvQ/viewform?embedded=true"
+              title="Reflection form"
+              loading="lazy"
+              frameBorder={0}
+              marginHeight={0}
+              marginWidth={0}
+            >
+              Loading…
+            </iframe>
           </div>
         </div>
       </LessonSection>

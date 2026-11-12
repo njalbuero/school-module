@@ -15,7 +15,9 @@ export type IconName =
   | 'target'
   | 'graduation-cap'
   | 'info'
-  | 'calendar';
+  | 'calendar'
+  | 'swap'
+  | 'chevron-down';
 
 type IconProps = {
   name: IconName;
@@ -120,6 +122,19 @@ const PATHS: Record<IconName, ReactNode> = {
       <path d="M8 2v4M16 2v4" />
       <rect x="3" y="4" width="18" height="18" rx="2" />
       <path d="M3 10h18" />
+    </>
+  ),
+  swap: (
+    <>
+      <path d="M4 8h13" />
+      <path d="M14 5l3 3-3 3" />
+      <path d="M20 16H7" />
+      <path d="M10 13l-3 3 3 3" />
+    </>
+  ),
+  'chevron-down': (
+    <>
+      <path d="M6 9l6 6 6-6" />
     </>
   ),
 };

@@ -215,3 +215,217 @@
     padding: var(--s-3);
   }
 }
+
+/* Peer response assignments */
+
+.peer-groups {
+  display: grid;
+  margin-top: var(--s-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.peer-group {
+  padding: var(--s-3) 0;
+  border-top: 1px solid var(--line);
+}
+
+.peer-group > summary {
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.peer-group > summary:hover {
+  color: var(--brand-dark);
+}
+
+.peer-pairs {
+  display: grid;
+  gap: 0;
+  margin: var(--s-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.peer-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-2) 0;
+  border-top: 1px solid var(--line);
+}
+
+.peer-pair:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.peer-pair:last-child {
+  padding-bottom: 0;
+}
+
+.peer-student {
+  font-weight: var(--weight-medium);
+  color: var(--ink);
+}
+
+.peer-sn {
+  margin-right: var(--s-2);
+  font-weight: var(--weight-bold);
+  color: var(--brand);
+}
+
+.peer-arrow {
+  display: inline-flex;
+  color: var(--ink-muted);
+}
+
+@media (max-width: 639px) {
+  .peer-pair {
+    gap: var(--s-2);
+  }
+
+  .peer-student {
+    font-size: var(--text-small);
+  }
+}
+
+/* Reflection rubric: accordion on mobile, table on desktop */
+
+.rubric-mobile {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.rubric-desktop {
+  display: none;
+}
+
+.rubric-acc-item {
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background-color: var(--surface);
+  overflow: hidden;
+}
+
+.rubric-acc-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--s-3) var(--s-4);
+  border: 0;
+  background: none;
+  text-align: left;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.rubric-acc-trigger:hover {
+  background-color: var(--surface-alt);
+}
+
+.rubric-acc-heading {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  min-width: 0;
+}
+
+.rubric-acc-number {
+  flex: none;
+  font-weight: var(--weight-bold);
+  color: var(--brand);
+}
+
+.rubric-acc-title {
+  font-weight: var(--weight-semibold);
+}
+
+.rubric-acc-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex: none;
+  color: var(--ink-muted);
+}
+
+.rubric-acc-points {
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+}
+
+.rubric-acc-chevron {
+  display: inline-flex;
+  transition: transform 150ms ease;
+}
+
+.rubric-acc-item.is-open .rubric-acc-chevron {
+  transform: rotate(180deg);
+}
+
+.rubric-acc-panel {
+  padding: 0 var(--s-4) var(--s-3);
+}
+
+.rubric-acc-levels {
+  display: grid;
+  gap: var(--s-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rubric-acc-level {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--s-3);
+  align-items: flex-start;
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--line);
+}
+
+.rubric-acc-level:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.rubric-acc-score {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background-color: var(--brand-soft);
+  color: var(--brand);
+  font-size: var(--text-small);
+  font-weight: var(--weight-bold);
+}
+
+.rubric-acc-level-body {
+  display: grid;
+  gap: 1px;
+}
+
+.rubric-acc-level-label {
+  font-weight: var(--weight-semibold);
+}
+
+.rubric-acc-level-desc {
+  font-size: var(--text-small);
+  color: var(--ink-muted);
+}
+
+@media (min-width: 900px) {
+  .rubric-desktop {
+    display: block;
+  }
+
+  .rubric-mobile {
+    display: none;
+  }
+}
