@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import { ProgressProvider } from './context/ProgressContext';
 import { router } from './router';
+import '@fontsource-variable/inter';
 import './index.css';
 
 const rootElement = document.getElementById('root');

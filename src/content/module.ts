@@ -33,12 +33,6 @@ export type EducationEntry = {
   year?: string;
 };
 
-export type LearningStage = {
-  step: number;
-  name: string;
-  description: string;
-};
-
 export const MODULE = {
   subject: 'Understanding Culture, Society, and Politics',
   quarter: 'Quarter 2 · Self-Learning Module',
@@ -113,18 +107,14 @@ export const SECTIONS: ModuleSection[] = [
   },
 ];
 
-export type ModuleFact = {
-  id: 'time' | 'lessons' | 'sections' | 'pace';
-  label: string;
-  value: string;
-};
+const LESSON_COUNT = SECTIONS.filter((section) =>
+  section.id.startsWith('lesson-'),
+).length;
 
-/** Quick facts shown on the Home hero and stat strip. */
-export const MODULE_FACTS: ModuleFact[] = [
-  { id: 'time', label: 'Time to finish', value: '3–6 hours' },
-  { id: 'lessons', label: 'Lessons', value: '3' },
-  { id: 'sections', label: 'Sections', value: String(SECTIONS.length) },
-  { id: 'pace', label: 'Pace', value: 'Self-paced' },
+/** Quick facts shown as pills on the Home hero. */
+export const MODULE_FACTS: string[] = [
+  `${LESSON_COUNT} lessons`,
+  'Self-paced',
 ];
 
 /** Reflection prompts shown on the Home page. */
@@ -166,33 +156,6 @@ export const LEARNING_OUTCOMES: LearningOutcome[] = [
   {
     id: 'lo-4',
     text: 'Create an evidence-based reflection explaining how education can affect or address a particular social issue in Philippine society.',
-  },
-];
-
-export const LEARNING_SEQUENCE: LearningStage[] = [
-  {
-    step: 1,
-    name: 'What I Know',
-    description:
-      'Check what you already know about education and complete a short pre-assessment.',
-  },
-  {
-    step: 2,
-    name: 'Learn',
-    description:
-      'Read the lesson content and connect concepts to Philippine society.',
-  },
-  {
-    step: 3,
-    name: 'Compare and Connect',
-    description:
-      'Compare different perspectives on education and connect them to a real social issue in Philippine society.',
-  },
-  {
-    step: 4,
-    name: 'Reflect',
-    description:
-      'Review the lessons and complete the wrap-up reflection.',
   },
 ];
 

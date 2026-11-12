@@ -71,9 +71,8 @@
 
 .home-hero-title {
   margin: 0 0 var(--s-4);
-  font-family: var(--font-serif);
   font-size: clamp(1.9rem, 5.5vw, 3rem);
-  font-weight: 700;
+  font-weight: var(--weight-bold);
   line-height: 1.12;
   letter-spacing: -0.01em;
   color: #ffffff;
@@ -149,148 +148,90 @@
   color: rgba(255, 255, 255, 0.92);
 }
 
-/* At-a-glance stats */
+/* Cards */
 
-.stat-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: var(--s-3);
-  margin: var(--s-6) 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.stat-card {
+.home-card {
+  --card-accent: var(--brand);
+  --card-accent-soft: var(--brand-soft);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: var(--s-5);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background-color: var(--surface);
-  box-shadow: var(--shadow-sm);
-}
-
-.stat-icon {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  margin-bottom: var(--s-3);
-  border-radius: 12px;
-  background-color: var(--brand-soft);
-  color: var(--brand);
-}
-
-.stat-card[data-tone='green'] .stat-icon {
-  background-color: var(--green-soft);
-  color: var(--green);
-}
-
-.stat-card[data-tone='amber'] .stat-icon {
-  background-color: var(--amber-soft);
-  color: var(--amber);
-}
-
-.stat-card[data-tone='violet'] .stat-icon {
-  background-color: var(--violet-soft);
-  color: var(--violet);
-}
-
-.stat-value {
-  font-size: 1.5rem;
-  font-weight: 800;
-  line-height: 1.1;
-  color: var(--ink);
-}
-
-.stat-label {
-  margin-top: 2px;
-  font-size: var(--text-small);
-  color: var(--ink-muted);
-}
-
-/* Progress */
-
-.progress-panel {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--s-5) var(--s-8);
+  gap: var(--s-3);
   padding: var(--s-6);
   border: 1px solid var(--line);
+  border-top: 4px solid var(--card-accent);
   border-radius: var(--radius-lg);
   background-color: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 
-.progress-count {
+.card-head {
   display: flex;
-  align-items: baseline;
-  gap: var(--s-2);
-}
-
-.progress-count strong {
-  font-size: 3rem;
-  font-weight: 800;
-  line-height: 1;
-  color: var(--brand-dark);
-}
-
-.progress-count span {
-  font-weight: 600;
-  color: var(--ink-muted);
-}
-
-.progress-detail {
-  flex: 1 1 18rem;
-  min-width: 0;
-}
-
-.progress-message {
-  margin: var(--s-3) 0 0;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.progress-link {
-  display: inline-flex;
   align-items: center;
-  gap: var(--s-1);
-  margin-top: var(--s-3);
-  font-weight: 700;
-}
-
-/* Questions to ponder */
-
-.ponder-panel {
-  padding: var(--s-6);
-  border: 1px solid #f1d9a0;
-  border-radius: var(--radius-lg);
-  background-color: var(--accent-soft);
-}
-
-.ponder-head {
-  display: flex;
-  align-items: flex-start;
   gap: var(--s-4);
-  margin-bottom: var(--s-5);
 }
 
-.ponder-icon {
+.card-icon {
   display: grid;
   place-items: center;
   flex: none;
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background-color: #ffffff;
-  color: var(--accent-strong);
+  background-color: var(--card-accent-soft);
+  color: var(--card-accent);
+}
+
+/* Progress */
+
+.progress-panel {
+  --card-accent: var(--brand);
+  --card-accent-soft: var(--brand-soft);
+}
+
+.progress-count {
+  margin: 0;
+  font-weight: var(--weight-medium);
+  color: var(--ink-muted);
+}
+
+.progress-count strong {
+  margin-right: 2px;
+  font-size: 1.5rem;
+  font-weight: var(--weight-bold);
+  color: var(--ink);
+}
+
+.progress-percent {
+  margin-left: auto;
+  font-weight: var(--weight-bold);
+  color: var(--card-accent);
+}
+
+.progress-message {
+  margin: 0;
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+}
+
+.progress-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  align-self: flex-start;
+  font-weight: var(--weight-bold);
+}
+
+/* Questions to ponder */
+
+.ponder-panel {
+  --card-accent: var(--accent-strong);
+  --card-accent-soft: var(--accent-soft);
+  gap: var(--s-4);
 }
 
 .ponder-lead {
   margin: 0;
-  color: var(--accent-ink);
+  color: var(--ink);
 }
 
 .ponder-list {
@@ -305,7 +246,7 @@
   display: flex;
   align-items: flex-start;
   gap: var(--s-3);
-  font-weight: 500;
+  font-weight: var(--weight-regular);
   color: var(--ink);
 }
 
@@ -316,158 +257,10 @@
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  background-color: #ffffff;
-  color: var(--accent-strong);
+  background-color: var(--card-accent-soft);
+  color: var(--card-accent);
   font-size: var(--text-small);
-  font-weight: 800;
-}
-
-/* How the module works */
-
-.how-list {
-  display: grid;
-  gap: var(--s-3);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: how;
-}
-
-.how-step {
-  --accent: var(--brand);
-  --accent-soft: var(--brand-soft);
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-4);
-  padding: var(--s-5);
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--accent);
-  border-radius: var(--radius);
-  background-color: var(--surface);
-  box-shadow: var(--shadow-sm);
-}
-
-.how-step[data-accent='2'] {
-  --accent: var(--green);
-  --accent-soft: var(--green-soft);
-}
-
-.how-step[data-accent='3'] {
-  --accent: var(--amber);
-  --accent-soft: var(--amber-soft);
-}
-
-.how-step[data-accent='4'] {
-  --accent: var(--violet);
-  --accent-soft: var(--violet-soft);
-}
-
-.how-step-badge {
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background-color: var(--accent-soft);
-  color: var(--accent);
-}
-
-.how-step-number {
-  position: absolute;
-  top: var(--s-3);
-  right: var(--s-4);
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1;
-  color: var(--accent-soft);
-  user-select: none;
-}
-
-.how-step-body {
-  display: grid;
-  gap: 2px;
-  padding-right: var(--s-6);
-}
-
-.how-step-name {
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.how-step-desc {
-  color: var(--ink-muted);
-}
-
-/* Section preview */
-
-.preview-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: var(--s-3);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.preview-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-1);
-  height: 100%;
-  padding: var(--s-5);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background-color: var(--surface);
-  color: var(--ink);
-  text-decoration: none;
-  box-shadow: var(--shadow-sm);
-  transition:
-    border-color 120ms ease,
-    transform 120ms ease;
-}
-
-.preview-card:hover {
-  border-color: var(--brand);
-  transform: translateY(-2px);
-}
-
-.preview-icon {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  margin-bottom: var(--s-2);
-  border-radius: 10px;
-  background-color: var(--brand-soft);
-  color: var(--brand);
-}
-
-.preview-label {
-  font-size: var(--text-label);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--brand);
-}
-
-.preview-title {
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-.preview-arrow {
-  position: absolute;
-  top: var(--s-5);
-  right: var(--s-5);
-  color: var(--ink-muted);
-  transition: color 120ms ease;
-}
-
-.preview-card:hover .preview-arrow {
-  color: var(--brand);
+  font-weight: var(--weight-semibold);
 }
 
 /* Responsive */
@@ -478,10 +271,6 @@
   }
 
   .progress-panel {
-    gap: var(--s-4);
-  }
-
-  .progress-count strong {
-    font-size: 2.5rem;
+    padding: var(--s-5);
   }
 }

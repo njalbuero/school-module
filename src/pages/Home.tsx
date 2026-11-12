@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import { MODULE, MODULE_FACTS, PONDER_QUESTIONS } from '../content/module';
+import {
+  MODULE,
+  MODULE_FACTS,
+  PONDER_QUESTIONS,
+  PROGRESS_SECTIONS,
+} from '../content/module';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
 import { ProgressBar } from '../components/layout/ProgressBar';
-import { StatStrip } from '../components/home/StatStrip';
-import { HowItWorks } from '../components/home/HowItWorks';
-import { SectionPreview } from '../components/home/SectionPreview';
 import { Icon } from '../components/ui/Icon';
 
 function progressMessage(completed: number, total: number) {
@@ -16,7 +18,7 @@ function progressMessage(completed: number, total: number) {
     return 'You did it — the module is complete. 🎉';
   }
   if (completed === 0) {
-    return "You're just getting started. Jump in below.";
+    return "You're just getting started.";
   }
   if (completed / total < 0.5) {
     return 'Nice progress — keep the momentum going.';
@@ -27,7 +29,18 @@ function progressMessage(completed: number, total: number) {
 export default function Home() {
   usePageMeta({ title: 'Home', description: MODULE.about });
 
-  const { completedCount, totalSections } = useProgress();
+  const { completedCount, totalSections, isComplete } = useProgress();
+  const percent =
+    totalSections === 0 ? 0 : Math.round((completedCount / totalSections) * 100);
+  const nextSection = PROGRESS_SECTIONS.find(
+    (section) => !isComplete(section.id),
+  );
+  const isDone = totalSections > 0 && completedCount >= totalSections;
+  const cta = isDone
+    ? { to: '/module', label: 'Review the module' }
+    : completedCount > 0 && nextSection
+      ? { to: nextSection.path, label: `Continue: ${nextSection.label}` }
+      : null;
 
   return (
     <div className="page home">
@@ -59,39 +72,43 @@ export default function Home() {
 
           <ul className="hero-meta">
             {MODULE_FACTS.map((fact) => (
-              <li key={fact.id} className="hero-chip">
-                {fact.value}
+              <li key={fact} className="hero-chip">
+                {fact}
               </li>
             ))}
           </ul>
         </div>
       </header>
 
-      <StatStrip />
-
       <section className="section" aria-labelledby="progress-heading">
         <h2 id="progress-heading" className="section-title">
           Your Progress
         </h2>
-        <div className="progress-panel">
-          <div className="progress-count">
-            <strong>{completedCount}</strong>
-            <span>of {totalSections} sections</span>
-          </div>
-          <div className="progress-detail">
-            <ProgressBar
-              completed={completedCount}
-              total={totalSections}
-              showLabel={false}
-            />
-            <p className="progress-message">
-              {progressMessage(completedCount, totalSections)}
+        <div className="home-card progress-panel">
+          <div className="card-head">
+            <span className="card-icon" aria-hidden="true">
+              <Icon name="target" />
+            </span>
+            <p className="progress-count">
+              <strong>{completedCount}</strong> of {totalSections} sections
+              complete
             </p>
-            <Link className="progress-link" to="/module">
-              View all sections
+            <span className="progress-percent">{percent}%</span>
+          </div>
+          <ProgressBar
+            completed={completedCount}
+            total={totalSections}
+            showLabel={false}
+          />
+          <p className="progress-message">
+            {progressMessage(completedCount, totalSections)}
+          </p>
+          {cta ? (
+            <Link className="progress-cta" to={cta.to}>
+              {cta.label}
               <Icon name="arrow-right" size={16} />
             </Link>
-          </div>
+          ) : null}
         </div>
       </section>
 
@@ -99,9 +116,9 @@ export default function Home() {
         <h2 id="ponder-heading" className="section-title">
           Questions to Ponder
         </h2>
-        <div className="ponder-panel">
-          <div className="ponder-head">
-            <span className="ponder-icon" aria-hidden="true">
+        <div className="home-card ponder-panel">
+          <div className="card-head">
+            <span className="card-icon" aria-hidden="true">
               <Icon name="lightbulb" />
             </span>
             <p className="ponder-lead">
@@ -120,26 +137,6 @@ export default function Home() {
             ))}
           </ol>
         </div>
-      </section>
-
-      <section className="section" aria-labelledby="how-heading">
-        <h2 id="how-heading" className="section-title">
-          How the Module Works
-        </h2>
-        <p className="section-lead">
-          Four steps take you from a quick check to your final reflection.
-        </p>
-        <HowItWorks />
-      </section>
-
-      <section className="section" aria-labelledby="sections-heading">
-        <h2 id="sections-heading" className="section-title">
-          Explore the Sections
-        </h2>
-        <p className="section-lead">
-          Jump straight into any part of the module — they are all open.
-        </p>
-        <SectionPreview />
       </section>
     </div>
   );

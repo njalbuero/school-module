@@ -15,10 +15,9 @@
 }
 
 .site-header-inner {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
   gap: var(--s-2) var(--s-4);
   max-width: 72rem;
   margin: 0 auto;
@@ -29,6 +28,7 @@
   display: flex;
   align-items: center;
   gap: var(--s-3);
+  min-width: 0;
   min-height: var(--tap);
   color: var(--ink);
   text-decoration: none;
@@ -54,6 +54,7 @@
 
 .brand-text {
   display: block;
+  min-width: 0;
 }
 
 .brand-subject {
@@ -83,11 +84,14 @@
   border-radius: var(--radius-sm);
   background-color: var(--surface);
   font-weight: 600;
+  white-space: nowrap;
+  justify-self: end;
   cursor: pointer;
 }
 
 .site-nav {
   display: none;
+  grid-column: 1 / -1;
   width: 100%;
 }
 
@@ -208,6 +212,13 @@
 }
 
 @media (min-width: 900px) {
+  .site-header-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .nav-toggle {
     display: none;
   }

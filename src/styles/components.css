@@ -41,41 +41,6 @@
 }
 
 /* Centered module title block used on the Home hero. */
-.hero-module-heading {
-  text-align: center;
-}
-
-.hero-module-heading .hero-kicker {
-  margin: 0 auto var(--s-2);
-  font-family: var(--font-serif);
-  font-size: clamp(1.125rem, 2.4vw, 1.5rem);
-  font-weight: 700;
-  color: var(--ink);
-  text-align: center;
-}
-
-.hero-module-heading .hero-title {
-  max-width: 28ch;
-  margin-right: auto;
-  margin-left: auto;
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 5.5vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  text-align: center;
-}
-
-.hero-module-heading .hero-lead {
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-}
-
-.hero-module-heading .actions {
-  justify-content: center;
-}
-
 .hero-note {
   margin: var(--s-3) 0 0;
   font-size: var(--text-small);
@@ -491,25 +456,6 @@
 .callout-title {
   margin: 0 0 var(--s-1);
   font-weight: 700;
-}
-
-/* Steps (home page) */
-
-.step-list {
-  display: grid;
-  gap: var(--s-3);
-  max-width: var(--measure);
-  margin: 0;
-  padding-left: var(--s-6);
-}
-
-.step-list li {
-  padding-left: var(--s-1);
-}
-
-.step-title {
-  display: block;
-  font-weight: 600;
 }
 
 /* Next-step call to action */
