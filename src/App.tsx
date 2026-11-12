@@ -5,7 +5,7 @@ import { useProgress } from './context/ProgressContext';
 
 export default function App() {
   const location = useLocation();
-  const { markVisited, resetAll } = useProgress();
+  const { isUnlocked, markVisited, resetAll } = useProgress();
   const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
@@ -48,10 +48,10 @@ export default function App() {
   useEffect(() => {
     const section = SECTIONS.find((item) => item.path === location.pathname);
 
-    if (section) {
+    if (section && isUnlocked(section.id)) {
       markVisited(section.id);
     }
-  }, [location.pathname, markVisited]);
+  }, [location.pathname, isUnlocked, markVisited]);
 
   useEffect(() => {
     if (!navOpen) {

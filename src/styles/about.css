@@ -10,6 +10,11 @@
   text-align: left;
 }
 
+/* Let the About hero description use the full card width on larger screens. */
+.about .page-hero-lead {
+  max-width: none;
+}
+
 /* Learning outcomes */
 
 .outcome-grid {

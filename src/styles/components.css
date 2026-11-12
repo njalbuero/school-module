@@ -696,6 +696,23 @@
   border-color: var(--brand);
 }
 
+.section-nav-link-locked {
+  border-color: var(--line);
+  background-color: var(--surface-alt);
+  color: var(--ink-muted);
+  cursor: not-allowed;
+}
+
+.section-nav-link-locked:hover {
+  border-color: var(--line);
+}
+
+.section-nav-link-locked .section-nav-title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+}
+
 .section-nav-direction {
   font-size: var(--text-label);
   font-weight: 700;

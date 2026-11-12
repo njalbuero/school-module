@@ -25,20 +25,20 @@ const GROUPS: { title: string; ids: SectionId[] }[] = [
 
 export default function Module() {
   usePageMeta({
-    title: 'Module',
+    title: 'Functions and Importance of Education in Society',
     description:
       'All sections of the module, with your progress and completion status.',
   });
 
-  const { isComplete, wasVisited } = useProgress();
+  const { isComplete, isUnlocked, wasVisited } = useProgress();
 
   return (
     <div className="page module">
       <PageHero
         eyebrow="Module Contents"
-        title="Module"
+        title="Functions and Importance of Education in Society"
         meta={`${SECTIONS.length} sections · ${PROGRESS_SECTIONS.length} count toward your progress`}
-        lead="Every section is open, so you can work through them in any order. Your progress and drafts are saved in this browser."
+        lead="Complete the Pre-assessment first. After that, every section unlocks. You can take any lesson or part freely, though following the recommended order is encouraged."
       />
 
       <section className="section" aria-labelledby="progress-heading">
@@ -64,55 +64,83 @@ export default function Module() {
               <ul className="module-sections">
                 {sections.map((section) => {
                   const tracked = section.tracked !== false;
+                  const unlocked = isUnlocked(section.id);
                   const complete = tracked && isComplete(section.id);
                   const visited = wasVisited(section.id);
                   const showLabel = section.label !== section.title;
-                  const statusKey = !tracked
-                    ? 'final'
-                    : complete
-                      ? 'done'
-                      : visited
-                        ? 'progress'
-                        : 'idle';
-                  const statusLabel = !tracked
-                    ? 'Final page'
-                    : complete
-                      ? 'Complete'
-                      : visited
-                        ? 'In progress'
-                        : 'Not started';
+                  const statusKey = !unlocked
+                    ? 'locked'
+                    : !tracked
+                      ? 'final'
+                      : complete
+                        ? 'done'
+                        : visited
+                          ? 'progress'
+                          : 'idle';
+                  const statusLabel = !unlocked
+                    ? 'Locked'
+                    : !tracked
+                      ? 'Final page'
+                      : complete
+                        ? 'Complete'
+                        : visited
+                          ? 'In progress'
+                          : 'Not started';
+
+                  const content = (
+                    <>
+                      <span className="module-section-icon" aria-hidden="true">
+                        <Icon name={SECTION_ICONS[section.id]} />
+                      </span>
+                      <span className="module-section-body">
+                        {showLabel ? (
+                          <span className="module-section-label">
+                            {section.label}
+                          </span>
+                        ) : null}
+                        <span className="module-section-title">
+                          {section.title}
+                        </span>
+                        <span className="module-section-desc">
+                          {section.description}
+                        </span>
+                      </span>
+                      <span className="module-section-end">
+                        <span className="status-chip" data-status={statusKey}>
+                          {statusLabel}
+                        </span>
+                        <span
+                          className={
+                            unlocked
+                              ? 'module-section-chevron'
+                              : 'module-section-lock'
+                          }
+                          aria-hidden="true"
+                        >
+                          <Icon
+                            name={unlocked ? 'arrow-right' : 'lock'}
+                            size={18}
+                          />
+                        </span>
+                      </span>
+                    </>
+                  );
 
                   return (
                     <li key={section.id}>
-                      <Link className="module-section" to={section.path}>
-                        <span className="module-section-icon" aria-hidden="true">
-                          <Icon name={SECTION_ICONS[section.id]} />
-                        </span>
-                        <span className="module-section-body">
-                          {showLabel ? (
-                            <span className="module-section-label">
-                              {section.label}
-                            </span>
-                          ) : null}
-                          <span className="module-section-title">
-                            {section.title}
-                          </span>
-                          <span className="module-section-desc">
-                            {section.description}
-                          </span>
-                        </span>
-                        <span className="module-section-end">
-                          <span className="status-chip" data-status={statusKey}>
-                            {statusLabel}
-                          </span>
-                          <span
-                            className="module-section-chevron"
-                            aria-hidden="true"
-                          >
-                            <Icon name="arrow-right" size={18} />
-                          </span>
-                        </span>
-                      </Link>
+                      {unlocked ? (
+                        <Link className="module-section" to={section.path}>
+                          {content}
+                        </Link>
+                      ) : (
+                        <div
+                          className="module-section module-section-locked"
+                          aria-disabled="true"
+                          title="Complete the previous section to unlock this part."
+                        >
+                          {content}
+                        </div>
+                      )}
                     </li>
                   );
                 })}

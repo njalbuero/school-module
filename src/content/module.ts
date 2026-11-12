@@ -97,6 +97,19 @@ export const SECTIONS: ModuleSection[] = [
   },
 ];
 
+/**
+ * The Pre-assessment is the only prerequisite. Once it is complete, every
+ * other section unlocks, and learners can work through them in any order.
+ */
+export const SECTION_PREREQUISITES: Record<SectionId, SectionId | null> = {
+  'pre-assessment': null,
+  'lesson-1': 'pre-assessment',
+  'lesson-2': 'pre-assessment',
+  'lesson-3': 'pre-assessment',
+  'wrap-up': 'pre-assessment',
+  references: 'pre-assessment',
+};
+
 const LESSON_COUNT = SECTIONS.filter((section) =>
   section.id.startsWith('lesson-'),
 ).length;

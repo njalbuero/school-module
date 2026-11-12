@@ -17,7 +17,8 @@ export type IconName =
   | 'info'
   | 'calendar'
   | 'swap'
-  | 'chevron-down';
+  | 'chevron-down'
+  | 'lock';
 
 type IconProps = {
   name: IconName;
@@ -135,6 +136,12 @@ const PATHS: Record<IconName, ReactNode> = {
   'chevron-down': (
     <>
       <path d="M6 9l6 6 6-6" />
+    </>
+  ),
+  lock: (
+    <>
+      <rect x="5" y="11" width="14" height="10" rx="2" />
+      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
     </>
   ),
 };

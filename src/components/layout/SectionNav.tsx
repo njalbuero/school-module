@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
 import { PROGRESS_SECTIONS } from '../../content/module';
 import type { SectionId } from '../../content/module';
+import { useProgress } from '../../context/ProgressContext';
+import { Icon } from '../ui/Icon';
 
 /**
  * Previous / next navigation for the learning sections, with a way back to the
- * module contents so students always know where they are. Every section is
- * available at any time, so next is never locked.
+ * module contents so students always know where they are. Next stays locked
+ * until its prerequisite section is complete.
  */
 export function SectionNav({ current }: { current: SectionId }) {
+  const { isUnlocked } = useProgress();
   const index = PROGRESS_SECTIONS.findIndex((section) => section.id === current);
   const currentSection = PROGRESS_SECTIONS[index];
   const previous = index > 0 ? PROGRESS_SECTIONS[index - 1] : null;
@@ -15,6 +18,7 @@ export function SectionNav({ current }: { current: SectionId }) {
     index >= 0 && index < PROGRESS_SECTIONS.length - 1
       ? PROGRESS_SECTIONS[index + 1]
       : null;
+  const nextUnlocked = next ? isUnlocked(next.id) : false;
 
   return (
     <nav className="section-nav" aria-label="Section navigation">
@@ -40,10 +44,24 @@ export function SectionNav({ current }: { current: SectionId }) {
         )}
 
         {next ? (
-          <Link className="section-nav-link" to={next.path}>
-            <span className="section-nav-direction">Next</span>
-            <span className="section-nav-title">{next.label}</span>
-          </Link>
+          nextUnlocked ? (
+            <Link className="section-nav-link" to={next.path}>
+              <span className="section-nav-direction">Next</span>
+              <span className="section-nav-title">{next.label}</span>
+            </Link>
+          ) : (
+            <span
+              className="section-nav-link section-nav-link-locked"
+              aria-disabled="true"
+              title={`Complete ${currentSection?.label ?? 'this section'} to unlock ${next.label}.`}
+            >
+              <span className="section-nav-direction">Next</span>
+              <span className="section-nav-title">
+                <Icon name="lock" size={15} />
+                {next.label}
+              </span>
+            </span>
+          )
         ) : (
           <span className="section-nav-empty" aria-hidden="true" />
         )}

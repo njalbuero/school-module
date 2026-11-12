@@ -1,6 +1,9 @@
 import { createContext, useCallback, useContext, useMemo } from 'react';
 import type { ReactNode } from 'react';
-import { PROGRESS_SECTIONS } from '../content/module';
+import {
+  PROGRESS_SECTIONS,
+  SECTION_PREREQUISITES,
+} from '../content/module';
 import type { SectionId } from '../content/module';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
@@ -33,6 +36,7 @@ type ProgressApi = {
   completedCount: number;
   totalSections: number;
   isComplete: (id: SectionId) => boolean;
+  isUnlocked: (id: SectionId) => boolean;
   wasVisited: (id: SectionId) => boolean;
   markVisited: (id: SectionId) => void;
   setComplete: (id: SectionId, complete: boolean) => void;
@@ -131,6 +135,10 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       completedCount,
       totalSections: PROGRESS_SECTIONS.length,
       isComplete: (id) => state.completions[id] === true,
+      isUnlocked: (id) => {
+        const prerequisite = SECTION_PREREQUISITES[id];
+        return prerequisite === null || state.completions[prerequisite] === true;
+      },
       wasVisited: (id) => Boolean(state.visits[id]),
       markVisited,
       setComplete,
