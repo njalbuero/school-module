@@ -1175,6 +1175,11 @@
   min-height: 700px;
 }
 
+/* The module feedback form is taller than the default. */
+.embed-form-tall iframe {
+  min-height: 1482px;
+}
+
 /* Padlet renders at a fixed 608px and scrolls internally. */
 .embed-board iframe {
   height: 608px;
@@ -1229,50 +1234,6 @@
   flex: none;
   margin-top: 0.3rem;
   accent-color: var(--brand);
-}
-
-.survey-question {
-  margin: 0 0 var(--s-5);
-  padding: 0;
-  border: 0;
-}
-
-.survey-question legend {
-  margin-bottom: var(--s-2);
-  font-weight: 600;
-}
-
-.survey-scale {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: var(--s-2);
-}
-
-.survey-option {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-2);
-  min-height: var(--tap);
-  padding: var(--s-2) var(--s-3);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background-color: var(--surface);
-  cursor: pointer;
-}
-
-.survey-option input {
-  flex: none;
-  margin-top: 0.25rem;
-  accent-color: var(--brand);
-}
-
-.survey-option:has(input:checked) {
-  border-color: var(--brand);
-  background-color: var(--brand-soft);
-}
-
-.survey-option span {
-  font-size: var(--text-small);
 }
 
 .feedback,

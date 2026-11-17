@@ -5,7 +5,8 @@ import { PEER_RESPONSE_GROUPS } from '../content/peerResponses';
 import { Icon } from '../components/ui/Icon';
 
 const PADLET_EMBED_URL = 'https://padlet.com/embed/s025bys62pbspa8reg2u';
-const PADLET_URL = 'https://padlet.com/s025bys62pbspa8reg2u';
+const PADLET_URL =
+  'https://padlet.com/masterandreagabrielle/asynchronous-discussion-thread-s025bys62pbspa8reg2u';
 
 const OBJECTIVES = [
   'Explain why education is considered a fundamental human right.',

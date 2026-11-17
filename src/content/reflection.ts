@@ -152,29 +152,3 @@ export const SELF_ASSESSMENT = {
     'I can create an evidence-based reflection about education and a social issue.',
   ],
 } as const;
-
-export const FEEDBACK_SURVEY = {
-  key: 'wrap-up-feedback',
-  questions: [
-    {
-      id: 'clarity',
-      label: 'The module was clear and easy to follow.',
-    },
-    {
-      id: 'activities',
-      label: 'The activities helped me understand the lesson.',
-    },
-    {
-      id: 'confidence',
-      label:
-        'I feel more confident explaining the functions of education in society.',
-    },
-  ],
-  scale: [
-    { value: '1', label: 'Strongly disagree' },
-    { value: '2', label: 'Disagree' },
-    { value: '3', label: 'Neutral' },
-    { value: '4', label: 'Agree' },
-    { value: '5', label: 'Strongly agree' },
-  ],
-} as const;

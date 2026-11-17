@@ -1,31 +1,11 @@
-import { useState } from 'react';
-import type { FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { REFERENCES } from '../content/references';
-import { FEEDBACK_SURVEY } from '../content/reflection';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useProgress } from '../context/ProgressContext';
 import { PageHero } from '../components/layout/PageHero';
 
-type SurveyState = Record<string, string>;
-
-function readDraft<T>(
-  drafts: Record<string, string>,
-  key: string,
-  fallback: T,
-): T {
-  const raw = drafts[key];
-
-  if (!raw) {
-    return fallback;
-  }
-
-  try {
-    return JSON.parse(raw) as T;
-  } catch {
-    return fallback;
-  }
-}
+const FEEDBACK_FORM_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSddXqW-8Dhj2sPIx6f33EvGFOAfY7XDGSpGg2_7wSAd5P4_yw/viewform';
 
 export default function References() {
   usePageMeta({
@@ -33,41 +13,8 @@ export default function References() {
     description: 'Rate the module and review the sources used throughout.',
   });
 
-  const { state, completedCount, totalSections, saveDraft } = useProgress();
+  const { completedCount, totalSections } = useProgress();
   const moduleComplete = completedCount === totalSections;
-
-  const [survey, setSurvey] = useState<SurveyState>(() =>
-    readDraft(state.drafts, FEEDBACK_SURVEY.key, {}),
-  );
-  const [surveySubmitted, setSurveySubmitted] = useState(false);
-  const [surveyError, setSurveyError] = useState('');
-
-  const handleSurveyChange = (key: string, value: string) => {
-    const next = { ...survey, [key]: value };
-    setSurvey(next);
-    saveDraft(FEEDBACK_SURVEY.key, JSON.stringify(next));
-
-    if (surveyError) {
-      setSurveyError('');
-    }
-  };
-
-  const handleSurveySubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const unanswered = FEEDBACK_SURVEY.questions.filter(
-      (question) => !survey[question.id],
-    );
-
-    if (unanswered.length > 0) {
-      setSurveyError('Please answer all three questions before submitting.');
-      return;
-    }
-
-    saveDraft(FEEDBACK_SURVEY.key, JSON.stringify(survey));
-    setSurveySubmitted(true);
-    setSurveyError('');
-  };
 
   return (
     <div className="page section-page references-page">
@@ -111,51 +58,33 @@ export default function References() {
             Module Feedback
           </h2>
           <div className="feature-card">
-            {surveySubmitted ? (
-              <div role="status">
-                <p className="submitted-title">
-                  <span aria-hidden="true">✓</span> Thank you for your feedback
-                </p>
-                <p>Your responses are saved in this browser.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSurveySubmit} noValidate>
-                <p className="section-lead">
-                  How much do you agree with each statement?
-                </p>
-                {FEEDBACK_SURVEY.questions.map((question) => (
-                  <fieldset className="survey-question" key={question.id}>
-                    <legend>{question.label}</legend>
-                    <div className="survey-scale">
-                      {FEEDBACK_SURVEY.scale.map((option) => (
-                        <label className="survey-option" key={option.value}>
-                          <input
-                            type="radio"
-                            name={question.id}
-                            value={option.value}
-                            checked={survey[question.id] === option.value}
-                            onChange={() =>
-                              handleSurveyChange(question.id, option.value)
-                            }
-                          />
-                          <span>{option.label}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </fieldset>
-                ))}
-                {surveyError ? (
-                  <p className="form-error" role="alert">
-                    {surveyError}
-                  </p>
-                ) : null}
-                <div className="actions">
-                  <button type="submit" className="button">
-                    Submit Feedback
-                  </button>
-                </div>
-              </form>
-            )}
+            <p className="section-lead">
+              Please answer the questions in the form below. Your responses go
+              directly to Google.
+            </p>
+            <div className="embed embed-form embed-form-tall">
+              <iframe
+                src={`${FEEDBACK_FORM_URL}?embedded=true`}
+                title="Module feedback form"
+                loading="lazy"
+                frameBorder={0}
+                marginHeight={0}
+                marginWidth={0}
+              >
+                Loading…
+              </iframe>
+            </div>
+            <p className="field-help">
+              If the form does not load,{' '}
+              <a
+                href={FEEDBACK_FORM_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                open the form in a new tab
+              </a>
+              .
+            </p>
           </div>
         </section>
 
