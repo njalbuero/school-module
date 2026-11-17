@@ -105,9 +105,10 @@ student’s device. Nothing else is transmitted to a server.
 A **Clear saved progress** control in the footer wipes the saved module state
 and drafts on that device.
 
-The reflection section embeds a Google Form. Submissions go directly to Google
-and are subject to Google’s privacy policy; they are not stored in
-`localStorage`, and the form requires an internet connection.
+The reflection section and the module feedback section embed Google Forms.
+Submissions go directly to Google and are subject to Google’s privacy policy;
+they are not stored in `localStorage`, and the forms require an internet
+connection.
 
 Lesson 3 embeds a Padlet discussion board. Posts go directly to Padlet and are
 subject to Padlet’s privacy policy; they are not stored in `localStorage`, and
