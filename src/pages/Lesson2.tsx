@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { LessonPage } from '../components/content/LessonPage';
 import { LessonSection } from '../components/content/LessonSection';
+import { RubricAccordion } from '../components/content/RubricAccordion';
 import { PEER_RESPONSE_GROUPS } from '../content/peerResponses';
 import { Icon } from '../components/ui/Icon';
 
@@ -131,6 +131,125 @@ const REFLECTION_RUBRIC = [
   },
 ];
 
+const DISCUSSION_RUBRIC = [
+  {
+    criterion: 'Initial Post — Analysis of the Issue',
+    levels: [
+      {
+        score: 4,
+        label: 'Exemplary',
+        description:
+          'Clearly explains the issue, who is affected, and its connection to education and Philippine society; addresses all guide questions.',
+      },
+      {
+        score: 3,
+        label: 'Proficient',
+        description:
+          'Explains the issue and who is affected with a general connection to education; addresses most guide questions.',
+      },
+      {
+        score: 2,
+        label: 'Developing',
+        description:
+          'Partially explains the issue or who is affected; addresses few guide questions.',
+      },
+      {
+        score: 1,
+        label: 'Beginning',
+        description:
+          'Does not clearly explain the issue, who is affected, or its connection to education.',
+      },
+    ],
+  },
+  {
+    criterion: 'Initial Post — Evidence and Module Concepts',
+    levels: [
+      {
+        score: 4,
+        label: 'Exemplary',
+        description:
+          'Uses at least one specific article detail and one relevant module concept; writes in own words and acknowledges the news source.',
+      },
+      {
+        score: 3,
+        label: 'Proficient',
+        description:
+          'Uses a relevant article detail and module concept, with minor gaps in explanation or attribution.',
+      },
+      {
+        score: 2,
+        label: 'Developing',
+        description:
+          'Uses limited or vague evidence; the module concept connection is unclear.',
+      },
+      {
+        score: 1,
+        label: 'Beginning',
+        description:
+          'Little or no evidence or module concept; relies on opinion or copied text.',
+      },
+    ],
+  },
+  {
+    criterion: 'Peer Response — Comparison of Perspectives',
+    levels: [
+      {
+        score: 4,
+        label: 'Exemplary',
+        description:
+          "Clearly explains a similarity and a meaningful difference, referring to a specific idea or evidence from the classmate's post.",
+      },
+      {
+        score: 3,
+        label: 'Proficient',
+        description:
+          "Explains a similarity and a difference with some reference to the classmate's post.",
+      },
+      {
+        score: 2,
+        label: 'Developing',
+        description:
+          'Identifies a similarity or difference but explains it only briefly or vaguely.',
+      },
+      {
+        score: 1,
+        label: 'Beginning',
+        description:
+          "Does not meaningfully compare perspectives, or only summarizes the classmate's post.",
+      },
+    ],
+  },
+  {
+    criterion: 'Peer Response — Constructive Engagement',
+    levels: [
+      {
+        score: 4,
+        label: 'Exemplary',
+        description:
+          "Asks a thoughtful, respectful question or offers a constructive suggestion that extends the classmate's thinking; meets 75–120 words and avoids simple agreement/disagreement.",
+      },
+      {
+        score: 3,
+        label: 'Proficient',
+        description:
+          'Offers a relevant question or suggestion and engages respectfully; may be slightly outside the word target.',
+      },
+      {
+        score: 2,
+        label: 'Developing',
+        description:
+          'Provides limited engagement, such as general agreement with little extension.',
+      },
+      {
+        score: 1,
+        label: 'Beginning',
+        description:
+          "Only agrees or disagrees, is disrespectful, or does not engage with the classmate's ideas.",
+      },
+    ],
+  },
+];
+
 const CONTENTS = [
   { id: 'lesson-introduction', title: 'Lesson Introduction' },
   {
@@ -144,14 +263,11 @@ const CONTENTS = [
   },
   { id: 'asynchronous-discussion', title: 'Asynchronous Discussion' },
   { id: 'discussion-prepare', title: 'Discussion: Prepare' },
-  { id: 'peer-response-assignments', title: 'Peer Response Assignments' },
   { id: 'discussion-interact', title: 'Discussion: Interact' },
   { id: 'discussion-consolidate', title: 'Discussion: Consolidate' },
 ];
 
 export default function Lesson2() {
-  const [openRubric, setOpenRubric] = useState<number | null>(0);
-
   return (
     <LessonPage
       sectionId="lesson-2"
@@ -176,118 +292,271 @@ export default function Lesson2() {
         </div>
       </LessonSection>
 
-      <LessonSection id="main-lesson-content" title="Main Lesson Content">
-        <div
-          className="lesson-subsection lesson-subsection-first"
-          id="human-right-to-education"
-        >
-          <h3 className="lesson-subheading">
-            Education as a Human Right
-          </h3>
-          <div className="prose">
-            <p>
-              Education is recognized as a fundamental human right. This means
-              that every person, regardless of age, gender, income, disability,
-              ethnicity, or location, is entitled to access quality learning
-              opportunities. The right to education is not a privilege granted
-              only to those who can afford it; it is a basic entitlement that
-              enables people to exercise other rights and participate fully in
-              society.
-            </p>
-            <p>
-              The United Nations Educational, Scientific and Cultural
-              Organization (UNESCO) emphasizes that education is essential to
-              the exercise of other human rights. It promotes access to
-              inclusive, equitable, and quality education for all. International
-              agreements and national laws also affirm the right to education,
-              including the Philippine Constitution, which mandates the State to
-              protect and promote the right of all citizens to quality
-              education at all levels.
-            </p>
-            <p>
-              Education should be accessible to everyone because it supports
-              individual freedom, empowerment, and social and economic
-              development. It helps people make informed decisions, understand
-              their rights, and improve their lives. When access to education is
-              unequal, existing social and economic inequalities are reinforced.
-              Ensuring access to quality education is therefore both a matter of
-              justice and a condition for a more equitable society.
-            </p>
-          </div>
+      <LessonSection
+        id="human-right-to-education"
+        title="Education as a Human Right"
+      >
+        <div className="prose">
+          <p>
+            Education is recognized as a fundamental human right. This means
+            that every person, regardless of age, gender, income, disability,
+            ethnicity, or location, is entitled to access quality learning
+            opportunities. The right to education is not a privilege granted
+            only to those who can afford it; it is a basic entitlement that
+            enables people to exercise other rights and participate fully in
+            society.
+          </p>
         </div>
 
-        <div className="lesson-subsection" id="barriers-to-access">
-          <h3 className="lesson-subheading">
-            Barriers to Educational Access
-          </h3>
-          <div className="prose">
-            <p>
-              Despite the recognition of education as a right, many learners
-              still face barriers to access. Poverty and financial limitations
-              are among the most significant. Families may struggle to cover
-              school supplies, transportation, uniforms, and other costs, even
-              in public schools. In some cases, learners are forced to stop
-              studying so they can work and help support their families.
-            </p>
-            <p>
-              Geographical and technological barriers also affect access.
-              Learners in remote or underserved communities may have to travel
-              long distances to reach schools, and some areas lack adequate
-              classrooms, teachers, and learning materials. The growth of online
-              and blended learning has introduced additional challenges, such as
-              limited internet access, lack of devices, and unstable
-              electricity, which can widen the gap between learners who have
-              resources and those who do not.
-            </p>
-            <p>
-              The unequal distribution of educational resources is another
-              barrier. Schools in urban and wealthier areas often have better
-              facilities, more qualified teachers, and greater access to
-              technology, while schools in poorer or rural areas may have fewer
-              resources. These differences affect the quality of learning and
-              the opportunities available to students. Addressing these barriers
-              requires coordinated action from government, schools, communities,
-              and other stakeholders.
-            </p>
-          </div>
+        <h3 className="lesson-subheading">
+          International and national commitments
+        </h3>
+        <div className="prose">
+          <p>
+            The United Nations Educational, Scientific and Cultural Organization
+            (UNESCO) emphasizes that education is essential to the exercise of
+            other human rights. It promotes access to inclusive, equitable, and
+            quality education for all. International agreements and national
+            laws also affirm the right to education, including the Philippine
+            Constitution, which mandates the State to protect and promote the
+            right of all citizens to quality education at all levels.
+          </p>
+        </div>
+        <ul className="lesson-list">
+          <li>
+            <strong>UNESCO</strong> — promotes access to inclusive, equitable,
+            and quality education for all.
+          </li>
+          <li>
+            <strong>Philippine Constitution</strong> — mandates the State to
+            protect and promote the right of all citizens to quality education
+            at all levels.
+          </li>
+        </ul>
+
+        <h3 className="lesson-subheading">Why access matters</h3>
+        <div className="prose">
+          <p>
+            Education should be accessible to everyone because it supports
+            individual freedom, empowerment, and social and economic
+            development. It helps people make informed decisions, understand
+            their rights, and improve their lives. When access to education is
+            unequal, existing social and economic inequalities are reinforced.
+            Ensuring access to quality education is therefore both a matter of
+            justice and a condition for a more equitable society.
+          </p>
         </div>
 
-        <div className="lesson-subsection" id="education-and-inequality">
-          <h3 className="lesson-subheading">
-            Education and Inequality in Philippine Society
-          </h3>
-          <div className="prose">
-            <p>
-              In Philippine society, differences in educational opportunities
-              are visible across regions, income groups, and types of schools.
-              Students in well-resourced schools may have access to laboratories,
-              libraries, technology, and experienced teachers, while students in
-              underfunded schools may lack even basic facilities. These
-              differences can affect academic performance, aspirations, and
-              future opportunities.
-            </p>
-            <p>
-              Social and economic inequalities are closely connected to
-              educational inequality. Families with higher incomes can afford
-              private schools, tutoring, and learning materials, giving their
-              children advantages that other learners do not have. At the same
-              time, learners from low-income families may face greater
-              challenges in staying in school and pursuing higher education.
-              Education can therefore either reduce or reproduce existing
-              inequalities, depending on how accessible and equitable it is.
-            </p>
-            <p>
-              The government and communities play important roles in addressing
-              these inequalities. The government is responsible for providing
-              accessible, quality education, allocating resources fairly, and
-              implementing policies that support disadvantaged learners.
-              Communities and schools can also contribute through local
-              programs, partnerships, and support for learners and families. A
-              more equitable education system requires sustained effort and
-              collective responsibility.
-            </p>
+        <h3 className="lesson-subheading">Key terms</h3>
+        <dl className="lesson-definition-list">
+          <div>
+            <dt>Human right</dt>
+            <dd>
+              A basic entitlement held by every person, not a privilege granted
+              only to those who can afford it.
+            </dd>
           </div>
+          <div>
+            <dt>Right to education</dt>
+            <dd>
+              The entitlement of every person, regardless of age, gender,
+              income, disability, ethnicity, or location, to access quality
+              learning opportunities.
+            </dd>
+          </div>
+        </dl>
+      </LessonSection>
+
+      <LessonSection
+        id="barriers-to-access"
+        title="Barriers to Educational Access"
+      >
+        <h3 className="lesson-subheading">Poverty and financial limitations</h3>
+        <div className="prose">
+          <p>
+            Despite the recognition of education as a right, many learners still
+            face barriers to access. Poverty and financial limitations are among
+            the most significant. Families may struggle to cover school
+            supplies, transportation, uniforms, and other costs, even in public
+            schools. In some cases, learners are forced to stop studying so they
+            can work and help support their families.
+          </p>
         </div>
+
+        <h3 className="lesson-subheading">
+          Geographical and technological barriers
+        </h3>
+        <div className="prose">
+          <p>
+            Geographical and technological barriers also affect access. Learners
+            in remote or underserved communities may have to travel long
+            distances to reach schools, and some areas lack adequate classrooms,
+            teachers, and learning materials. The growth of online and blended
+            learning has introduced additional challenges, such as limited
+            internet access, lack of devices, and unstable electricity, which
+            can widen the gap between learners who have resources and those who
+            do not.
+          </p>
+        </div>
+        <ul className="lesson-list">
+          <li>
+            <strong>Distance</strong> — learners in remote or underserved
+            communities may have to travel long distances to reach schools.
+          </li>
+          <li>
+            <strong>Limited school resources</strong> — some areas lack adequate
+            classrooms, teachers, and learning materials.
+          </li>
+          <li>
+            <strong>Online learning challenges</strong> — limited internet
+            access, lack of devices, and unstable electricity.
+          </li>
+        </ul>
+
+        <h3 className="lesson-subheading">
+          Unequal distribution of resources
+        </h3>
+        <div className="prose">
+          <p>
+            The unequal distribution of educational resources is another
+            barrier. Schools in urban and wealthier areas often have better
+            facilities, more qualified teachers, and greater access to
+            technology, while schools in poorer or rural areas may have fewer
+            resources. These differences affect the quality of learning and the
+            opportunities available to students. Addressing these barriers
+            requires coordinated action from government, schools, communities,
+            and other stakeholders.
+          </p>
+        </div>
+        <ul className="lesson-list">
+          <li>
+            <strong>Urban and wealthier schools</strong> — often have better
+            facilities, more qualified teachers, and greater access to
+            technology.
+          </li>
+          <li>
+            <strong>Poorer or rural schools</strong> — may have fewer resources,
+            which affects the quality of learning and the opportunities
+            available to students.
+          </li>
+        </ul>
+
+        <h3 className="lesson-subheading">Key terms</h3>
+        <dl className="lesson-definition-list">
+          <div>
+            <dt>Educational access</dt>
+            <dd>
+              The ability of learners to reach and participate in quality
+              education despite financial, geographical, technological, or
+              resource-related barriers.
+            </dd>
+          </div>
+          <div>
+            <dt>Educational resources</dt>
+            <dd>
+              The facilities, teachers, learning materials, and technology that
+              support learning.
+            </dd>
+          </div>
+        </dl>
+      </LessonSection>
+
+      <LessonSection
+        id="education-and-inequality"
+        title="Education and Inequality in Philippine Society"
+      >
+        <h3 className="lesson-subheading">
+          Unequal opportunities across regions and schools
+        </h3>
+        <div className="prose">
+          <p>
+            In Philippine society, differences in educational opportunities are
+            visible across regions, income groups, and types of schools. Students
+            in well-resourced schools may have access to laboratories, libraries,
+            technology, and experienced teachers, while students in underfunded
+            schools may lack even basic facilities. These differences can affect
+            academic performance, aspirations, and future opportunities.
+          </p>
+        </div>
+        <ul className="lesson-list">
+          <li>
+            <strong>Well-resourced schools</strong> — may have laboratories,
+            libraries, technology, and experienced teachers.
+          </li>
+          <li>
+            <strong>Underfunded schools</strong> — may lack even basic
+            facilities, affecting academic performance, aspirations, and future
+            opportunities.
+          </li>
+        </ul>
+
+        <h3 className="lesson-subheading">Education and social inequality</h3>
+        <div className="prose">
+          <p>
+            Social and economic inequalities are closely connected to
+            educational inequality. Families with higher incomes can afford
+            private schools, tutoring, and learning materials, giving their
+            children advantages that other learners do not have. At the same
+            time, learners from low-income families may face greater challenges
+            in staying in school and pursuing higher education. Education can
+            therefore either reduce or reproduce existing inequalities,
+            depending on how accessible and equitable it is.
+          </p>
+        </div>
+        <ul className="lesson-list">
+          <li>
+            <strong>Higher-income families</strong> — can afford private
+            schools, tutoring, and learning materials, giving their children
+            advantages.
+          </li>
+          <li>
+            <strong>Low-income families</strong> — may face greater challenges in
+            staying in school and pursuing higher education.
+          </li>
+        </ul>
+
+        <h3 className="lesson-subheading">Addressing inequality</h3>
+        <div className="prose">
+          <p>
+            The government and communities play important roles in addressing
+            these inequalities. The government is responsible for providing
+            accessible, quality education, allocating resources fairly, and
+            implementing policies that support disadvantaged learners.
+            Communities and schools can also contribute through local programs,
+            partnerships, and support for learners and families. A more
+            equitable education system requires sustained effort and collective
+            responsibility.
+          </p>
+        </div>
+        <ul className="lesson-list">
+          <li>
+            <strong>Government</strong> — provide accessible, quality education,
+            allocate resources fairly, and implement policies that support
+            disadvantaged learners.
+          </li>
+          <li>
+            <strong>Communities and schools</strong> — contribute through local
+            programs, partnerships, and support for learners and families.
+          </li>
+        </ul>
+
+        <h3 className="lesson-subheading">Key terms</h3>
+        <dl className="lesson-definition-list">
+          <div>
+            <dt>Educational inequality</dt>
+            <dd>
+              Differences in access, resources, performance, and opportunities
+              among learners, regions, income groups, and types of schools.
+            </dd>
+          </div>
+          <div>
+            <dt>Equitable education</dt>
+            <dd>
+              An education system that provides fair support so all learners can
+              participate and succeed, regardless of background.
+            </dd>
+          </div>
+        </dl>
       </LessonSection>
 
       <LessonSection
@@ -311,8 +580,58 @@ export default function Lesson2() {
           </p>
         </div>
 
-        <div className="lesson-subsection" id="discussion-prepare">
-          <h3 className="lesson-subheading">1. Prepare — Read and Analyze</h3>
+        <div className="lesson-subsection" id="peer-response-assignments">
+          <h3 className="lesson-subheading">Peer Response Assignments</h3>
+          <div className="prose">
+            <p>
+              Find your student number in the groups below. Open your group to
+              see the classmate paired with you. The group number only helps you
+              locate your name and assignment — it does not change the activity.
+            </p>
+          </div>
+
+          <div className="callout callout-info">
+            <p className="callout-title">Name your Padlet post</p>
+            <p>
+              Use your full name as the author and include your student number,
+              in this format: <strong>SN1_Abad, Jose</strong>. This helps your
+              assigned partner and your teacher find your post.
+            </p>
+          </div>
+
+          <div className="peer-groups">
+            {PEER_RESPONSE_GROUPS.map((group) => (
+              <details className="peer-group" key={group.group}>
+                <summary>
+                  Group {group.group} · {group.range}
+                </summary>
+                <ul className="peer-pairs">
+                  {group.pairs.map((pair) => (
+                    <li className="peer-pair" key={pair.a.sn}>
+                      <span className="peer-student">
+                        <span className="peer-sn">SN{pair.a.sn}</span>
+                        {pair.a.name}
+                      </span>
+                      <span className="peer-arrow" aria-hidden="true">
+                        <Icon name="swap" size={18} />
+                      </span>
+                      <span className="peer-student">
+                        <span className="peer-sn">SN{pair.b.sn}</span>
+                        {pair.b.name}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ))}
+          </div>
+        </div>
+      </LessonSection>
+
+      <LessonSection
+        id="discussion-prepare"
+        title="1. Prepare — Read and Analyze"
+      >
           <div className="prose">
             <p>
               Read the news report below, then analyze the issue using the guide
@@ -386,7 +705,7 @@ export default function Lesson2() {
             </ul>
           </details>
 
-          <h4 className="lesson-minor-heading">Guide questions</h4>
+          <h3 className="lesson-subheading">Guide questions</h3>
           <ul className="lesson-list">
             <li>
               What educational issue does the report present, and who is
@@ -404,7 +723,7 @@ export default function Lesson2() {
             <li>What evidence from the article supports your interpretation?</li>
           </ul>
 
-          <h4 className="lesson-minor-heading">Initial discussion post</h4>
+          <h3 className="lesson-subheading">Initial discussion post</h3>
           <div className="prose">
             <p>
               Write a 150–250-word response that addresses the guide questions.
@@ -413,59 +732,12 @@ export default function Lesson2() {
               and acknowledge the news source.
             </p>
           </div>
-        </div>
+      </LessonSection>
 
-        <div className="lesson-subsection" id="peer-response-assignments">
-          <h3 className="lesson-subheading">Peer Response Assignments</h3>
-          <div className="prose">
-            <p>
-              Find your student number in the groups below. Open your group to
-              see the classmate paired with you. The group number only helps you
-              locate your name and assignment — it does not change the activity.
-            </p>
-          </div>
-
-          <div className="callout callout-info">
-            <p className="callout-title">Name your Padlet post</p>
-            <p>
-              Use your full name as the author and include your student number,
-              in this format: <strong>SN1_Abad, Jose</strong>. This helps your
-              assigned partner and your teacher find your post.
-            </p>
-          </div>
-
-          <div className="peer-groups">
-            {PEER_RESPONSE_GROUPS.map((group) => (
-              <details className="peer-group" key={group.group}>
-                <summary>
-                  Group {group.group} · {group.range}
-                </summary>
-                <ul className="peer-pairs">
-                  {group.pairs.map((pair) => (
-                    <li className="peer-pair" key={pair.a.sn}>
-                      <span className="peer-student">
-                        <span className="peer-sn">SN{pair.a.sn}</span>
-                        {pair.a.name}
-                      </span>
-                      <span className="peer-arrow" aria-hidden="true">
-                        <Icon name="swap" size={18} />
-                      </span>
-                      <span className="peer-student">
-                        <span className="peer-sn">SN{pair.b.sn}</span>
-                        {pair.b.name}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            ))}
-          </div>
-        </div>
-
-        <div className="lesson-subsection" id="discussion-interact">
-          <h3 className="lesson-subheading">
-            2. Interact — Compare Perspectives
-          </h3>
+      <LessonSection
+        id="discussion-interact"
+        title="2. Interact — Compare Perspectives"
+      >
           <div className="prose">
             <p>
               After posting your initial response, respond to the classmate
@@ -490,7 +762,7 @@ export default function Lesson2() {
             </p>
           </div>
 
-          <h4 className="lesson-minor-heading">For each classmate, compare:</h4>
+          <h3 className="lesson-subheading">For each classmate, compare:</h3>
           <dl className="lesson-definition-list">
             <div>
               <dt>Similarity</dt>
@@ -515,7 +787,7 @@ export default function Lesson2() {
             </div>
           </dl>
 
-          <h4 className="lesson-minor-heading">When responding:</h4>
+          <h3 className="lesson-subheading">When responding:</h3>
           <ul className="lesson-list">
             <li>Read the entire post before responding.</li>
             <li>
@@ -550,12 +822,30 @@ export default function Lesson2() {
             </div>
           </details>
 
-          <h4 className="lesson-minor-heading">Discussion board</h4>
+          <h3 className="lesson-subheading">Discussion Rubric</h3>
+          <p className="section-lead">
+            Total: 16 points (4 criteria × 4 points each)
+          </p>
+          <RubricAccordion items={DISCUSSION_RUBRIC} />
+
+          <h3 className="lesson-subheading">Discussion board</h3>
           <div className="prose">
             <p>
               Post your initial response and your reply to your assigned
               classmate (and any optional response) on the discussion board
               below.
+            </p>
+          </div>
+          <div className="callout callout-warning">
+            <p className="callout-title">Data privacy reminder</p>
+            <p>
+              This discussion board is a class space. Post only what the
+              activity requires — your name and student number. Do not share
+              sensitive personal information about yourself or others (home
+              address, contact numbers, ID numbers, health, financial, or
+              family details). Respect your classmates&apos; privacy: do not
+              screenshot, copy, or repost their posts outside this class. Your
+              posts can be seen by your teacher and classmates.
             </p>
           </div>
           <div
@@ -594,10 +884,12 @@ export default function Lesson2() {
             </a>
             .
           </p>
-        </div>
+      </LessonSection>
 
-        <div className="lesson-subsection" id="discussion-consolidate">
-          <h3 className="lesson-subheading">3. Consolidate — Reflect</h3>
+      <LessonSection
+        id="discussion-consolidate"
+        title="3. Consolidate — Reflect"
+      >
           <div className="prose">
             <p>
               After completing your required peer responses, revisit your
@@ -608,7 +900,7 @@ export default function Lesson2() {
             </p>
           </div>
 
-          <h4 className="lesson-minor-heading">Guide questions</h4>
+          <h3 className="lesson-subheading">Guide questions</h3>
           <ul className="lesson-list">
             <li>What was your initial perspective on the social issue you chose?</li>
             <li>
@@ -629,75 +921,19 @@ export default function Lesson2() {
             </li>
           </ul>
 
-          <h4 className="lesson-minor-heading">Reflection Rubric</h4>
+          <h3 className="lesson-subheading">Reflection Rubric</h3>
           <p className="section-lead">
             Total: 16 points (4 criteria × 4 points each)
           </p>
 
-          <div className="rubric-accordion">
-            {REFLECTION_RUBRIC.map((item, index) => {
-              const open = openRubric === index;
-              const panelId = `rubric-panel-${index}`;
-              const triggerId = `rubric-trigger-${index}`;
-
-              return (
-                <div
-                  className={`rubric-acc-item${open ? ' is-open' : ''}`}
-                  key={item.criterion}
-                >
-                  <button
-                    type="button"
-                    id={triggerId}
-                    className="rubric-acc-trigger"
-                    aria-expanded={open}
-                    aria-controls={panelId}
-                    onClick={() => setOpenRubric(open ? null : index)}
-                  >
-                    <span className="rubric-acc-heading">
-                      <span className="rubric-acc-number">{index + 1}</span>
-                      <span className="rubric-acc-title">{item.criterion}</span>
-                    </span>
-                    <span className="rubric-acc-meta">
-                      <span className="rubric-acc-points">4 pts</span>
-                      <span className="rubric-acc-chevron" aria-hidden="true">
-                        <Icon name="chevron-down" size={18} />
-                      </span>
-                    </span>
-                  </button>
-                  <div
-                    id={panelId}
-                    role="region"
-                    aria-labelledby={triggerId}
-                    className="rubric-acc-panel"
-                    hidden={!open}
-                  >
-                    <ul className="rubric-acc-levels">
-                      {item.levels.map((level) => (
-                        <li className="rubric-acc-level" key={level.score}>
-                          <span className="rubric-acc-score">{level.score}</span>
-                          <span className="rubric-acc-level-body">
-                            <span className="rubric-acc-level-label">
-                              {level.label}
-                            </span>
-                            <span className="rubric-acc-level-desc">
-                              {level.description}
-                            </span>
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <RubricAccordion items={REFLECTION_RUBRIC} />
           <p className="field-help">
             Reminder: Your perspective does not have to change completely. A
             meaningful reflection may also show how the discussion strengthened,
             clarified, or expanded your original understanding.
           </p>
 
-          <h4 className="lesson-minor-heading">Submit your reflection</h4>
+          <h3 className="lesson-subheading">Submit your reflection</h3>
           <div className="embed embed-form">
             <iframe
               src="https://docs.google.com/forms/d/e/1FAIpQLScKKdoE1vQUu7XePJXpWqfyMhgjC5ri7S3MRSmQwrC-J6iSvQ/viewform?embedded=true"
@@ -710,7 +946,6 @@ export default function Lesson2() {
               Loading…
             </iframe>
           </div>
-        </div>
       </LessonSection>
     </LessonPage>
   );

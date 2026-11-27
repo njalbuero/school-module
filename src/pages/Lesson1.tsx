@@ -46,110 +46,198 @@ export default function Lesson1() {
         </div>
       </LessonSection>
 
-      <LessonSection id="main-lesson-content">
-        <div
-          className="lesson-subsection lesson-subsection-first"
-          id="understanding-education"
-        >
-          <h3 className="lesson-subheading">Understanding Education</h3>
-          <div className="prose">
-            <p>
-              Education is the process through which people acquire knowledge,
-              skills, values, habits, and attitudes. It is not limited to
-              memorizing facts or passing examinations; it involves learning
-              how to think, act, and participate in society. Through education,
-              individuals develop their abilities and prepare for their roles in
-              their families, communities, and workplaces.
-            </p>
-            <p>
-              Education is also a social institution. Like the family, religion,
-              government, and the economy, it is an organized system of roles,
-              norms, and practices that helps society meet its needs. Schools,
-              teachers, curricula, and educational policies are part of this
-              institution. Education transmits culture, teaches shared values
-              and norms, and prepares people for social and economic
-              participation.
-            </p>
-            <p>
-              Although schooling is the most familiar form of education,
-              learning also happens beyond the classroom. It takes place in the
-              family, in the community, at work, and through everyday
-              experiences and interactions. Formal, non-formal, and informal
-              learning all contribute to a person&apos;s development. This
-              broader view helps us see education as a lifelong process rather
-              than something that ends when a learner leaves school.
-            </p>
-          </div>
+      <LessonSection
+        id="understanding-education"
+        title="Understanding Education"
+      >
+        <div className="prose">
+          <p>
+            Education is the process through which people acquire knowledge,
+            skills, values, habits, and attitudes. It is not limited to
+            memorizing facts or passing examinations; it involves learning how
+            to think, act, and participate in society. Through education,
+            individuals develop their abilities and prepare for their roles in
+            their families, communities, and workplaces.
+          </p>
         </div>
 
-        <div className="lesson-subsection" id="productive-citizenry">
-          <h3 className="lesson-subheading">
-            Education and Productive Citizenry
-          </h3>
-          <div className="prose">
-            <p>
-              One of the most visible functions of education is the development
-              of knowledge and skills. Schools teach literacy, numeracy,
-              scientific thinking, communication, and technical competencies
-              that people need in daily life and in the workplace. Education
-              also develops higher-order skills such as critical thinking,
-              problem solving, and collaboration, which help individuals adapt
-              to changing conditions.
-            </p>
-            <p>
-              Education prepares individuals for social and economic
-              participation. It equips learners with the qualifications and
-              competencies needed to find employment, contribute to the economy,
-              and improve their quality of life. It also prepares them to take
-              part in community life, make informed decisions, and respond to
-              social issues.
-            </p>
-            <p>
-              Beyond economic productivity, education shapes responsible
-              citizenship. It helps people understand their rights and
-              responsibilities, respect diverse perspectives, and participate
-              actively in democratic processes. Through education, individuals
-              learn to contribute to the common good and to work with others in
-              addressing the needs of society. In this way, education supports
-              both personal advancement and the development of the community.
-            </p>
-          </div>
+        <h3 className="lesson-subheading">Education as a social institution</h3>
+        <div className="prose">
+          <p>
+            Education is also a social institution. Like the family, religion,
+            government, and the economy, it is an organized system of roles,
+            norms, and practices that helps society meet its needs. Schools,
+            teachers, curricula, and educational policies are part of this
+            institution. Education transmits culture, teaches shared values and
+            norms, and prepares people for social and economic participation.
+          </p>
         </div>
 
-        <div className="lesson-subsection" id="self-actualization">
-          <h3 className="lesson-subheading">
-            Education and Self-Actualization
-          </h3>
-          <div className="prose">
-            <p>
-              Education also contributes to self-actualization. It helps
-              individuals understand their personal potential by exposing them
-              to different ideas, experiences, and fields of knowledge. As
-              learners discover their interests, strengths, and areas for
-              improvement, they become more aware of who they are and what they
-              can become.
-            </p>
-            <p>
-              Education supports personal growth and development. It builds
-              confidence, encourages self-reflection, and provides opportunities
-              to set and pursue meaningful goals. Learning new skills and
-              overcoming challenges can help individuals develop a stronger
-              sense of competence and purpose.
-            </p>
-            <p>
-              This connects to Abraham Maslow&apos;s concept of
-              self-actualization, which refers to the drive to become the best
-              version of oneself and to fulfill one&apos;s potential. Maslow
-              placed self-actualization at the top of his hierarchy of needs,
-              after basic needs such as food, safety, belonging, and esteem have
-              been reasonably met. Education supports this process by helping
-              learners develop their abilities, pursue their interests, and
-              work toward goals that give their lives meaning. While
-              self-actualization is a lifelong process, education provides
-              important opportunities for growth.
-            </p>
-          </div>
+        <h3 className="lesson-subheading">Learning beyond the classroom</h3>
+        <div className="prose">
+          <p>
+            Although schooling is the most familiar form of education, learning
+            also happens beyond the classroom. It takes place in the family, in
+            the community, at work, and through everyday experiences and
+            interactions. Formal, non-formal, and informal learning all
+            contribute to a person&apos;s development. This broader view helps
+            us see education as a lifelong process rather than something that
+            ends when a learner leaves school.
+          </p>
         </div>
+        <ul className="lesson-list">
+          <li>
+            <strong>Family</strong> — values, habits, and basic life skills
+            learned at home.
+          </li>
+          <li>
+            <strong>Community</strong> — shared practices and interactions with
+            neighbors and local groups.
+          </li>
+          <li>
+            <strong>Workplace</strong> — skills and competencies gained through
+            work and training.
+          </li>
+          <li>
+            <strong>Everyday experiences</strong> — observation, practice, and
+            daily interactions.
+          </li>
+        </ul>
+
+        <h3 className="lesson-subheading">Key terms</h3>
+        <dl className="lesson-definition-list">
+          <div>
+            <dt>Education</dt>
+            <dd>
+              The process through which people acquire knowledge, skills,
+              values, habits, and attitudes.
+            </dd>
+          </div>
+          <div>
+            <dt>Social institution</dt>
+            <dd>
+              An organized system of roles, norms, and practices that helps
+              society meet its needs.
+            </dd>
+          </div>
+        </dl>
+      </LessonSection>
+
+      <LessonSection
+        id="productive-citizenry"
+        title="Education and Productive Citizenry"
+      >
+        <h3 className="lesson-subheading">Building knowledge and skills</h3>
+        <div className="prose">
+          <p>
+            One of the most visible functions of education is the development of
+            knowledge and skills. Schools teach literacy, numeracy, scientific
+            thinking, communication, and technical competencies that people need
+            in daily life and in the workplace. Education also develops
+            higher-order skills such as critical thinking, problem solving, and
+            collaboration, which help individuals adapt to changing conditions.
+          </p>
+        </div>
+        <ul className="lesson-list">
+          <li>
+            <strong>Foundational skills</strong> — literacy, numeracy,
+            scientific thinking, communication, and technical competencies.
+          </li>
+          <li>
+            <strong>Higher-order skills</strong> — critical thinking, problem
+            solving, and collaboration.
+          </li>
+        </ul>
+
+        <h3 className="lesson-subheading">
+          Social and economic participation
+        </h3>
+        <div className="prose">
+          <p>
+            Education prepares individuals for social and economic
+            participation. It equips learners with the qualifications and
+            competencies needed to find employment, contribute to the economy,
+            and improve their quality of life. It also prepares them to take
+            part in community life, make informed decisions, and respond to
+            social issues.
+          </p>
+        </div>
+
+        <h3 className="lesson-subheading">Responsible citizenship</h3>
+        <div className="prose">
+          <p>
+            Beyond economic productivity, education shapes responsible
+            citizenship. It helps people understand their rights and
+            responsibilities, respect diverse perspectives, and participate
+            actively in democratic processes. Through education, individuals
+            learn to contribute to the common good and to work with others in
+            addressing the needs of society. In this way, education supports
+            both personal advancement and the development of the community.
+          </p>
+        </div>
+      </LessonSection>
+
+      <LessonSection
+        id="self-actualization"
+        title="Education and Self-Actualization"
+      >
+        <h3 className="lesson-subheading">Discovering personal potential</h3>
+        <div className="prose">
+          <p>
+            Education also contributes to self-actualization. It helps
+            individuals understand their personal potential by exposing them to
+            different ideas, experiences, and fields of knowledge. As learners
+            discover their interests, strengths, and areas for improvement, they
+            become more aware of who they are and what they can become.
+          </p>
+        </div>
+
+        <h3 className="lesson-subheading">Supporting personal growth</h3>
+        <div className="prose">
+          <p>
+            Education supports personal growth and development. It builds
+            confidence, encourages self-reflection, and provides opportunities
+            to set and pursue meaningful goals. Learning new skills and
+            overcoming challenges can help individuals develop a stronger sense
+            of competence and purpose.
+          </p>
+        </div>
+
+        <h3 className="lesson-subheading">
+          Maslow&apos;s self-actualization
+        </h3>
+        <div className="prose">
+          <p>
+            This connects to Abraham Maslow&apos;s concept of
+            self-actualization, which refers to the drive to become the best
+            version of oneself and to fulfill one&apos;s potential. Maslow
+            placed self-actualization at the top of his hierarchy of needs,
+            after basic needs such as food, safety, belonging, and esteem have
+            been reasonably met. Education supports this process by helping
+            learners develop their abilities, pursue their interests, and work
+            toward goals that give their lives meaning. While
+            self-actualization is a lifelong process, education provides
+            important opportunities for growth.
+          </p>
+        </div>
+
+        <h3 className="lesson-subheading">Key terms</h3>
+        <dl className="lesson-definition-list">
+          <div>
+            <dt>Self-actualization</dt>
+            <dd>
+              The drive to become the best version of oneself and to fulfill
+              one&apos;s potential.
+            </dd>
+          </div>
+          <div>
+            <dt>Hierarchy of needs</dt>
+            <dd>
+              The idea that basic needs such as food, safety, belonging, and
+              esteem must be reasonably met before self-actualization.
+            </dd>
+          </div>
+        </dl>
       </LessonSection>
 
       <LessonSection

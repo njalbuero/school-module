@@ -508,6 +508,11 @@
   background-color: var(--brand-soft);
 }
 
+.callout-warning {
+  border-left-color: var(--amber);
+  background-color: var(--amber-soft);
+}
+
 .callout-title {
   margin: 0 0 var(--s-1);
   font-weight: 700;
