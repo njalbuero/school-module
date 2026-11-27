@@ -43,14 +43,18 @@ no fonts, no external images, no analytics, and no server.
 
 ```
 src/
-  content/          Module metadata, lessons, assessment, reflection, author details
+  content/          Module metadata, lessons, assessment, reflection, portfolio data
   context/          Progress state, persisted in localStorage
   hooks/            localStorage, page titles
   components/       Layout, section navigation, assessment, content, reusable UI
-  pages/            Home, About, Module, PreAssessment, Lesson1–3, WrapUp, NotFound
-  styles/           tokens.css, base.css, layout.css, components.css, lesson.css
+  pages/            Home, About, Module, PreAssessment, Lesson1–3, WrapUp, NotFound,
+                    portfolio/
+  styles/           tokens.css, base.css, layout.css, components.css, lesson.css,
+                    portfolio.css
 public/
   author-andrea-tenorio.jpg
+  portfolio/        Portfolio images
+  pdf/              FA 1–7 worksheets (add PDFs here)
 reqs/               Source documents
 ```
 
@@ -64,9 +68,39 @@ reqs/               Source documents
 | `/pre-assessment` | Interactive 10-item pre-assessment with feedback |
 | `/lesson/1` … `/lesson/3` | Lesson readings and activities |
 | `/wrap-up` | Reflection, self-assessment, and module feedback |
+| `/portfolio` | Instructional design portfolio |
 
 Only Home, About and Module are in the header navigation. Module sections live
 on the Module page, and every section can be opened at any time.
+
+## Instructional Design Portfolio
+
+`/portfolio` is a separate editorial portfolio with its own header, footer, and
+black/white/grayscale visual system. It documents the seven required sections:
+About the Author, About This Project, the five ADDIE phases, worksheets and
+artifacts, pilot evidence, redesign documentation, and professional reflection.
+
+The portfolio is linked from the module footer and is not part of the learner
+path. It is code-split so the module does not download the portfolio styles,
+fonts, or content.
+
+### Worksheet PDFs
+
+The portfolio displays each worksheet as an embedded PDF with an “Open in new
+tab” link. The files are served from `public/pdf/` with these names:
+
+```
+public/pdf/fa1.pdf
+public/pdf/fa2.pdf
+public/pdf/fa3.pdf
+public/pdf/fa4.pdf
+public/pdf/fa5.pdf
+public/pdf/fa6.pdf
+public/pdf/fa7.pdf
+```
+
+The browser's built-in PDF viewer handles the display. No PDF parsing or
+third-party viewer is required.
 
 ## Lessons
 

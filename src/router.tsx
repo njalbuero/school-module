@@ -1,5 +1,5 @@
-import { lazy } from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import App from './App';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -14,7 +14,30 @@ const Lesson2 = lazy(() => import('./pages/Lesson2'));
 const Lesson3 = lazy(() => import('./pages/Lesson3'));
 const References = lazy(() => import('./pages/References'));
 
+const PortfolioLayout = lazy(
+  () => import('./pages/portfolio/PortfolioLayout'),
+);
+const PortfolioHome = lazy(() => import('./pages/portfolio/PortfolioHome'));
+
 export const router = createBrowserRouter([
+  {
+    path: '/portfolio',
+    element: (
+      <Suspense
+        fallback={
+          <div className="pf-route-loading" role="status">
+            Loading portfolio…
+          </div>
+        }
+      >
+        <PortfolioLayout />
+      </Suspense>
+    ),
+    children: [
+      { index: true, element: <PortfolioHome /> },
+      { path: '*', element: <Navigate to="/portfolio" replace /> },
+    ],
+  },
   {
     path: '/',
     element: <App />,

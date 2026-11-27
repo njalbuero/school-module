@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 type PageMeta = {
   title: string;
   description?: string;
+  siteTitle?: string;
 };
 
 const SITE_TITLE = 'Functions and Importance of Education in the Society';
@@ -20,12 +21,12 @@ function setDescription(content: string) {
 }
 
 /** Keeps the document title and description in sync with the current page. */
-export function usePageMeta({ title, description }: PageMeta) {
+export function usePageMeta({ title, description, siteTitle }: PageMeta) {
   useEffect(() => {
-    document.title = `${title} · ${SITE_TITLE}`;
+    document.title = `${title} · ${siteTitle ?? SITE_TITLE}`;
 
     if (description) {
       setDescription(description);
     }
-  }, [title, description]);
+  }, [title, description, siteTitle]);
 }

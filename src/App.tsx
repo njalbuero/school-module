@@ -183,6 +183,9 @@ export default function App() {
           <p className="footer-note">
             Module progress and drafts are saved in this browser only.
           </p>
+          <p>
+            <Link to="/portfolio">Instructional design portfolio</Link>
+          </p>
           <button type="button" className="link-button" onClick={handleReset}>
             Clear saved progress
           </button>
